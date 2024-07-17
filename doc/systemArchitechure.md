@@ -14,11 +14,10 @@
         - 編程語言：Node.js（使用 Express 框架）
         - 用戶認證和授權：JWT（JSON Web Token）、OAuth 或 Passport.js（如果使用 Node.js）
 
-3. **數據庫 (Database)[未選定]**
+3. **數據庫 (Database)**
     - **功能：** 存儲用戶信息、課程數據、選課記錄和社群討論內容。
     - **技術：**
-        - SQL 資料庫：MySQL、PostgreSQL
-        - NoSQL 資料庫：MongoDB（如果需要靈活的數據結構）
+        - SQL 資料庫：PostgreSQL
 
 4. **伺服器和部署 (Server and Deployment)[未決定]**
     - **功能：** 承載和運行網站，確保網站的高可用性和可擴展性。
