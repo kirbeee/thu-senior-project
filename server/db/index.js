@@ -1,4 +1,4 @@
-// db.js
+// index.js
 const { Pool } = require('pg');
 
 // 創建連接池實例
