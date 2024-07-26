@@ -1,13 +1,12 @@
-// index.js
 const { Pool } = require('pg');
+const keys = require('../config/keys');
 
-// 創建連接池實例
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'senior-project',
-  password: 'Kmsh710023',
-  port: 5432,
+  user: keys.databases.user,
+  host: keys.databases.host,
+  database: keys.databases.database,
+  password: keys.databases.password,
+  port: keys.databases.port,
 });
 
 // 連接成功事件

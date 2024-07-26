@@ -1,43 +1,32 @@
-// app.js
-const express = require('express');
+const express = require("express")
+const cookieSession = require("cookie-session")
+const passport = require("passport")
+require("./models/User");
+require("./services/passport");
+const keys = require("./config/keys")
 const userModel = require('./models/User'); // 根據實際目錄結構調整路徑
 
 
 const app = express();
-app.use(express.json());
 
-app.get('/users', async (req, res) => {
-  try {
-    const users = await userModel.getAllUsers();
-    res.json(users);
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-});
+// ??
+// app.use(express.json());
 
-app.get('/users/:id', async (req, res) => {
-  try {
-    const user = await userModel.getUserById(req.params.id);
-    if (user) {
-      res.json(user);
-    } else {
-      res.status(404).send('用戶未找到');
-    }
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-});
 
-app.post('/users', async (req, res) => {
-  const { name } = req.body;
-  try {
-    const newUser = await userModel.createUser(name);
-    res.status(201).json(newUser);
-  } catch (err) {
-    res.status(500).send(err.message);
-  }
-});
+app.use(
+    cookieSession({
+        maxAge: 30 * 24 * 60 * 60 * 1000,
+        keys: [keys.cookieKey]
+    })
+);
 
-app.listen(3000, () => {
-  console.log('伺服器在 http://localhost:3000 運行');
+app.use(passport.initialize());
+app.use(passport.session());
+
+app.use("/", require("./routes/authRoutes"));
+app.use("/", require("./routes/userRoutes"));
+
+const PORT = process.env.PORT ||5000
+app.listen(PORT,()=>{
+    console.log(`Server listening at http://localhost:${PORT}`);
 });
