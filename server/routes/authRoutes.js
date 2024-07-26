@@ -1,5 +1,7 @@
 const passport = require("passport");
-const router = require("express").Router();
+import Router from "express-promise-router";
+
+const router = Router();
 
 router.route("/auth/google")
     .get(
