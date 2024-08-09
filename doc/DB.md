@@ -1,1 +1,0 @@
-https://node-postgres.com/guides/project-structure
