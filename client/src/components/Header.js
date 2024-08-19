@@ -9,7 +9,7 @@ const Header = () => {
                         <li><a href="#courses" className="text-white hover:text-gray-400">找課程明細</a></li>
                         <li><a href="#reviews" className="text-white hover:text-gray-400">學長姐怎麼說</a></li>
                         <li><a href="#past-papers" className="text-white hover:text-gray-400">找考古題</a></li>
-                        <li><a href="#graduation" className="text-white hover:text-gray-400">我要畢業</a></li>
+                        <li><a href="#graduation" className="text-white hover:text-gray-400">我要畢YA</a></li>
                     </ul>
                 </nav>
                 <nav>
