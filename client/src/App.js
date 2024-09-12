@@ -1,31 +1,28 @@
 import React, {Component} from "react";
-import {BrowserRouter, Route} from 'react-router-dom';
+import Route from "./components/Route";
+import Sidebar from "./components/Sidebar";
+import LandingPage from "./pages/LandingPage";
+import DiscussionPage from "./pages/DiscussionPage";
+import AboutPage from "./pages/AboutPage";
 
-import Header from './components/Header';
-import Footer from './components/Footer';
-const Dashboard = () => <h2>Dashboard</h2>;
-const SurveyNew = () => <h2>SurveyNew</h2>;
-const Landing = () => <h2>Landing</h2>;
+function App () {
+    return(
+        <div className="container mx-auto grid grid-cols-6 gap-4 mt-4">
+            <Sidebar/>
+                <div className="col-span-5">
+                    <Route path="/">
+                        <LandingPage/>
+                    </Route>
+                    <Route path="/discussion">
+                        <DiscussionPage/>
+                    </Route>
+                    <Route path="/about">
+                        <AboutPage/>
+                    </Route>
+                </div>
+        </div>
 
-class App extends Component {
-    componentDidMount() {
-
-    }
-
-    render() {
-        return (
-                <BrowserRouter>
-                    <div>
-                        <Header/>
-                        <Route exact path="/" component={Landing}/>
-                        <Route exact path="/surveys" component={Dashboard}/>
-                        <Route exact path="/surveys/new" component={SurveyNew}/>
-                        <Route/>
-                        <Footer/>
-                    </div>
-                </BrowserRouter>
-        );
-    }
+    )
 }
 
 export default App;
