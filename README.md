@@ -1,3 +1,6 @@
+
+後面的後端回傳會更改成資料庫名稱 方便抓取資料
+
 ```mermaid
 graph TD
     %% 主畫面和控制板
@@ -46,5 +49,4 @@ graph TD
     H1:::note -->|前端更新並顯示選課結果| J1
     J1:::note -->|按時間顯示所選課程| K1
 
-    %% 節點樣式
-    classDef note fill:#f9f,stroke:#333,stroke-width:2px;
+   
