@@ -1,4 +1,4 @@
-import Link from './Link';
+import {Link} from 'react-router-dom';
 
 function Sidebar(){
     const links =[
