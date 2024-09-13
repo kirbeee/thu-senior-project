@@ -1,6 +1,9 @@
 import React from 'react';
 
-const Header = () => {
+const Header = ({}) => {
+    const renderContent = () => {
+        switch ()
+    }
     return (
         <header className="bg-blue-600 p-4 shadow-md">
             <div className="container mx-auto flex justify-between items-center">
