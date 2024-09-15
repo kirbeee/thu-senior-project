@@ -1,5 +1,5 @@
 // models/user.js
-const pool = require('../db'); 
+import pool from '../db/index.js';
 
 const getAllUsers = async () => {
   const result = await pool.query('SELECT * FROM users');
@@ -16,7 +16,7 @@ const createUser = async (name) => {
   return result.rows[0];
 };
 
-module.exports = {
+export default {
   getAllUsers,
   getUserById,
   createUser,

@@ -1,17 +1,12 @@
-const express = require("express")
-const cookieSession = require("cookie-session")
-const passport = require("passport")
-require("./models/User");
-require("./services/passport");
-const keys = require("./config/keys")
-const userModel = require('./models/User'); // 根據實際目錄結構調整路徑
-
+import express from "express";
+import "./models/User.js";
+import "./services/passport.js";
+import keys from "./config/dev.js";
+import cookieSession from "cookie-session";
 
 const app = express();
 
-// ??
-// app.use(express.json());
-
+app.use(express.json());
 
 app.use(
     cookieSession({
@@ -20,11 +15,12 @@ app.use(
     })
 );
 
-app.use(passport.initialize());
-app.use(passport.session());
+// app.use(passport.initialize());
+// app.use(passport.session());
 
-app.use("/", require("./routes/authRoutes"));
-app.use("/", require("./routes/userRoutes"));
+// TODO: We need to change setting from mongoDB to PostgreSQL
+// app.use("/", require("./routes/authRoutes"));
+// app.use("/", require("./routes/userRoutes"));
 
 const PORT = process.env.PORT ||5000
 app.listen(PORT,()=>{
