@@ -6,6 +6,10 @@ function Sidebar(){
         {label: "discussion", path: '/discussion'},
         {label: "About", path: '/about'},
         {label: "Example Page - Table", path: '/table'},
+        {label: "Example Page - Button", path: '/button'},
+        {label: "Example Page - Modal", path: '/modal'},
+        {label: "Example Page - Dropdown", path: '/dropdown'},
+        {label: "Example Page - Accordion", path: '/accordion'},
     ]
 
     const renderedLinks = links.map((link) => {
