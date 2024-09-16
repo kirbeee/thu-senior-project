@@ -11,6 +11,7 @@ import ButtonPage from "./pages/example-page/ButtonPage";
 import ModalPage from "./pages/example-page/ModalPage";
 import DropdownPage from "./pages/example-page/DropdownPage";
 import AccordionPage from "./pages/example-page/AccordianPage";
+import LoginPage from "./pages/LoginPage";
 
 
 function App() {
@@ -30,6 +31,8 @@ function App() {
                         <Route path="/modal" element={<ModalPage/>}/>
                         <Route path="/dropdown" element={<DropdownPage/>}/>
                         <Route path="/accordion" element={<AccordionPage/>}/>
+                        // End of example page
+                        <Route path="/login" element={<LoginPage/>}/>
                     </Routes>
                 </div>
             </div>
