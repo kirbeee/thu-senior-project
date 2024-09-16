@@ -6,6 +6,7 @@ import AboutPage from "./pages/AboutPage";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
 import Sidebar from "./components/Sidebar";
+import TablePage from "./pages/examplePage/TablePage";
 
 function App() {
     return (
@@ -19,6 +20,7 @@ function App() {
                             <Route path="/" element={<LandingPage/>}/>
                             <Route path="/discussion" element={<DiscussionPage/>}/>
                             <Route path="/about" element={<AboutPage/>}/>
+                            <Route path="/table" element={<TablePage/>}/>
                         </Routes>
                     </div>
                 </div>

@@ -5,6 +5,7 @@ function Sidebar(){
         {label: "Home", path: '/'},
         {label: "discussion", path: '/discussion'},
         {label: "About", path: '/about'},
+        {label: "Example Page - Table", path: '/table'},
     ]
 
     const renderedLinks = links.map((link) => {
