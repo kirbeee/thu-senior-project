@@ -21,9 +21,7 @@ function Sidebar(){
         return <Link
             key={link.label}
             to={link.path}
-            className={classes}
-
-        >
+            className={classes}>
             {link.label}</Link>
     })
 
