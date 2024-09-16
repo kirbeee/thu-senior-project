@@ -1,4 +1,5 @@
-import {Link} from 'react-router-dom';
+import {Link, useLocation} from 'react-router-dom';
+import classNames from "classnames";
 
 function Sidebar(){
     const links =[
@@ -11,13 +12,17 @@ function Sidebar(){
         {label: "Example Page - Dropdown", path: '/dropdown'},
         {label: "Example Page - Accordion", path: '/accordion'},
     ]
-
+    const location = useLocation();
     const renderedLinks = links.map((link) => {
+        const checkIsCurrentPath = location.pathname === link.path
+        const activeClassName="font-bold border-l-4 border-blue-500 pl-2"
+        const classes = classNames('mb-3 hover:text-blue-500', checkIsCurrentPath && activeClassName)
+
         return <Link
             key={link.label}
             to={link.path}
-            className='mb-3'
-            activeClassName="font-bold border-l-4 border-blue-500 pl-2"
+            className={classes}
+
         >
             {link.label}</Link>
     })
