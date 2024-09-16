@@ -11,6 +11,7 @@ function Sidebar(){
         {label: "Example Page - Modal", path: '/modal'},
         {label: "Example Page - Dropdown", path: '/dropdown'},
         {label: "Example Page - Accordion", path: '/accordion'},
+        {label: "Example Page - Card", path: '/card'},
     ]
     const location = useLocation();
     const renderedLinks = links.map((link) => {

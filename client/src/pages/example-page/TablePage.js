@@ -6,6 +6,7 @@
 // 評分分數 (rate)	INT
 // 發布時間 (post_time)	TIMESTAMP
 // 留言使用者 (discuss_user)	INT	外鍵，連接 user(user_id)
+import SortableTable from '../../components/SortableTable';
 
 function TablePage(){
     const mockData = [
