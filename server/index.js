@@ -3,6 +3,7 @@ import "./models/User.js";
 import "./services/passport.js";
 import keys from "./config/dev.js";
 import cookieSession from "cookie-session";
+import "reflect-metadata"
 
 const app = express();
 
