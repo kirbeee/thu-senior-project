@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: client
+        working-directory: frontend
     # Steps run synchronously (one after the other)
     steps:
       # Retrieve the codebase on the ubuntu machine.
