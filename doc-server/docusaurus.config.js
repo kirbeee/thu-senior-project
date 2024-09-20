@@ -8,8 +8,8 @@ import {themes as prismThemes} from 'prism-react-renderer';
 
 /** @type {import('@docusaurus/types').Config} */
 const config = {
-  title: 'My Site',
-  tagline: 'Dinosaurs are cool',
+  title: 'THU-Helper',
+  tagline: 'Everything you need to know about THU courses',
   favicon: 'img/favicon.ico',
 
   // Set the production url of your site here
@@ -75,7 +75,7 @@ const config = {
       // Replace with your project's social card
       image: 'img/docusaurus-social-card.jpg',
       navbar: {
-        title: 'My Site',
+        title: 'THU-Helper',
         logo: {
           alt: 'My Site Logo',
           src: 'img/logo.svg',
