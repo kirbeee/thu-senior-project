@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?><?xml-stylesheet type="text/xsl" href="atom.xsl"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kirbeee.github.io/thu-senior-project/blog</id>
-    <title>My Site Blog</title>
+    <title>THU-Helper Blog</title>
     <updated>2021-08-26T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kirbeee.github.io/thu-senior-project/blog"/>
-    <subtitle>My Site Blog</subtitle>
+    <subtitle>THU-Helper Blog</subtitle>
     <icon>https://kirbeee.github.io/thu-senior-project/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
