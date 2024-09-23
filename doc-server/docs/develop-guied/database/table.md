@@ -8,7 +8,9 @@ node-module:
 - pg
 - sequelize : ORM
 
-### User 
+### User
+
+因為經常做INSERT不做database index
 
 | key             | data type    | description |
 |-----------------|--------------|-------------|
@@ -20,42 +22,37 @@ node-module:
 | department      | INT          | FK          |
 | identity        | INT          | FK          |
 
+### User information
 
-### 使用者身分表 (identity table)
+### department
 
-| key                   | 資料型態        |    |
-|-----------------------|-------------|----|
-| 使用者身分編碼 (identity_id) | SERIAL INT  | 主鍵 |
-| 身分名稱 (identity_name)  | VARCHAR(50) |    |
+| key             | data type   | description |
+|-----------------|-------------|-------------|
+| department_id   | SERIAL INT  | PK          |
+| department_name | VARCHAR(50) |             |
 
-### 科系表 (department table)
+### Course
 
-| 名稱                     | 資料型態        | 說明                  |
-|------------------------|-------------|---------------------|
-| 科系編碼 (department_id)   | SERIAL INT  | 主鍵                  |
-| 科系名稱 (department_name) | VARCHAR(50) |                     |
-| 畢業門檻 (dp_graduation)   | INT         | 所需學分，外鍵，連接畢業門檻表(編號) |
-
-### 開課明細 (course table)
-
-| 名稱                       | 資料型態        | 說明                |
+| name                     | data type   | description       |
 |--------------------------|-------------|-------------------|
-| 課程代碼 (course_id)         | SERIAL INT  | 主鍵                |
-| 課程名稱 (course_name)       | VARCHAR(50) |                   |
-| 老師 (course_teacher)      | VARCHAR(50) | 可搭配 user(user_id) |
-| 課程內容 (course_content)    | VARCHAR(50) |                   |
-| 課程開課時間 (course_time)     | VARCHAR(50) |                   |
-| 學分數                      | INT         |                   |
+| course_id                | SERIAL INT  | PK                |
+| course_name              | VARCHAR(50) |                   |
+| course_teacher           | VARCHAR(50) | 可搭配 user(user_id) |
+| course_content           | VARCHAR(50) |                   |
+| course_time              | VARCHAR(50) |                   |
+| credit                   | INT         |                   |
 | 課程屬性 (course_type)       | VARCHAR(50) |                   |
 | 討論版 (course_discuss)     | INT         | 外鍵，連接討論區(討論課程編號)  |
 | 考古題 (course_examination) | VARCHAR(50) | 外鍵，連接考古題          |
 
-### 考古題表 (exam table) [討論]
+### 考古題表 (exam table) [not finish]
 
-| 名稱                   | 資料型態        | 說明                      |
-|----------------------|-------------|-------------------------|
-| 考古題科目 (exam_subject) | INT         | 主鍵，連接 course(course_id) |
-| 考古題 (exam_text)      | VARCHAR(50) |                         |
+| name        | data type    | description          |
+|-------------|--------------|----------------------|
+| exam_id     | INT          | PK course(course_id) |
+| description | VARCHAR(200) |                      |
+| file        | ARRAY        | FK                   |
+| img         | ARRAY        | FK                   |
 
 ### 學年表 (year table) [deprecate]
 
