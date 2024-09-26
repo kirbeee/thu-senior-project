@@ -7,4 +7,6 @@
 
 # API Documentation
 using swagger to document the API
+- [API Documentation](localhost:8000/swagger/)
+
 
