@@ -13,9 +13,9 @@ description: Django Note
 
 ## Data Migration Django
 
- - 编辑 `models.py` 文件，改变模型。
- - 运行 `python manage.py makemigrations` 为模型的改变生成迁移文件。
- - 运行 `python manage.py migrate` 来应用数据库迁移。
+ - 编輯 `models.py` 檔案，改變模型。
+ - 執行 `python manage.py makemigrations` 為模型的改變生成遷移檔案。
+ - 執行 `python manage.py migrate` 來應用資料庫遷移。
 
 ## Introduce Django manage page
 [documentation](https://docs.djangoproject.com/zh-hans/5.1/intro/tutorial02/#introducing-the-django-admin)
