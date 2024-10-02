@@ -2,6 +2,9 @@
 
 ## Frontend Setup
 
+## This is our documentations for the project
+https://kirbeee.github.io/thu-senior-project/
+
 ### 1. Install Node.js
 ```shell
 sudo apt-get install nodejs

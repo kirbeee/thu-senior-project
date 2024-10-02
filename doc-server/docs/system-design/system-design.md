@@ -1,3 +1,7 @@
+---
+title: 系統架構設計
+---
+
 ### 1. 系統架構設計
 
 1. **前端 (Frontend)**
@@ -11,24 +15,23 @@
 2. **後端 (Backend)**
     - **功能：** 處理用戶認證、課程管理、選課處理、數據存儲和社群功能。
     - **技術：**
-        - 編程語言：Node.js（使用 Express 框架）
-        - 用戶認證和授權：JWT（JSON Web Token）、OAuth 或 Passport.js（如果使用 Node.js）
+        - 編程語言：Django
+        - 用戶認證和授權：JWT（JSON Web Token）、OAuth
 
 3. **數據庫 (Database)**
     - **功能：** 存儲用戶信息、課程數據、選課記錄和社群討論內容。
     - **技術：**
         - SQL 資料庫：PostgreSQL
 
-4. **伺服器和部署 (Server and Deployment)[未決定]**
+4. **伺服器和部署 (Server and Deployment)**
     - **功能：** 承載和運行網站，確保網站的高可用性和可擴展性。
     - **技術：**
-        - 伺服器：Nginx 或 Apache
-        - 部署平台：Heroku、AWS（Amazon Web Services）、Google Cloud Platform、Microsoft Azure
-        - 容器化技術：Docker（用於環境一致性和部署方便）
-        - 持續集成和持續部署（CI/CD）：CircleCI +
-            -    Jenkins、GitHub Actions、GitLab CI
+        - 伺服器：Nginx
+        - 部署平台：AWS
+        - 容器化技術：Docker Container
+        - 持續集成和持續部署（CI/CD）：GitHub Actions
 
-5. **安全性 (Security)[未決定]**
+5. **安全性 (Security)[未使用]**
     - **功能：** 保護用戶數據和系統免受攻擊。
     - **技術：**
         - HTTPS/SSL/TLS（確保數據在傳輸過程中的安全）
@@ -38,9 +41,9 @@
 6. **其他 (Other)**
     - **功能：** 提供輔助功能和增強用戶體驗。
     - **技術：**
-        - 日誌和監控：ELK 堆疊（Elasticsearch, Logstash, Kibana）、Prometheus 和 Grafana
-        - 測試：單元測試（Jest、Mocha）、端到端測試（Cypress、Selenium）
-        - API 設計：RESTful API 或 GraphQL
+        - 日誌和監控：ELK 堆疊（Elasticsearch, Logstash, Kibana）、Prometheus 和 Grafana [未決定]
+        - 測試：單元測試（Jest、Mocha）、端到端測試（Cypress、Selenium）[未決定]
+        - API 設計：RESTFUL API
 
 ### 2. 具體功能模塊設計
 
@@ -68,7 +71,14 @@
 
 ### 3. 技術選擇的理由
 
-- **前端框架（React.js）：** 這些都是現代流行的前端框架，具有高性能和靈活性，適合構建複雜的單頁應用（SPA）。
-- **後端框架（Node.js）：** 這些框架具有強大的社區支持和豐富的第三方庫，能夠快速構建和部署後端服務。
-- **資料庫（MySQL、PostgreSQL、MongoDB）[未決定]：** MySQL 和 PostgreSQL 是成熟的 SQL 資料庫，適合結構化數據存儲；MongoDB 是靈活的 NoSQL 資料庫，適合非結構化數據和需要快速迭代的項目。
-- **部署平台（Heroku、AWS、Google Cloud）[未決定]：** 這些平台提供高可用性和可擴展性的雲服務，適合中小型項目的初期部署和運營。
+1. **前端技術**：選擇 React.js 作為前端框架，因為它提供了組件化的開發模式，便於維護和重用；Tailwind CSS 提供了方便的樣式設計工具，能夠快速構建響應式界面。
+
+2. **後端技術**：Django 是一個成熟的網頁框架，具備高效的開發效率和強大的安全性，並且有著良好的社群支持。使用 JWT 和 OAuth 能夠簡化用戶認證流程並增強安全性。
+
+3. **數據庫選擇**：PostgreSQL 是一個功能強大的關係型數據庫，支持複雜查詢和高並發，適合存儲結構化數據。
+
+4. **伺服器和部署**：Nginx 作為反向代理伺服器，能夠提高網站的性能和安全性。AWS 提供了可擴展的雲服務平台，方便未來的擴展和維護。
+
+5. **安全性考量**：選擇 HTTPS 和數據加密技術，能夠有效保護用戶數據和系統安全，防止潛在的攻擊。
+
+6. **測試和監控**：ELK 堆疊和 Prometheus 能夠提供良好的監控和日誌功能，有助於及時發現和解決問題。
