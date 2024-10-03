@@ -1,5 +1,5 @@
 import {createSlice} from "@reduxjs/toolkit";
-import {fetchUsers} from "../thunks/fetchUsers";
+import {authApi} from "../thunks/authApi";
 
 const usersSlice = createSlice({
     name: 'users',
@@ -9,14 +9,14 @@ const usersSlice = createSlice({
         error: null
     },
     extraReducers(builder) {
-        builder.addCase(fetchUsers.pending, (state, action) => {
+        builder.addCase(authApi.pending, (state, action) => {
             state.isLoading = true;
         })
-        builder.addCase(fetchUsers.fulfilled, (state, action) => {
+        builder.addCase(authApi.fulfilled, (state, action) => {
             state.isLoading = false;
             state.data = action.payload;
         })
-        builder.addCase(fetchUsers.rejected, (state, action) => {
+        builder.addCase(authApi.rejected, (state, action) => {
             state.isLoading = false;
             state.error = action.error
         })
