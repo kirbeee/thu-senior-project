@@ -1,0 +1,46 @@
+{
+  "version.label": {
+    "message": "Next",
+    "description": "The label for version current"
+  },
+  "sidebar.tutorialSidebar.category.API": {
+    "message": "API",
+    "description": "The label for category API in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.TODO": {
+    "message": "TODO",
+    "description": "The label for category TODO in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.UI": {
+    "message": "UI",
+    "description": "The label for category UI in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.backend": {
+    "message": "backend",
+    "description": "The label for category backend in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.IAM": {
+    "message": "IAM",
+    "description": "The label for category IAM in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.database": {
+    "message": "database",
+    "description": "The label for category database in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.develop-guied": {
+    "message": "develop-guied",
+    "description": "The label for category develop-guied in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.system": {
+    "message": "system",
+    "description": "The label for category system in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.frontend": {
+    "message": "frontend",
+    "description": "The label for category frontend in sidebar tutorialSidebar"
+  },
+  "sidebar.tutorialSidebar.category.系統架構設計": {
+    "message": "系統架構設計",
+    "description": "The label for category 系統架構設計 in sidebar tutorialSidebar"
+  }
+}

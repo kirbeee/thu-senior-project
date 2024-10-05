@@ -8,22 +8,6 @@ node-module:
 - pg
 - sequelize : ORM
 
-### User
-
-因為經常做INSERT不做database index
-
-| key             | data type    | description |
-|-----------------|--------------|-------------|
-| user_id         | SERIAL INT   | PK          |
-| student_id      | VARCHAR(15)  |             |
-| password        | VARCHAR(100) |             |
-| user_name       | VARCHAR(50)  |             |
-| Google Oauth–id | VARCHAR(100) |             |
-| department      | INT          | FK          |
-| identity        | INT          | FK          |
-
-### User information
-
 ### department
 
 | key             | data type   | description |
