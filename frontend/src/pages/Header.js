@@ -9,7 +9,8 @@ const Header = () => {
             </div>
             <div className="flex-none">
                     <ul className="menu menu-horizontal px-1">
-                        <li><Link to="/login" key="login" className="text-white hover:text-gray-300">Sing in</Link></li>
+                        <li><Link to="/login" key="login">Sing in</Link></li>
+                        <li><Link to="/logout" key="logout">Logout</Link></li>
                     </ul>
             </div>
         </header>
