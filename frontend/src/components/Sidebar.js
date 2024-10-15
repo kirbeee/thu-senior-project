@@ -5,13 +5,7 @@ function Sidebar(){
     const links =[
         {label: "Home", path: '/'},
         {label: "discussion", path: '/discussion'},
-        {label: "About", path: '/about'},
-        {label: "Example Page - Table", path: '/table'},
-        {label: "Example Page - Button", path: '/button'},
-        {label: "Example Page - Modal", path: '/modal'},
-        {label: "Example Page - Dropdown", path: '/dropdown'},
-        {label: "Example Page - Accordion", path: '/accordion'},
-        {label: "Example Page - Card", path: '/card'},
+        {label: "About", path: '/about'}
     ]
     const location = useLocation();
     const renderedLinks = links.map((link) => {

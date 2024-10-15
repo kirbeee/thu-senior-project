@@ -14,6 +14,9 @@ from pathlib import Path
 import environ
 import os
 
+
+
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 env = environ.Env(
@@ -33,9 +36,17 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+# Email Settings
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = env('GOOGLE_SMTP')
+EMAIL_HOST_PASSWORD = env('GOOGLE_SMTP_PASSWORD')
+# development email backend (please remove when in production)
+# EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 # Application definition
-
 INSTALLED_APPS = [
 
     # allauth - google auth
