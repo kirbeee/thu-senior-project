@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import {useNavigate} from "react-router-dom";
 import axios from 'axios';
 
 const LoginForm = () => {
@@ -6,6 +7,8 @@ const LoginForm = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState(null);
+
+    const navigate = useNavigate();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -19,6 +22,7 @@ const LoginForm = () => {
             localStorage.setItem('authToken', response.data.key);
             setError(null);
             // 重定向到主頁或顯示登入成功
+            navigate('/');
         } catch (err) {
             setError('Login failed. Please check your credentials.');
         }

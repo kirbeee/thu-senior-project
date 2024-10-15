@@ -38,14 +38,14 @@ node-module:
 | file        | ARRAY        | FK                   |
 | img         | ARRAY        | FK                   |
 
-### 學年表 (year table) [deprecate]
+### 學年表 (year table) [input to user table]
 
 | 名稱                   | 資料型態       | 說明 |
 |----------------------|------------|----|
 | Id (year_department) | SERIAL INT | 主鍵 |
 | 學年 (year_year)       | SMALLINT   |    |
 
-### 畢業門檻 (graduation_requirement table) [deprecate]
+### 畢業門檻 (graduation_requirement table) [to be microservice part]
 
 | 名稱    | 資料型態       | 說明                          |
 |-------|------------|-----------------------------|
@@ -56,6 +56,7 @@ node-module:
 | 學年    | INT        | 外鍵，連接 year(year_department) |
 
 ### 討論表 (discuss board table) [討論區]
+picture to be updated in next version
 
 | 名稱                   | 資料型態        | 說明                  |
 |----------------------|-------------|---------------------|

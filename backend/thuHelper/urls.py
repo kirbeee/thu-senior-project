@@ -24,6 +24,7 @@ from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 from django.urls import re_path
 from django.views.generic import TemplateView
+from dj_rest_auth.registration.views import VerifyEmailView
 
 urlpatterns = [
     path("users/", views.UsersView.as_view()),
@@ -62,4 +63,9 @@ urlpatterns += [
 urlpatterns += [
     path('dj-rest-auth/', include('dj_rest_auth.urls')),  # 登入、登出等
     path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),  # 註冊功能
+]
+
+# STMP settings
+urlpatterns += [
+    path('dj-rest-auth/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent')
 ]
