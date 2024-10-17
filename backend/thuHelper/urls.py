@@ -17,7 +17,6 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 
-from test_restful_api import views
 from django.urls import include
 from rest_framework import permissions
 from drf_yasg.views import get_schema_view
@@ -27,12 +26,10 @@ from django.views.generic import TemplateView
 from dj_rest_auth.registration.views import VerifyEmailView
 
 urlpatterns = [
-    path("users/", views.UsersView.as_view()),
     path("admin/", admin.site.urls),
 ]
 
 # Swagger settings
-
 
 schema_view = get_schema_view(
     openapi.Info(

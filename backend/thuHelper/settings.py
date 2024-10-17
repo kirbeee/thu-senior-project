@@ -48,7 +48,8 @@ EMAIL_HOST_PASSWORD = env('GOOGLE_SMTP_PASSWORD')
 
 # Application definition
 INSTALLED_APPS = [
-
+    # student
+    "student",
     # allauth - google auth
     'allauth',
     'allauth.account',
@@ -63,7 +64,6 @@ INSTALLED_APPS = [
     "drf_yasg",
 
     # restful framework
-    "test_restful_api",
     "rest_framework",
     'rest_framework.authtoken',
 
