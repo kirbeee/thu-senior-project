@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import {useNavigate} from "react-router-dom";
 import axios from 'axios';
-
+// TODO: To implement to use react-redux
 const LoginForm = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
