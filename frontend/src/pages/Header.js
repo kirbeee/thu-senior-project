@@ -4,22 +4,27 @@ import { useDispatch, useSelector } from "react-redux";
 import {authApi} from "../store";
 
 const Header = () => {
-
     const dispatch = useDispatch();
     const {isLoading, data, error} = useSelector((state) => state.users);
     useEffect(() => {
         dispatch(authApi());
     }, [dispatch]);
+
     // TODO : find a good way on if statement
     const renderBtn = () => {
-        if (isLoading) return <div>Loading...</div>;
+        if (isLoading) return (
+            <button className="btn">
+                <span className="loading loading-spinner"></span>
+                loading
+            </button>
+        );
         if (data.email) return (
             <li><Link to="/logout" key="logout">Logout</Link></li>
         );
         else return (
             <>
                 <li><Link to="/login" key="login">Sign In</Link></li>
-                <li><Link to="/signup" key="signup">Sign Up</Link></li>
+                <li><Link to="/register/select" key="signup">Sign Up</Link></li>
             </>
         )
     }

@@ -66,3 +66,8 @@ urlpatterns += [
 urlpatterns += [
     path('dj-rest-auth/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent')
 ]
+
+# Student settings
+urlpatterns += [
+    path('student/', include('student.urls')),
+]

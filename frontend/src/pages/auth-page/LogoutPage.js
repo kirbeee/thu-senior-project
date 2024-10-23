@@ -1,7 +1,7 @@
 import {useEffect} from "react";
-import { logoutApi } from "../store";
+import { logoutApi } from "../../store";
 import {useDispatch, useSelector} from "react-redux";
-import Skeleton from "../components/Skeleton";
+import Skeleton from "../../components/Skeleton";
 
 function LogoutPage(){
     const dispatch = useDispatch();
