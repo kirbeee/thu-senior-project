@@ -19,14 +19,28 @@ const Header = () => {
             </button>
         );
         if (data.email) return (
-            <li><Link to="/logout" key="logout">Logout</Link></li>
-        );
-        else return (
-            <>
-                <li><Link to="/login" key="login">Sign In</Link></li>
-                <li><Link to="/register/select" key="signup">Sign Up</Link></li>
-            </>
+            <details className="dropdown ">
+                <summary className="btn m-1" >
+                    <div className="avatar placeholder">
+                        <div className="bg-neutral text-neutral-content w-12 rounded-full">
+                            <span>SY</span>
+                        </div>
+                    </div>
+                </summary>
+                <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
+                    <li><Link to="/account" key="account">My Account</Link></li>
+                    <li><Link to="/logout" key="logout">Logout</Link></li>
+                </ul>
+            </details>
         )
+            ;
+        else
+            return (
+                <>
+                    <li><Link to="/login" key="login">Sign In</Link></li>
+                    <li><Link to="/register/select" key="signup">Sign Up</Link></li>
+                </>
+            )
     }
 
     return (
@@ -35,10 +49,10 @@ const Header = () => {
                 <a href="http://localhost:3000" className="btn btn-ghost text-xl">THU Helper</a>
             </div>
             <div className="flex-none">
-                    <ul className="menu menu-horizontal px-1">
+                <ul className="menu menu-horizontal px-1">
+                    {renderBtn()}
+                </ul>
 
-                        {renderBtn()}
-                    </ul>
             </div>
         </header>
     );
