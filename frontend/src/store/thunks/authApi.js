@@ -10,8 +10,9 @@ const authApi = createAsyncThunk("users/fetch", async (userId, thunkAPI) => {
             Authorization: `Token ${localStorage.getItem("authToken")}`
         }
     });
-    // DEV ONLY
+    // DEV ONLY - Simulate slow network
     // await new Promise((resolve) => setTimeout(resolve, 1000));
+    console.log(response.data);
     return response.data;
 });
 

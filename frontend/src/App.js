@@ -12,6 +12,7 @@ import StudentSignupPage from "./pages/auth-page/StudentSignupPage";
 import RegistrationSelector from "./pages/auth-page/RegistrationSelector";
 import TeacherSignupPage from "./pages/auth-page/TeacherSignupPage";
 import VisitorSignupPage from "./pages/auth-page/VisitorSignupPage";
+import AccountPage from "./pages/AccountPage";
 
 
 function App() {
@@ -19,7 +20,6 @@ function App() {
         <Router>
             <Header/>
             <div className="container mx-auto grid grid-cols-1 lg:grid-cols-6 gap-4 mt-4">
-
                 <Sidebar/>
                 <div className="col-span-5">
                     <Routes>
@@ -32,6 +32,7 @@ function App() {
                         <Route path="/student/signup" element={<TeacherSignupPage/>}/>
                         <Route path="/teacher/signup" element={<StudentSignupPage/>}/>
                         <Route path="/register/select" element={<RegistrationSelector/>}/>
+                        <Route path="/account" element={<AccountPage/>}/>
                     </Routes>
                 </div>
             </div>

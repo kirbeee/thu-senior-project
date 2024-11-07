@@ -28,7 +28,7 @@ const Header = () => {
                     </div>
                 </summary>
                 <ul className="menu dropdown-content bg-base-100 rounded-box z-[1] w-52 p-2 shadow">
-                    <li><Link to="/account" key="account">My Account</Link></li>
+                    <li><Link to="/account" key="account">Setting</Link></li>
                     <li><Link to="/logout" key="logout">Logout</Link></li>
                 </ul>
             </details>

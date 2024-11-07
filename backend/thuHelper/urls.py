@@ -67,7 +67,12 @@ urlpatterns += [
     path('dj-rest-auth/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent')
 ]
 
+# api-auth settings
+urlpatterns += [
+    re_path(r"^api_auth/", include("rest_framework.urls")),
+]
+
 # Student settings
 urlpatterns += [
-    path('student/', include('student.urls')),
+    path('student/', include('user_system.urls')),
 ]

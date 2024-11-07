@@ -10,6 +10,7 @@ const LoginForm = () => {
 
     const navigate = useNavigate();
 
+    // TODO: To implement to use react-redux
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {

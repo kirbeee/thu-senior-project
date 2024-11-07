@@ -48,8 +48,8 @@ EMAIL_HOST_PASSWORD = env('GOOGLE_SMTP_PASSWORD')
 
 # Application definition
 INSTALLED_APPS = [
-    # student
-    "student",
+    # user system
+    "user_system",
     # allauth - google auth
     'allauth',
     'allauth.account',
