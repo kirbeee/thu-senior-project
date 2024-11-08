@@ -19,8 +19,7 @@ from django.urls import path
 
 from django.urls import include
 from rest_framework import permissions
-from drf_yasg.views import get_schema_view
-from drf_yasg import openapi
+
 from django.urls import re_path
 from django.views.generic import TemplateView
 from dj_rest_auth.registration.views import VerifyEmailView
@@ -30,7 +29,8 @@ urlpatterns = [
 ]
 
 # Swagger settings
-
+from drf_yasg.views import get_schema_view
+from drf_yasg import openapi
 schema_view = get_schema_view(
     openapi.Info(
         title="Snippets API",
@@ -55,11 +55,11 @@ urlpatterns += [
     path('', TemplateView.as_view(template_name='index.html'))
 ]
 
-# Google oauth settings
+# dj-rest-auth settings
 
 urlpatterns += [
     path('dj-rest-auth/', include('dj_rest_auth.urls')),  # 登入、登出等
-    path('dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')),  # 註冊功能
+    path('registration/', include('dj_rest_auth.registration.urls')),  # 註冊功能
 ]
 
 # STMP settings
@@ -70,9 +70,4 @@ urlpatterns += [
 # api-auth settings
 urlpatterns += [
     re_path(r"^api_auth/", include("rest_framework.urls")),
-]
-
-# Student settings
-urlpatterns += [
-    path('student/', include('user_system.urls')),
 ]
