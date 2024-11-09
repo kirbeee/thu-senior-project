@@ -5,13 +5,11 @@ const authApi = createAsyncThunk("users/fetch", async (userId, thunkAPI) => {
     if (!localStorage.getItem("authToken")) {
         return thunkAPI.rejectWithValue("User is not authenticated");
     }
-    const response = await axios.get(`${process.env.REACT_APP_API_URL}/dj-rest-auth/user/`,{
+    const response = await axios.get(`${process.env.REACT_APP_API_URL}/user/`,{
         headers: {
             Authorization: `Token ${localStorage.getItem("authToken")}`
         }
     });
-    // DEV ONLY - Simulate slow network
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
     console.log(response.data);
     return response.data;
 });
@@ -20,14 +18,11 @@ const logoutApi = createAsyncThunk("users/logout", async (userId, thunkAPI) => {
     if (!localStorage.getItem("authToken")) {
         return thunkAPI.rejectWithValue("User is not authenticated");
     }
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/dj-rest-auth/logout/`, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/logout/`, {
         headers: {
             Authorization: `Token ${localStorage.getItem("authToken")}`
         }
     });
-    // DEV ONLY
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
-    // console.log(response.data);
     return response.data;
 });
 
@@ -35,24 +30,18 @@ const loginApi = createAsyncThunk("users/login", async (userName,email,password,
     if (!localStorage.getItem("authToken")) {
         return thunkAPI.rejectWithValue("User is not authenticated");
     }
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/dj-rest-auth/login/`, {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/login/`, {
         userName, email, password
     });
-    // DEV ONLY
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
-    // console.log(response.data);
     return response.data;
 });
-const signupApi = createAsyncThunk("users/signup", async (userName,email,password,verifyPassword, thunkAPI) => {
-    if (!localStorage.getItem("authToken")) {
-        return thunkAPI.rejectWithValue("User is not authenticated");
-    }
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/dj-rest-auth/registration/`, {
-        userName, email, password, verifyPassword
+
+const signupApi = createAsyncThunk("users/signup", async ({username, email, password1, password2}) => {
+    const response = await axios.post(`${process.env.REACT_APP_API_URL}/registration/`, {
+        username, email, password1, password2
     });
-    // DEV ONLY
-    // await new Promise((resolve) => setTimeout(resolve, 1000));
-    // console.log(response.data);
+    localStorage.setItem('authToken', response.key);
+    console.log({username, email, password1, password2})
     return response.data;
 });
 

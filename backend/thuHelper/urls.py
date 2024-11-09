@@ -58,13 +58,13 @@ urlpatterns += [
 # dj-rest-auth settings
 
 urlpatterns += [
-    path('dj-rest-auth/', include('dj_rest_auth.urls')),  # 登入、登出等
+    path('/', include('dj_rest_auth.urls')),  # 登入、登出等
     path('registration/', include('dj_rest_auth.registration.urls')),  # 註冊功能
 ]
 
 # STMP settings
 urlpatterns += [
-    path('dj-rest-auth/account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent')
+    path('account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent')
 ]
 
 # api-auth settings

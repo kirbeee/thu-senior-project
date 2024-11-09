@@ -1,12 +1,11 @@
+# urls.py
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import StudentViewSet
+from .views import StudentViewSet, TeacherViewSet  # 加入 TeacherViewSet
 
-router = DefaultRouter()
-router.register(r'students', StudentViewSet)
+from django.urls import path
+from .views import UserRoleView
 
 urlpatterns = [
-    path('', include(router.urls)),
-    path('auth/', include('dj_rest_auth.urls')),  # 包含身份驗證端點
-    path('auth/registration/', include('dj_rest_auth.registration.urls')),  # 包含註冊端點
+    path('user-role/', UserRoleView.as_view(), name='user-role'),
 ]

@@ -1,36 +1,19 @@
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 import {signupApi} from "../../store";
+import {useThunk} from "../../hooks/use-thunk";
 
 function StudentSignupPage(){
-    const dispatch = useDispatch();
-    const navigate = useNavigate();
-    const { isLoading, data, error } = useSelector((state) => state.users || {
-        isLoading: false,
-        data: [],
-        error: null
-    });
+    const [doCreateUser, isLoading, CreateError] = useThunk(signupApi);
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
-    const [studentID, setStudentID] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await dispatch(signupApi(username, email, password1, password2));
-            // 存儲 token，這裡假設使用 Local Storage 存儲
-            localStorage.setItem('authToken', response.key);
-            // 重定向到主頁或顯示登入成功
-            if(data){
-                navigate('/');
-            }
-        } catch (err) {
-            console.log(err)
-        }
+        console.log({username, email, password1, password2})
+        doCreateUser({username, email, password1, password2});
     };
 
     return (
@@ -112,8 +95,6 @@ function StudentSignupPage(){
                 type="submit">{isLoading? `Sign Up ${(
                 <span className="loading loading-spinner loading-xs"></span>)}` : 'Sign Up'}
             </button>
-
-
         </form>
     )
 }
