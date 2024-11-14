@@ -31,7 +31,7 @@ class CustomUserDetailsSerializer(UserDetailsSerializer):
     role = serializers.SerializerMethodField()
 
     class Meta(UserDetailsSerializer.Meta):
-        fields = UserDetailsSerializer.Meta.fields + 'role'
+        fields = UserDetailsSerializer.Meta.fields + ('role',)
 
     def get_role(self):
         if hasattr(self, 'student'):

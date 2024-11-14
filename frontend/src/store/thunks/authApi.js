@@ -41,7 +41,6 @@ const signupApi = createAsyncThunk("users/signup", async ({username, email, pass
         username, email, password1, password2
     });
     localStorage.setItem('authToken', response.key);
-    console.log({username, email, password1, password2})
     return response.data;
 });
 

@@ -58,7 +58,7 @@ urlpatterns += [
 # dj-rest-auth settings
 
 urlpatterns += [
-    path('/', include('dj_rest_auth.urls')),  # 登入、登出等
+    path('', include('dj_rest_auth.urls')),  # 登入、登出等
     path('registration/', include('dj_rest_auth.registration.urls')),  # 註冊功能
 ]
 
@@ -70,4 +70,19 @@ urlpatterns += [
 # api-auth settings
 urlpatterns += [
     re_path(r"^api_auth/", include("rest_framework.urls")),
+]
+
+# user settings
+urlpatterns += [
+    path('', include('user_system.urls')),
+]
+
+# course settings
+urlpatterns += [
+    path('', include('school_system.urls')),
+]
+
+# bbs settings
+urlpatterns += [
+    path('bbs/', include('bbs.urls')),
 ]

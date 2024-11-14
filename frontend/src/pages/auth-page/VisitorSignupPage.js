@@ -12,12 +12,12 @@ function StudentSignupPage(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        console.log({username, email, password1, password2})
         doCreateUser({username, email, password1, password2});
     };
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+            {CreateError && <div className="alert alert-error">{CreateError.message}</div>}
             <label className="input input-bordered flex items-center gap-2">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
