@@ -343,7 +343,7 @@
             <mxRectangle width="150" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="1ror77WjHnAh3wAEYINK-152" value="student&amp;lt;profile&amp;gt;" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;strokeWidth=6;rounded=1;" parent="1" vertex="1">
+        <mxCell id="1ror77WjHnAh3wAEYINK-152" value="student" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;strokeWidth=6;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="670" y="455" width="180" height="120" as="geometry" />
         </mxCell>
         <mxCell id="XabPMKmLrBPPwtLqnY3n-16" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="1ror77WjHnAh3wAEYINK-152" vertex="1">
@@ -385,7 +385,7 @@
             <mxRectangle width="150" height="30" as="alternateBounds" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="1ror77WjHnAh3wAEYINK-186" value="teacher&amp;lt;profile&lt;span style=&quot;background-color: initial;&quot;&gt;&amp;gt;&lt;/span&gt;" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;strokeWidth=6;rounded=1;" parent="1" vertex="1">
+        <mxCell id="1ror77WjHnAh3wAEYINK-186" value="teacher" style="shape=table;startSize=30;container=1;collapsible=1;childLayout=tableLayout;fixedRows=1;rowLines=0;fontStyle=1;align=center;resizeLast=1;html=1;fillColor=#1ba1e2;fontColor=#ffffff;strokeColor=#006EAF;strokeWidth=6;rounded=1;" parent="1" vertex="1">
           <mxGeometry x="670" y="840" width="180" height="90" as="geometry" />
         </mxCell>
         <mxCell id="XabPMKmLrBPPwtLqnY3n-13" style="shape=tableRow;horizontal=0;startSize=0;swimlaneHead=0;swimlaneBody=0;fillColor=none;collapsible=0;dropTarget=0;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;top=0;left=0;right=0;bottom=0;" parent="1ror77WjHnAh3wAEYINK-186" vertex="1">

@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-
+from django.conf import settings
 
 # Create your models here.
 class Category(models.Model):
@@ -24,7 +24,7 @@ class Board(models.Model):
 class Post(models.Model):
     title = models.CharField(max_length=255)
     content = models.TextField()
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="posts")
     board_id = models.ForeignKey(Board, on_delete=models.CASCADE, related_name="posts")
     created_at = models.DateTimeField(auto_now_add=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
@@ -36,7 +36,7 @@ class Post(models.Model):
 class Comment(models.Model):
     content = models.TextField()
     post_id = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="comments")
-    user_id = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, related_name="comments")
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.SET_NULL, null=True, related_name="comments")
     created_at = models.DateTimeField(auto_now_add=True)
     deleted_at = models.DateTimeField(null=True, blank=True)
 
@@ -46,7 +46,7 @@ class Comment(models.Model):
 
 class Like(models.Model):
     create_at = models.DateTimeField(auto_now_add=True)
-    user_id = models.ForeignKey(User, on_delete=models.CASCADE, related_name="likes")
+    user_id = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="likes")
     post_id = models.ForeignKey(Post, on_delete=models.CASCADE, related_name="likes")
     comment_id = models.ForeignKey(Comment, on_delete=models.CASCADE, related_name="likes")
 

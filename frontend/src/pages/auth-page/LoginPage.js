@@ -1,5 +1,4 @@
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
 import {useThunk} from "../../hooks/use-thunk";
 import {loginApi} from "../../store";
 

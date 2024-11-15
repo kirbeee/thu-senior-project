@@ -51,7 +51,7 @@ INSTALLED_APPS = [
     # my apps
     'bbs',
     'school_system',
-    "user_system",
+    "user_system.apps.UserSystemConfig",
 
     # allauth - google auth
     'allauth',
