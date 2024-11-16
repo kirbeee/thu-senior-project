@@ -73,9 +73,7 @@ urlpatterns += [
 ]
 
 # user settings
-urlpatterns += [
-    path('', include('user_system.urls')),
-]
+
 
 # course settings
 urlpatterns += [
