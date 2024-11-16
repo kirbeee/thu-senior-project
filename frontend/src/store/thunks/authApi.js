@@ -26,20 +26,20 @@ const logoutApi = createAsyncThunk("users/logout", async (userId, thunkAPI) => {
     return response.data;
 });
 
-const loginApi = createAsyncThunk("users/login", async (username,email,password, thunkAPI) => {
+const loginApi = createAsyncThunk("users/login", async ({username, email, password}) => {
     console.log(username,email,password);
     const response = await axios.post(`${process.env.REACT_APP_API_URL}/login/`, {
         username, email, password
     });
+    console.log(response.data);
+    localStorage.setItem("authToken", response.data.key);
     return response.data;
 });
 
-const signupApi = createAsyncThunk("users/signup", async ({username, email, password1, password2}) => {
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/registration/`, {
-        username, email, password1, password2
+const signupApi = createAsyncThunk("users/signup", async ({username, email, password1, password2, role="visitor", id_card_number}) => {
+    await axios.post(`${process.env.REACT_APP_API_URL}/registration/`, {
+        username, email, password1, password2, role, id_card_number
     });
-    localStorage.setItem('authToken', response.key);
-    return response.data;
 });
 
 export {authApi, logoutApi, loginApi, signupApi};
