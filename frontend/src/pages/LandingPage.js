@@ -10,6 +10,7 @@ function LandingPage() {
         dispatch(authApi());
     }, [dispatch]);
     if(isLoading) return <Skeleton times={6} className="h-10 w-full"/>;
+    if(data) return <div>Welcome to THU-helper</div>
     if(error) return <div>Error</div>;
 }
 

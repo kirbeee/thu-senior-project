@@ -48,6 +48,10 @@ EMAIL_HOST_PASSWORD = env('GOOGLE_SMTP_PASSWORD')
 
 # Application definition
 INSTALLED_APPS = [
+    # my apps
+    'bbs',
+    'school_system',
+    "user_system.apps.UserSystemConfig",
 
     # allauth - google auth
     'allauth',
@@ -63,7 +67,6 @@ INSTALLED_APPS = [
     "drf_yasg",
 
     # restful framework
-    "test_restful_api",
     "rest_framework",
     'rest_framework.authtoken',
 
@@ -196,3 +199,8 @@ STATIC_URL = "static/"
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
+
+# REST_FRAMEWORK SETTINGS
+REST_AUTH = {
+    'REGISTER_SERIALIZER': 'user_system.serializers.CustomRegisterSerializer',
+}
