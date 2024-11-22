@@ -1,16 +1,12 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
 import {signupApi} from "../../store";
+import {useThunk} from "../../hooks/use-thunk";
 
 function StudentSignupPage(){
-    const dispatch = useDispatch();
+    const [doCreateUser, isLoading, CreateError] = useThunk(signupApi);
+
     const navigate = useNavigate();
-    const { isLoading, data, error } = useSelector((state) => state.users || {
-        isLoading: false,
-        data: [],
-        error: null
-    });
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -20,17 +16,8 @@ function StudentSignupPage(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await dispatch(signupApi(username, email, password1, password2));
-            // 存儲 token，這裡假設使用 Local Storage 存儲
-            localStorage.setItem('authToken', response.key);
-            // 重定向到主頁或顯示登入成功
-            if(data){
-                navigate('/');
-            }
-        } catch (err) {
-            console.log(err)
-        }
+        doCreateUser({username, email, password1, password2, role: 'student', studentID});
+        navigate('/') 
     };
 
     return (

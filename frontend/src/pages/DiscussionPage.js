@@ -1,5 +1,3 @@
-
-
 function DiscussionPage() {
   return (
     <div>

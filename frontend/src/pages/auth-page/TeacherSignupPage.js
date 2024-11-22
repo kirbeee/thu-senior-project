@@ -2,72 +2,26 @@ import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
 import {signupApi} from "../../store";
+import {useThunk} from "../../hooks/use-thunk";
 
 function StudentSignupPage(){
-    const dispatch = useDispatch();
+    const [doCreateUser, isLoading, CreateError] = useThunk(signupApi);
+
     const navigate = useNavigate();
-    const { isLoading, data, error } = useSelector((state) => state.users || {
-        isLoading: false,
-        data: [],
-        error: null
-    });
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
-    const [studentID, setStudentID] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        try {
-            const response = await dispatch(signupApi(username, email, password1, password2));
-            // 存儲 token，這裡假設使用 Local Storage 存儲
-            localStorage.setItem('authToken', response.key);
-            // 重定向到主頁或顯示登入成功
-            if(data){
-                navigate('/');
-            }
-        } catch (err) {
-            console.log(err)
-        }
+        doCreateUser({username, email, password1, password2, role: 'teacher'});
+        navigate('/')
     };
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-            <label className="input input-bordered flex items-center gap-2">
-                {/* TODO : fix the svg icon */}
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 256 256"
-                    fill="currentColor"
-                    className="h-4 w-4 opacity-70"
-                >
-                    <path d="M54.2,216a88.1,88.1,0,0,1,147.6,0"/>
-                    <polygon
-                        fill="none"
-                        points="224 64 128 96 32 64 128 32 224 64"
-                        stroke="#000"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="16"
-                    />
-                    <path
-                        d="M169.3,82.2a56,56,0,1,1-82.6,0"
-                        fill="none"
-                        stroke="#000"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="16"
-                    />
-                </svg>
-                <input
-                    className="grow"
-                    placeholder="Student ID"
-                    type="text"
-                    value={studentID}
-                    onChange={(e) => setStudentID(e.target.value)}
-                /></label>
             <label className="input input-bordered flex items-center gap-2">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"

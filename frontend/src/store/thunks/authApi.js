@@ -27,11 +27,9 @@ const logoutApi = createAsyncThunk("users/logout", async (userId, thunkAPI) => {
 });
 
 const loginApi = createAsyncThunk("users/login", async ({username, email, password}) => {
-    console.log(username,email,password);
     const response = await axios.post(`${process.env.REACT_APP_API_URL}/login/`, {
         username, email, password
     });
-    console.log(response.data);
     localStorage.setItem("authToken", response.data.key);
     return response.data;
 });

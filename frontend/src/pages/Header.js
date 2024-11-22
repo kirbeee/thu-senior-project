@@ -2,13 +2,18 @@ import React, {useEffect} from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from "react-redux";
 import {authApi} from "../store";
+import {useThunk} from "../hooks/use-thunk";
 
 const Header = () => {
-    const dispatch = useDispatch();
-    const {isLoading, data, error} = useSelector((state) => state.users);
+
+    const [doAuth, isLoading, error] = useThunk(authApi);
+    const { data } = useSelector((state) => state.users);
+    // 从 Redux store 获取用户数据
+
     useEffect(() => {
-        dispatch(authApi());
-    }, [dispatch]);
+        doAuth();
+        console.log(data.username)
+    }, [doAuth]);
 
     // TODO : find a good way on if statement
     const renderBtn = () => {
@@ -18,7 +23,7 @@ const Header = () => {
                 loading
             </button>
         );
-        if (data.email) return (
+        if (data?.email) return (
             <details className="dropdown ">
                 <summary className="btn m-1" >
                     <div className="avatar placeholder">

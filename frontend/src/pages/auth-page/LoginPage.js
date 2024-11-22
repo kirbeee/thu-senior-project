@@ -1,9 +1,12 @@
 import React, {useState} from "react";
 import {useThunk} from "../../hooks/use-thunk";
 import {loginApi} from "../../store";
+import {useNavigate} from "react-router-dom";
 
 function LoginPage(){
     const [doLogin, isLoading, LoginError] = useThunk(loginApi);
+
+    const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -11,11 +14,18 @@ function LoginPage(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        doLogin({username, email, password});
+        await doLogin({username, email, password});
+        navigate('/', {replace: true});
+    };
+
+    const handleKeyPress = (e) => {
+        if (e.key === 'Enter') {
+            handleSubmit(e);
+        }
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
+        <form onSubmit={handleSubmit} onKeyDown={handleKeyPress} className="flex flex-col space-y-4">
             {LoginError && <div className="alert alert-error">{LoginError.message}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
