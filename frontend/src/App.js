@@ -38,6 +38,7 @@ function App() {
                         <Route path="/register/select" element={<RegistrationSelector/>}/>
                         <Route path="/account" element={<AccountPage/>}/>
 
+                        <Route path="/bbs" element={<DiscussionPage/>}/>
                         <Route path="/bbs/boards" element={<BoardsList />} />
                         <Route path="/bbs/posts" element={<PostsList />} />
                         <Route path="/bbs/posts/:id" element={<PostDetail />} />
