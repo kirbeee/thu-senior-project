@@ -5,6 +5,7 @@ function Sidebar(){
     const links =[
         {label: "Home", path: '/'},
         {label: "discussion", path: '/bbs'},
+        {label: "Cources", path: '/courses'},
         {label: "About", path: '/about'}
     ]
     const location = useLocation();

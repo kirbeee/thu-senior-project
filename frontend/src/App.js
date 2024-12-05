@@ -17,7 +17,7 @@ import BoardsList from "./pages/bbs/BoardList";
 import PostsList from "./pages/bbs/PostsList";
 import PostDetail from "./pages/bbs/PostDetail";
 import CreatePost from "./pages/bbs/CreatePost";
-
+import CoursePage from "./pages/CoursePage";
 
 function App() {
     return (
@@ -43,6 +43,8 @@ function App() {
                         <Route path="/bbs/posts" element={<PostsList />} />
                         <Route path="/bbs/posts/:id" element={<PostDetail />} />
                         <Route path="/bbs/posts/new" element={<CreatePost />} />
+
+                        <Route path="/courses" element={<CoursePage />}/>
                     </Routes>
                 </div>
             </div>

@@ -8,8 +8,8 @@ class Course(models.Model):
     code = models.CharField(max_length=10)
     credits = models.IntegerField(validators=[MinValueValidator(0), MaxValueValidator(20)])
     description = models.TextField()
-    teacher = models.ForeignKey('user_system.Teacher', on_delete=models.CASCADE)
-    students = models.ManyToManyField('user_system.Student', related_name='courses')
+    teacher = models.ForeignKey('user_system.Teacher', on_delete=models.CASCADE, null=True)
+    students = models.ManyToManyField('user_system.Student', related_name='courses', null=True)
 
     def __str__(self):
         return self.name
