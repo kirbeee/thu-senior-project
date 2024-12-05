@@ -4,7 +4,8 @@ import classNames from "classnames";
 function Sidebar(){
     const links =[
         {label: "Home", path: '/'},
-        {label: "discussion", path: '/discussion'},
+        {label: "discussion", path: '/bbs'},
+        {label: "Cources", path: '/courses'},
         {label: "About", path: '/about'}
     ]
     const location = useLocation();

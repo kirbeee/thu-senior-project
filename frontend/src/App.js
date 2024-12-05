@@ -13,7 +13,11 @@ import RegistrationSelector from "./pages/auth-page/RegistrationSelector";
 import TeacherSignupPage from "./pages/auth-page/TeacherSignupPage";
 import VisitorSignupPage from "./pages/auth-page/VisitorSignupPage";
 import AccountPage from "./pages/AccountPage";
-
+import BoardsList from "./pages/bbs/BoardList";
+import PostsList from "./pages/bbs/PostsList";
+import PostDetail from "./pages/bbs/PostDetail";
+import CreatePost from "./pages/bbs/CreatePost";
+import CoursePage from "./pages/CoursePage";
 
 function App() {
     return (
@@ -24,8 +28,8 @@ function App() {
                 <div className="col-span-5">
                     <Routes>
                         <Route path="/" element={<LandingPage/>}/>
-                        <Route path="/discussion" element={<DiscussionPage/>}/>
                         <Route path="/about" element={<AboutPage/>}/>
+
                         <Route path="/login" element={<LoginPage/>}/>
                         <Route path="/logout" element={<LogoutPage/>}/>
                         <Route path="/visitor/signup" element={<VisitorSignupPage/>}/>
@@ -33,6 +37,14 @@ function App() {
                         <Route path="/teacher/signup" element={<TeacherSignupPage/>}/>
                         <Route path="/register/select" element={<RegistrationSelector/>}/>
                         <Route path="/account" element={<AccountPage/>}/>
+
+                        <Route path="/bbs" element={<DiscussionPage/>}/>
+                        <Route path="/bbs/boards" element={<BoardsList />} />
+                        <Route path="/bbs/posts" element={<PostsList />} />
+                        <Route path="/bbs/posts/:id" element={<PostDetail />} />
+                        <Route path="/bbs/posts/new" element={<CreatePost />} />
+
+                        <Route path="/courses" element={<CoursePage />}/>
                     </Routes>
                 </div>
             </div>

@@ -48,6 +48,7 @@ EMAIL_HOST_PASSWORD = env('GOOGLE_SMTP_PASSWORD')
 
 # Application definition
 INSTALLED_APPS = [
+    'django_filters',
     # my apps
     'bbs',
     'school_system',
@@ -105,6 +106,8 @@ REST_FRAMEWORK = {
         'rest_framework.authentication.SessionAuthentication',
         'rest_framework.authentication.TokenAuthentication',
     ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
 }
 
 # Google OAuth 配置
