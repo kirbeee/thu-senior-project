@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import PostList from "./PostsList";
 
 const BoardDetail = () => {
     const { id } = useParams();  // 取得 URL 中的 board ID
@@ -29,7 +30,9 @@ const BoardDetail = () => {
             <p>{board.description}</p>
             <p>Course ID: {board.course_id}</p>
             <p>Category: {board.category}</p>
+            <PostList  boardId={id}/>
         </div>
+
     );
 };
 
