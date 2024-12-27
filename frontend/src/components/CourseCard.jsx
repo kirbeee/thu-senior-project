@@ -4,7 +4,8 @@ import { useNavigate } from "react-router-dom";
 const CourseCard = ({ course }) => {
     const navigate = useNavigate();
     const handleCardClick = () => {
-        navigate(`/bbs/board/${course.id}`);
+        // 使用 navigate 跳轉並附帶 course_id 查詢參數
+        navigate(`/bbs/boards?course_id=${course.id}`);
     }
     return (
         <div className="card min-w-[250px] max-w-sm w-full bg-base-100 shadow-md hover:shadow-lg transition-shadow m-2"

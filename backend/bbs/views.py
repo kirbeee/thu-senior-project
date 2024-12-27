@@ -19,6 +19,8 @@ class BoardViewSet(viewsets.ModelViewSet):
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
+    filter_backends = [DjangoFilterBackend, OrderingFilter]
+    filterset_fields = ['board_id']  # 允许通过 board_id 过滤
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()

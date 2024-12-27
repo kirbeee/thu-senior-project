@@ -4,7 +4,7 @@ import classNames from "classnames";
 function Sidebar(){
     const links =[
         {label: "Home", path: '/'},
-        {label: "discussion", path: '/bbs'},
+        {label: "discussion", path: '/bbs/boards'},
         {label: "Cources", path: '/courses'},
         {label: "About", path: '/about'}
     ]

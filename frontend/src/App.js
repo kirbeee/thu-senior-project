@@ -1,7 +1,6 @@
 import React from "react";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import LandingPage from "./pages/LandingPage";
-import DiscussionPage from "./pages/DiscussionPage";
 import AboutPage from "./pages/AboutPage";
 import Header from "./pages/Header";
 import Footer from "./pages/Footer";
@@ -39,9 +38,8 @@ function App() {
                         <Route path="/register/select" element={<RegistrationSelector/>}/>
                         <Route path="/account" element={<AccountPage/>}/>
 
-                        <Route path="/bbs" element={<DiscussionPage/>}/>
                         <Route path="/bbs/boards" element={<BoardsList />} />
-                        <Route path="/bbs/board/:id" element={<BoardDetail />} />
+                        <Route path="/bbs/boards/:id" element={<BoardDetail />} />
                         <Route path="/bbs/posts" element={<PostsList />} />
                         <Route path="/bbs/posts/:id" element={<PostDetail />} />
                         <Route path="/bbs/posts/new" element={<CreatePost />} />

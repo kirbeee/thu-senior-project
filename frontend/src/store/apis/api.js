@@ -8,3 +8,10 @@ export const fetchCourses = async (page = 1) => {
     });
     return response.data;
 };
+
+export const fetchBoard = async (page = 1, courseId) => {
+    const response = await axios.get(`${API_BASE_URL}/bbs/boards/`, {
+        params: { page },
+    });
+    return response.data;
+}
