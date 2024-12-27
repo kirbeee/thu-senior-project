@@ -1,29 +1,29 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";  // 使用 axios 發送請求
-import BoardCard from "./BoardCard";  // 假設你有一個 BoardCard 組件來顯示每個討論板
-import Pagination from "../../components/Pagination";  // 翻頁組件
+import { fetchCourses } from "../store/apis/api";
+import CourseCard from "./CourseCard";
+import Pagination from "./Pagination";
 
-const BoardList = () => {
-    const [boards, setBoards] = useState([]);
+const CourseList = () => {
+    const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
 
     useEffect(() => {
-        const loadBoards = async () => {
+        const loadCourses = async () => {
             setLoading(true);
             try {
-                const response = await axios.get(`/bbs/boards/?page=${currentPage}`);
-                setBoards(response.data.results);  // 假設返回的數據是 `results`
-                setTotalPages(Math.ceil(response.data.count / 10));  // 假設每頁顯示 10 個討論板
+                const data = await fetchCourses(currentPage);
+                setCourses(data.results);
+                setTotalPages(Math.ceil(data.count / 10)); // Assuming 10 courses per page
             } catch (error) {
-                console.error("Error fetching boards:", error);
+                console.error("Error fetching courses:", error);
             } finally {
                 setLoading(false);
             }
         };
-        loadBoards();
-    }, [currentPage]);  // 當 currentPage 改變時重新加載數據
+        loadCourses();
+    }, [currentPage]);
 
     const handlePageChange = (page) => {
         setCurrentPage(page);
@@ -35,8 +35,8 @@ const BoardList = () => {
                 <p className="text-center">Loading...</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                    {boards.map((board) => (
-                        <BoardCard key={board.id} board={board} />
+                    {courses.map((course) => (
+                        <CourseCard key={course.id} course={course} />
                     ))}
                 </div>
             )}
@@ -51,4 +51,4 @@ const BoardList = () => {
     );
 };
 
-export default BoardList;
+export default CourseList;

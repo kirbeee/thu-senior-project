@@ -1,7 +1,9 @@
+import CourseList from "../components/CourseList";
+
 function CoursePage(){
     return (
         <div>
-            <h1>Course Page</h1>
+            <CourseList/>
         </div>
     )
 }

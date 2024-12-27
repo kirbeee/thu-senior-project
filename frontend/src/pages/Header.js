@@ -8,7 +8,6 @@ const Header = () => {
 
     const [doAuth, isLoading, error] = useThunk(authApi);
     const { data } = useSelector((state) => state.users);
-    // 从 Redux store 获取用户数据
 
     useEffect(() => {
         doAuth();
@@ -57,7 +56,6 @@ const Header = () => {
                 <ul className="menu menu-horizontal px-1">
                     {renderBtn()}
                 </ul>
-
             </div>
         </header>
     );

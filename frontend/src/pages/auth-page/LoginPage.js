@@ -14,8 +14,14 @@ function LoginPage(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await doLogin({username, email, password});
-        navigate('/', {replace: true});
+        const result = await doLogin({ username, email, password });
+
+        // 確保登錄成功後再跳轉
+        if (LoginError === null) {
+            navigate('/', { replace: true });
+        } else {
+            console.error("Login failed:", result?.error);
+        }
     };
 
     const handleKeyPress = (e) => {

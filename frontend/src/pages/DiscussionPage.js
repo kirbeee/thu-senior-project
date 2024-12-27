@@ -1,7 +1,9 @@
+import BoardsList from "./bbs/BoardList";
+
 function DiscussionPage() {
   return (
     <div>
-      <h1>Discussion Page</h1>
+      <BoardsList />
     </div>
   );
 }

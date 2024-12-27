@@ -1,5 +1,5 @@
-import { useState, useCallback } from 'react';
-import { useDispatch } from 'react-redux';
+import {useCallback, useState} from 'react';
+import {useDispatch} from 'react-redux';
 
 export function useThunk(thunk) {
     const [isLoading, setIsLoading] = useState(false);
@@ -7,7 +7,7 @@ export function useThunk(thunk) {
     const dispatch = useDispatch();
 
     const runThunk = useCallback(
-        (arg) => {
+        async (arg) => {
             setIsLoading(true);
             dispatch(thunk(arg))
                 .unwrap()
