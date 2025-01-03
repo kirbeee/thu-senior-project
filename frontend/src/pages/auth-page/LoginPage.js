@@ -1,10 +1,11 @@
 import React, {useState} from "react";
-import {useThunk} from "../../hooks/use-thunk";
 import {loginApi} from "../../store";
 import {useNavigate} from "react-router-dom";
+import {useDispatch, useSelector} from "react-redux";
 
 function LoginPage(){
-    const [doLogin, isLoading, LoginError] = useThunk(loginApi);
+    const dispatch = useDispatch();
+    const {isAuthenticating, user, token, loading, error,} = useSelector((state) => state.users);
 
     const navigate = useNavigate();
 
@@ -14,13 +15,11 @@ function LoginPage(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        const result = await doLogin({ username, email, password });
-
-        // 確保登錄成功後再跳轉
-        if (LoginError === null) {
+        await dispatch(loginApi({username, email, password}));
+        if (error === null) {
             navigate('/', { replace: true });
         } else {
-            console.error("Login failed:", result?.error);
+            console.error("Login failed:", error);
         }
     };
 
@@ -32,7 +31,7 @@ function LoginPage(){
 
     return (
         <form onSubmit={handleSubmit} onKeyDown={handleKeyPress} className="flex flex-col space-y-4">
-            {LoginError && <div className="alert alert-error">{LoginError.message}
+            {error && <div className="alert alert-error">{error}
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
                     className="h-6 w-6 shrink-0 stroke-current"
@@ -103,8 +102,6 @@ function LoginPage(){
                 className="btn btn-primary"
                 type="submit">Login
             </button>
-
-
         </form>
     )
 }

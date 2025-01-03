@@ -6,6 +6,7 @@ import Skeleton from "../../components/Skeleton";
 function LogoutPage(){
     const dispatch = useDispatch();
     const {isLoading, error} = useSelector((state) => state.users);
+
     useEffect(() => {
         dispatch(logoutApi());
         localStorage.removeItem('authToken');
