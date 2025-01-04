@@ -96,18 +96,18 @@ const config = {
         //   src: 'img/logo.svg',
         // },
         items: [
-          {
-            type: 'docSidebar',
-            sidebarId: 'tutorialSidebar',
-            position: 'left',
-            label: 'Tutorial',
-          },
-          {to: '/blog', label: 'Blog', position: 'left'},
-          {
-            href: 'https://github.com/kirbeee/thu-senior-project',
-            label: 'GitHub',
-            position: 'right',
-          },
+            {
+                to: '/blog',
+                type: 'blog',
+                label: 'Blog',
+                position: 'left'
+            },
+            {
+                to: '/docs',
+                type: 'doc',
+                position: 'left',
+                label: 'Docs',
+            },
           {
             type: 'localeDropdown',
             position: 'right',

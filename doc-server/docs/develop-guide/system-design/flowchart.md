@@ -1,3 +1,6 @@
+---
+    sidebar_position: 1
+---
 ```mermaid
     flowchart TD
     A["開始"] --> B["登入系統"]

@@ -5,12 +5,13 @@ import Skeleton from "../components/Skeleton";
 
 function LandingPage() {
     const dispatch = useDispatch();
-    const {isLoading, data, error} = useSelector((state) => state.users);
+    const { user, loading, error} = useSelector((state) => state.users);
     useEffect(() => {
         dispatch(authApi());
     }, [dispatch]);
-    if(isLoading) return <Skeleton times={6} className="h-10 w-full"/>;
-    if(data) return <div>Welcome to THU-helper</div>
+    console.log(user)
+    if(loading) return <Skeleton times={6} className="h-10 w-full"/>;
+    if(user) return <div>Welcome to THU-helper</div>
     if(error) return <div>Error</div>;
 }
 

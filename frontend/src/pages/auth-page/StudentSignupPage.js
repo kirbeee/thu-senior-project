@@ -1,10 +1,11 @@
 import React, {useState} from "react";
 import {useNavigate} from "react-router-dom";
 import {signupApi} from "../../store";
-import {useThunk} from "../../hooks/use-thunk";
+import {useDispatch, useSelector} from "react-redux";
 
 function StudentSignupPage(){
-    const [doCreateUser, isLoading, CreateError] = useThunk(signupApi);
+    const dispatch = useDispatch();
+    const { user, loading, error} = useSelector((state) => state.users);
 
     const navigate = useNavigate();
 
@@ -16,7 +17,7 @@ function StudentSignupPage(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        doCreateUser({username, email, password1, password2, role: 'student', studentID});
+        await dispatch(signupApi({username, email, password1, password2, studentID}));
         navigate('/') 
     };
 
@@ -129,7 +130,7 @@ function StudentSignupPage(){
                 /></label>
             <button
                 className="btn btn-primary"
-                type="submit">{isLoading? `Sign Up ${(
+                type="submit">{loading? `Sign Up ${(
                 <span className="loading loading-spinner loading-xs"></span>)}` : 'Sign Up'}
             </button>
 

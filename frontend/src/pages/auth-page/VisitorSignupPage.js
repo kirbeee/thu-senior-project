@@ -1,9 +1,10 @@
 import React, {useState} from "react";
 import {signupApi} from "../../store";
-import {useThunk} from "../../hooks/use-thunk";
+import {useDispatch, useSelector} from "react-redux";
 
 function StudentSignupPage(){
-    const [doCreateUser, isLoading, CreateError] = useThunk(signupApi);
+    const dispatch = useDispatch();
+    const { user, loading, error} = useSelector((state) => state.users);
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -12,12 +13,12 @@ function StudentSignupPage(){
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        doCreateUser({username, email, password1, password2});
+        dispatch(signupApi({username, email, password1, password2}));
     };
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-            {CreateError && <div className="alert alert-error">{CreateError.message}</div>}
+            {error && <div className="alert alert-error">{error}</div>}
             <label className="input input-bordered flex items-center gap-2">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -92,7 +93,7 @@ function StudentSignupPage(){
                 /></label>
             <button
                 className="btn btn-primary"
-                type="submit">{isLoading? `Sign Up ${(
+                type="submit">{loading? `Sign Up ${(
                 <span className="loading loading-spinner loading-xs"></span>)}` : 'Sign Up'}
             </button>
         </form>

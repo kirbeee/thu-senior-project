@@ -1,13 +1,14 @@
 import {configureStore} from "@reduxjs/toolkit";
 import {usersReducer} from "./slices/usersSlice";
-import {setupListeners} from "@reduxjs/toolkit/query";
+import {boardsReducer} from "./slices/boardSlice";
+import {courseReducer} from "./slices/courseSlice";
 
 export const store = configureStore({
     reducer: {
-        users: usersReducer
+        users: usersReducer,
+        boards: boardsReducer,
+        courses: courseReducer,
     }
 })
-
-setupListeners(store.dispatch);
 
 export * from "./thunks/authApi";
