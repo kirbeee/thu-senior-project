@@ -29,9 +29,7 @@ const logoutApi = createAsyncThunk("users/logout", async (userId, thunkAPI) => {
     return response.data;
 });
 
-const loginApi = createAsyncThunk(
-    "users/login",
-    async ({ username, email, password }, thunkAPI) => {
+const loginApi = createAsyncThunk("users/login", async ({ username, email, password }, thunkAPI) => {
         try {
             const response = await axios.post(`${process.env.REACT_APP_API_URL}/login/`, {
                 username,
@@ -48,8 +46,7 @@ const loginApi = createAsyncThunk(
             // 這裡捕獲錯誤並返回錯誤訊息
             return thunkAPI.rejectWithValue(error.response?.data || "Error logging in");
         }
-    }
-);
+    });
 
 const signupApi = createAsyncThunk("users/signup", async ({username, email, password1, password2, role="visitor", id_card_number}) => {
     await axios.post(`${process.env.REACT_APP_API_URL}/registration/`, {
