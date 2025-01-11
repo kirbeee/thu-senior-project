@@ -1,4 +1,3 @@
-import React from "react";
 import {BrowserRouter as Router, Route, Routes} from 'react-router-dom';
 import LandingPage from "./pages/LandingPage";
 import AboutPage from "./pages/AboutPage";
@@ -12,7 +11,6 @@ import TeacherSignupPage from "./pages/auth-page/TeacherSignupPage";
 import VisitorSignupPage from "./pages/auth-page/VisitorSignupPage";
 import AccountPage from "./pages/AccountPage";
 import BoardsList from "./pages/bbs/BoardList";
-import PostsList from "./pages/bbs/PostsList";
 import PostDetail from "./pages/bbs/PostDetail";
 import CreatePost from "./pages/bbs/CreatePost";
 import CoursePage from "./pages/CoursePage";
@@ -37,7 +35,6 @@ function App() {
 
                         <Route path="/bbs/boards" element={<BoardsList />} />
                         <Route path="/bbs/boards/:id" element={<BoardDetail />} />
-                        <Route path="/bbs/posts" element={<PostsList />} />
                         <Route path="/bbs/posts/:id" element={<PostDetail />} />
                         <Route path="/bbs/posts/new" element={<CreatePost />} />
 
