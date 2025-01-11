@@ -12,7 +12,6 @@ const Header = () => {
     }, [dispatch]); // 這裡只需在組件首次渲染時觸發一次
 
     const renderBtn = () => {
-        // 如果正在加載用戶資料
         if (isLoading) {
             return (
                 <button className="btn">
@@ -54,6 +53,14 @@ const Header = () => {
         <header className="navbar bg-base-100">
             <div className="flex-1">
                 <a href="/" className="btn btn-ghost text-xl">THU Helper</a>
+            </div>
+            <div className="flex-1">
+                <ul className="menu menu-horizontal px-1">
+                    <li><Link to="/">Home</Link></li>
+                    <li><Link to="/bbs/boards">Discussion</Link></li>
+                    <li><Link to="/courses">Courses</Link></li>
+                    <li><Link to="/about">About</Link></li>
+                </ul>
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">
