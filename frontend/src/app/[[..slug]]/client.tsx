@@ -1,9 +1,17 @@
-'use client'
-
+// client.tsx
 import dynamic from 'next/dynamic'
+import Layout from "../../components/Layout";
 
-const App = dynamic(() => import('../../App'), { ssr: false })
+const App = dynamic(() => import('../../components/Layout'), { ssr: false });
 
-export function ClientOnly() {
-    return <App />
+interface ClientOnlyProps {
+    children: React.ReactNode;  // 指定 children 屬性類型
+}
+
+export function ClientOnly({ children }: ClientOnlyProps) {
+    return (
+        <div>
+            <Layout children={children} />
+        </div>
+    );
 }

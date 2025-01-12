@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import PostCard from "./PostCard";  // 假设有一个 PostCard.js 组件来显示每个帖子
 
 const PostList = ({boardId}) => {
     const [posts, setPosts] = useState([]);

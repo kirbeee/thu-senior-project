@@ -5,5 +5,5 @@ export function generateStaticParams() {
 }
 
 export default function Page() {
-    return <ClientOnly/> // We'll update this
+    return <ClientOnly children={undefined}/> // We'll update this
 }
