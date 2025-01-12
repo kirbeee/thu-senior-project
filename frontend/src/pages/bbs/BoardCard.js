@@ -1,5 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";  // 用來處理跳轉到每個討論板的頁面
+import Link from "next/link"; // Next.js 提供的路由跳轉組件
 
 const BoardCard = ({ board }) => {
     return (
@@ -10,9 +10,11 @@ const BoardCard = ({ board }) => {
                 <p className="text-gray-500">Course ID: {board.course_id}</p>
                 <p className="text-gray-500">Category: {board.category || "Uncategorized"}</p>
 
-                {/* 當點擊時，跳轉到該討論板的詳細頁面 */}
-                <Link to={`/bbs/boards/${board.id}`} className="mt-4 inline-block text-blue-500 hover:text-blue-700">
-                    View Board
+                {/* 使用 Next.js 的 Link 進行跳轉 */}
+                <Link href={`/bbs/boards/${board.id}`}>
+                    <div className="mt-4 inline-block text-blue-500 hover:text-blue-700">
+                        View Board
+                    </div>
                 </Link>
             </div>
         </div>

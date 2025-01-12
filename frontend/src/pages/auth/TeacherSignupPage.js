@@ -1,49 +1,27 @@
 import React, {useState} from "react";
-import {loginApi} from "../../store";
 import {useNavigate} from "react-router-dom";
 import {useDispatch, useSelector} from "react-redux";
+import {signupApi} from "../../lib/store";
 
-function LoginPage(){
+function StudentSignupPage(){
     const dispatch = useDispatch();
-    const {isAuthenticating, user, token, loading, error,} = useSelector((state) => state.users);
+    const { user, loading, error} = useSelector((state) => state.users);
 
     const navigate = useNavigate();
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [password, setPassword] = useState('');
+    const [password1, setPassword1] = useState('');
+    const [password2, setPassword2] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await dispatch(loginApi({username, email, password}));
-        if (error === null) {
-            navigate('/', { replace: true });
-        } else {
-            console.error("Login failed:", error);
-        }
-    };
-
-    const handleKeyPress = (e) => {
-        if (e.key === 'Enter') {
-            handleSubmit(e);
-        }
+        await dispatch(signupApi({username, email, password1, password2}));
+        navigate('/')
     };
 
     return (
-        <form onSubmit={handleSubmit} onKeyDown={handleKeyPress} className="flex flex-col space-y-4">
-            {error && <div className="alert alert-error">{error}
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6 shrink-0 stroke-current"
-                    fill="none"
-                    viewBox="0 0 24 24">
-                    <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        stroke-width="2"
-                        d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"/>
-                </svg>
-            </div>}
+        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
             <label className="input input-bordered flex items-center gap-2">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -95,15 +73,36 @@ function LoginPage(){
                     className="grow"
                     placeholder="Password"
                     type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
+                    value={password1}
+                    onChange={(e) => setPassword1(e.target.value)}
+                /></label>
+            <label className="input input-bordered flex items-center gap-2">
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 16 16"
+                    fill="currentColor"
+                    className="h-4 w-4 opacity-70">
+                    <path
+                        fillRule="evenodd"
+                        d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
+                        clipRule="evenodd"/>
+                </svg>
+                <input
+                    className="grow"
+                    placeholder="Varify Password"
+                    type="password"
+                    value={password2}
+                    onChange={(e) => setPassword2(e.target.value)}
                 /></label>
             <button
                 className="btn btn-primary"
-                type="submit">Login
+                type="submit">{loading? `Sign Up ${(
+                <span className="loading loading-spinner loading-xs"></span>)}` : 'Sign Up'}
             </button>
+
+
         </form>
     )
 }
 
-export default LoginPage;
+export default StudentSignupPage;

@@ -1,24 +1,61 @@
 import React, {useState} from "react";
-import {signupApi} from "../../store";
+import { useRouter } from "next/router";
+import {signupApi} from "../../lib/store";
 import {useDispatch, useSelector} from "react-redux";
 
 function StudentSignupPage(){
     const dispatch = useDispatch();
     const { user, loading, error} = useSelector((state) => state.users);
 
+    const router = useRouter();
+
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password1, setPassword1] = useState('');
     const [password2, setPassword2] = useState('');
+    const [studentID, setStudentID] = useState('');
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(signupApi({username, email, password1, password2}));
+        await dispatch(signupApi({username, email, password1, password2, studentID}));
+        router('/')
     };
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-            {error && <div className="alert alert-error">{error}</div>}
+            <label className="input input-bordered flex items-center gap-2">
+                {/* TODO : fix the svg icon */}
+                <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 256 256"
+                    fill="currentColor"
+                    className="h-4 w-4 opacity-70"
+                >
+                    <path d="M54.2,216a88.1,88.1,0,0,1,147.6,0"/>
+                    <polygon
+                        fill="none"
+                        points="224 64 128 96 32 64 128 32 224 64"
+                        stroke="#000"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="16"
+                    />
+                    <path
+                        d="M169.3,82.2a56,56,0,1,1-82.6,0"
+                        fill="none"
+                        stroke="#000"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="16"
+                    />
+                </svg>
+                <input
+                    className="grow"
+                    placeholder="Student ID"
+                    type="text"
+                    value={studentID}
+                    onChange={(e) => setStudentID(e.target.value)}
+                /></label>
             <label className="input input-bordered flex items-center gap-2">
                 <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -96,6 +133,8 @@ function StudentSignupPage(){
                 type="submit">{loading? `Sign Up ${(
                 <span className="loading loading-spinner loading-xs"></span>)}` : 'Sign Up'}
             </button>
+
+
         </form>
     )
 }
