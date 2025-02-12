@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import  Link  from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
-import { authApi } from "../store";
+import { authApi } from "../lib/store";
 
 const Header = () => {
     const { user, isLoading } = useSelector(state => state.users);
@@ -12,7 +12,6 @@ const Header = () => {
     }, [dispatch]); // 這裡只需在組件首次渲染時觸發一次
 
     const renderBtn = () => {
-        // 如果正在加載用戶資料
         if (isLoading) {
             return (
                 <button className="btn">
@@ -26,8 +25,8 @@ const Header = () => {
         if (!user) {
             return (
                 <>
-                    <li><Link to="/login">Sign In</Link></li>
-                    <li><Link to="/register/select">Sign Up</Link></li>
+                    <li><Link href="/auth/LoginPage">Sign In</Link></li>
+                    <li><Link href="/auth/RegistrationSelector">Sign Up</Link></li>
                 </>
             );
         }
@@ -43,8 +42,8 @@ const Header = () => {
                     </div>
                 </summary>
                 <ul className="menu dropdown-content bg-base-100 rounded-box w-52">
-                    <li><Link to="/account">Settings</Link></li>
-                    <li><Link to="/logout">Logout</Link></li>
+                    <li><Link href="/account">Settings</Link></li>
+                    <li><Link href="/auth/LogoutPage">Logout</Link></li>
                 </ul>
             </details>
         );
@@ -54,6 +53,14 @@ const Header = () => {
         <header className="navbar bg-base-100">
             <div className="flex-1">
                 <a href="/" className="btn btn-ghost text-xl">THU Helper</a>
+            </div>
+            <div className="flex-1">
+                <ul className="menu menu-horizontal px-1">
+                    <li><Link href="/">Home</Link></li>
+                    <li><Link href="/bbs/BoardList">Discussion</Link></li>
+                    <li><Link href="/CoursePage">Courses</Link></li>
+                    <li><Link href="/AboutPage">About</Link></li>
+                </ul>
             </div>
             <div className="flex-none">
                 <ul className="menu menu-horizontal px-1">

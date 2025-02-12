@@ -1,5 +1,5 @@
 import {useEffect} from "react";
-import { logoutApi } from "../../store";
+import { logoutApi } from "../../lib/store";
 import {useDispatch, useSelector} from "react-redux";
 import Skeleton from "../../components/Skeleton";
 

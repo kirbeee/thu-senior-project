@@ -1,9 +1,9 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { authApi } from "../store";
+import { authApi } from "../lib/store";
 import Skeleton from "../components/Skeleton";
 
-function LandingPage() {
+function Index() {
     const dispatch = useDispatch();
     const { user, loading, error} = useSelector((state) => state.users);
     useEffect(() => {
@@ -15,4 +15,4 @@ function LandingPage() {
     if(error) return <div>Error</div>;
 }
 
-export default LandingPage;
+export default Index;
