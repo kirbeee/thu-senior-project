@@ -1,4 +1,48 @@
 {
-  "greeting": "哈囉",
-  "language": "語言"
+  "hero": {
+    "title": "欢迎来到清华大学选课系统",
+    "description": "您探索和注册清华大学课程的一站式平台。轻松规划您的学术旅程。",
+    "exploreCourses": "探索课程",
+    "signUpNow": "立即注册"
+  },
+  "featuredCourses": "特色课程",
+  "courseCard": {
+    "viewDetails": "查看详情"
+  },
+  "keyFeatures": "主要特点",
+  "features": {
+    "easySearch": {
+      "title": "轻松课程搜索",
+      "description": "使用过滤器、关键词和类别快速查找课程。"
+    },
+    "personalizedSchedule": {
+      "title": "个性化日程安排",
+      "description": "根据课程可用性创建和管理您的每周日程。"
+    },
+    "enrollmentManagement": {
+      "title": "选课管理",
+      "description": "轻松注册课程并跟踪您的注册状态。"
+    }
+  },
+  "announcements": "公告",
+  "announcementList": [
+    "秋季学期选课将于 8 月 15 日开始。",
+    "新课程已添加到即将到来的学期的目录中。",
+    "重要的注册日期和截止日期 - 查看日历。"
+  ],
+  "callToAction": {
+    "ready": "准备好开始了吗？",
+    "description": "浏览我们广泛的课程目录，立即开始规划您的学术未来。",
+    "browseCoursesNow": "立即浏览课程"
+  },
+  "courseTitles": {
+    "introCS": "计算机科学导论",
+    "calculus1": "微积分 I",
+    "linearAlgebra": "线性代数"
+  },
+  "courseDescriptions": {
+    "introCS": "学习计算机科学和编程的基础知识。",
+    "calculus1": "微分和积分微积分的综合介绍。",
+    "linearAlgebra": "学习向量、矩阵、线性变换和线性方程组。"
+  }
 }
