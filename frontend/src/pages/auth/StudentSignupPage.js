@@ -5,7 +5,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 function StudentSignupPage(){
     const dispatch = useDispatch();
-    const { user, loading, error} = useSelector((state) => state.users);
+    // Remove unused variables: user, error
+    const { loading} = useSelector((state) => state.users);
 
     const router = useRouter();
 
@@ -133,8 +134,6 @@ function StudentSignupPage(){
                 type="submit">{loading? `Sign Up ${(
                 <span className="loading loading-spinner loading-xs"></span>)}` : 'Sign Up'}
             </button>
-
-
         </form>
     )
 }

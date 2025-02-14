@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 
 function LoginPage() {
     const dispatch = useDispatch();
-    const { isAuthenticating, user, token, loading, error, } = useSelector((state) => state.users);
+    // Remove unused variables: isAuthenticating, user, token, loading
+    const { error } = useSelector((state) => state.users);
 
     const router = useRouter(); // Next.js 的 useRouter 替代 useNavigate
 

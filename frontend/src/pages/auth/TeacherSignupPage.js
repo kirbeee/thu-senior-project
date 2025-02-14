@@ -1,13 +1,14 @@
 import React, {useState} from "react";
-import {useNavigate} from "react-router-dom";
-import {useDispatch, useSelector} from "react-redux";
+import { useRouter } from "next/router";
 import {signupApi} from "../../lib/store";
+import {useDispatch, useSelector} from "react-redux";
 
 function StudentSignupPage(){
     const dispatch = useDispatch();
-    const { user, loading, error} = useSelector((state) => state.users);
+    // Remove unused variables: user, error
+    const { loading} = useSelector((state) => state.users);
 
-    const navigate = useNavigate();
+    const router = useRouter();
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -17,7 +18,7 @@ function StudentSignupPage(){
     const handleSubmit = async (e) => {
         e.preventDefault();
         await dispatch(signupApi({username, email, password1, password2}));
-        navigate('/')
+        router('/')
     };
 
     return (
@@ -99,8 +100,6 @@ function StudentSignupPage(){
                 type="submit">{loading? `Sign Up ${(
                 <span className="loading loading-spinner loading-xs"></span>)}` : 'Sign Up'}
             </button>
-
-
         </form>
     )
 }

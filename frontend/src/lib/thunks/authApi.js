@@ -6,6 +6,7 @@ const authApi = createAsyncThunk("users/fetch", async (userId, thunkAPI) => {
         if (!localStorage.getItem("authToken")) {
             return thunkAPI.rejectWithValue("User is not authenticated");
         }
+        // eslint-disable-next-line no-undef
         const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/`, {
             headers: {
                 Authorization: `Token ${localStorage.getItem("authToken")}`
@@ -21,7 +22,8 @@ const logoutApi = createAsyncThunk("users/logout", async (userId, thunkAPI) => {
     if (!localStorage.getItem("authToken")) {
         return thunkAPI.rejectWithValue("User is not authenticated");
     }
-    const response = await axios.post(`${process.env.REACT_APP_API_URL}/logout/`, {
+    // eslint-disable-next-line no-undef
+    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/logout/`, {
         headers: {
             Authorization: `Token ${localStorage.getItem("authToken")}`
         }
@@ -31,7 +33,10 @@ const logoutApi = createAsyncThunk("users/logout", async (userId, thunkAPI) => {
 
 const loginApi = createAsyncThunk("users/login", async ({ username, email, password }, thunkAPI) => {
         try {
-            const response = await axios.post(`${process.env.REACT_APP_API_URL}/login/`, {
+            const response = await axios
+                // eslint-disable-next-line no-undef
+                .create({baseURL: process.env.NEXT_PUBLIC_API_URL})
+                .post(`/login/`, {
                 username,
                 email,
                 password
@@ -49,7 +54,8 @@ const loginApi = createAsyncThunk("users/login", async ({ username, email, passw
     });
 
 const signupApi = createAsyncThunk("users/signup", async ({username, email, password1, password2, role="visitor", id_card_number}) => {
-    await axios.post(`${process.env.REACT_APP_API_URL}/registration/`, {
+    // eslint-disable-next-line no-undef
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/registration/`, {
         username, email, password1, password2, role, id_card_number
     });
 });

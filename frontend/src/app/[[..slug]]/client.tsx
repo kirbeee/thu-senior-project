@@ -1,8 +1,7 @@
 // client.tsx
-import dynamic from 'next/dynamic'
+import React from 'react' // Import React here
 import Layout from "../../components/Layout";
 
-const App = dynamic(() => import('../../components/Layout'), { ssr: false });
 
 interface ClientOnlyProps {
     children: React.ReactNode;  // 指定 children 屬性類型
@@ -11,7 +10,7 @@ interface ClientOnlyProps {
 export function ClientOnly({ children }: ClientOnlyProps) {
     return (
         <div>
-            <Layout children={children} />
+            <Layout >{children}</Layout> {/* Nest children instead of passing as prop */}
         </div>
     );
 }

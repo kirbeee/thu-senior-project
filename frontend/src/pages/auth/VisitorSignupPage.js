@@ -4,7 +4,8 @@ import {useDispatch, useSelector} from "react-redux";
 
 function StudentSignupPage(){
     const dispatch = useDispatch();
-    const { user, loading, error} = useSelector((state) => state.users);
+    // Remove unused variable: user
+    const { loading, error} = useSelector((state) => state.users);
 
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');

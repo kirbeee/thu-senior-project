@@ -1,14 +1,15 @@
 import {createAsyncThunk} from "@reduxjs/toolkit";
 import axios from "axios";
 
-const boardApi = createAsyncThunk("boards/fetch", async ({page=1}, thunkAPI) => {
+const boardApi = createAsyncThunk("boards/fetch", async ({page=1}) => { // Removed unused thunkAPI
+    // eslint-disable-next-line no-undef
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/bbs/boards/`, {
         params: { page },
     });
     return response.data;
 })
 
-const createBoardApi = createAsyncThunk("boards/create", async (board, thunkAPI) => {
+const createBoardApi = createAsyncThunk("boards/create", async () => { // Removed unused board and thunkAPI
 
 })
 

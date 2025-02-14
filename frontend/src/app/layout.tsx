@@ -1,9 +1,10 @@
+import React from 'react';
 import type { Metadata } from "next";
 import StoreProvider from "./StoreProvider";
 
 export const metadata: Metadata = {
-  title: 'React App',
-  description: 'Web site created using Next.js',
+    title: 'React App',
+    description: 'Web site created using Next.js',
 };
 
 export default function RootLayout({

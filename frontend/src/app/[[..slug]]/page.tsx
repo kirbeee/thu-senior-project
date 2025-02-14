@@ -1,3 +1,4 @@
+import React from 'react'
 import { ClientOnly } from "./client";
 
 export function generateStaticParams() {
@@ -5,5 +6,6 @@ export function generateStaticParams() {
 }
 
 export default function Page() {
-    return <ClientOnly children={undefined}/> // We'll update this
+    // eslint-disable-next-line react/no-children-prop
+    return <ClientOnly children={undefined} />
 }

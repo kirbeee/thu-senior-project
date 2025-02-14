@@ -1,3 +1,4 @@
+import React from "react"; // Import React to use JSX
 import ReactDOM from "react-dom";
 import { useEffect } from "react";
 
@@ -27,4 +28,4 @@ function Modal({ actionBar, children }) {
 
 }
 
-export default Modal
+export default Modal;
