@@ -42,7 +42,7 @@ const Header = () => {
                     </div>
                 </summary>
                 <ul className="menu dropdown-content bg-base-100 rounded-box w-52">
-                    <li><Link href="/account">Settings</Link></li>
+                    <li><Link href="/AccountPage">Settings</Link></li>
                     <li><Link href="/auth/LogoutPage">Logout</Link></li>
                 </ul>
             </details>

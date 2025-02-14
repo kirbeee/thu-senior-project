@@ -1,3 +1,4 @@
+import React from "react"; // Import React is essential for JSX
 import Navbar from './Header'
 import Footer from './Footer'
 import {Provider} from "react-redux";

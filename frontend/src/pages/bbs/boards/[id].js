@@ -1,15 +1,19 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import {useRouter} from "next/router";
 import axios from "axios";
-import PostList from "./PostsList";
+import PostList from "../PostsList";
 
-const BoardDetail = () => {
-    const { id } = useParams();  // 取得 URL 中的 board ID
+const Id = () => {
+    const router = useRouter();
+    const { id } = router.query;  // 取得 URL 中的 board ID
     const [board, setBoard] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        axios.get(`/bbs/boards/${id}/`)
+        axios
+            // eslint-disable-next-line no-undef
+            .create({baseURL: process.env.NEXT_PUBLIC_API_URL})
+            .get(`/bbs/boards/${id}/`)
             .then(response => {
                 setBoard(response.data);  // 假設返回的資料就是這個板塊的信息
                 setLoading(false);
@@ -36,4 +40,4 @@ const BoardDetail = () => {
     );
 };
 
-export default BoardDetail;
+export default Id;

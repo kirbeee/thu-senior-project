@@ -1,15 +1,17 @@
+import React from "react";
 import { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import BoardCard from "./BoardCard"; // 自定義的板卡顯示組件
-import Pagination from "../../components/Pagination"; // 分頁組件
+import BoardCard from "../../components/BoardCard"; // 自定義的板卡顯示組件
+import Pagination from "../../components/Pagination";
+import axios from "axios"; // 分頁組件
 
 const BoardList = () => {
     const [boards, setBoards] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [totalPages, setTotalPages] = useState(1);
-
+    const [totalPages] = useState(1);
     const router = useRouter();
     const { course_id: courseId = null, page = 1 } = router.query;
+
 
     useEffect(() => {
         const loadBoards = async () => {
@@ -19,24 +21,22 @@ const BoardList = () => {
                 if (courseId) queryParams.append("course_id", courseId);
                 queryParams.append("page", page);
 
-                const response = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/bbs/boards/?${queryParams.toString()}`);
-                const data = await response.json();
-
+                // eslint-disable-next-line no-undef
+                const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/bbs/boards/?${queryParams.toString()}`);
+                const data = response.data;
                 setBoards(data.results);
-                setTotalPages(Math.ceil(data.count / 10)); // 假設每頁顯示 10 筆數據
             } catch (error) {
                 console.error("Error fetching boards:", error);
             } finally {
                 setLoading(false);
             }
         };
-
         loadBoards();
     }, [courseId, page]);
 
     const handlePageChange = (newPage) => {
         router.push({
-            pathname: '/bbs/boards',
+            pathname: '/bbs/boardList',
             query: { course_id: courseId, page: newPage },
         });
     };

@@ -1,11 +1,13 @@
+import React from "react"; // Importa React per consentire l'uso di JSX
+
 function AboutPage() {
     return (
 
         <div>
             <h1 className="text-2xl font-bold">About Page</h1>
             <p className="mt-4">Lorem Ipsum
-                "Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit..."
-                "There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain..."
+                &quot;Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...&quot;
+                &quot;There is no one who loves pain itself, who seeks after it and wants to have it, simply because it is pain...&quot;
                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris luctus, dui ut maximus dictum, ex enim auctor sem, nec sodales ipsum neque ut arcu. Nulla et felis eu ligula fringilla ultrices. Integer suscipit sollicitudin ornare. Donec et dui vel risus lacinia mollis. Ut at massa vulputate, porta turpis et, venenatis nibh. Sed feugiat magna nec nunc placerat tempus. Cras purus arcu, ultrices eu orci quis, commodo consectetur nulla.
 
                 Ut facilisis consequat pulvinar. Pellentesque tempor mi non malesuada finibus. Quisque pharetra turpis in lacus condimentum, sit amet rhoncus neque condimentum. Ut non hendrerit arcu. Phasellus condimentum purus nisi, in posuere mauris interdum sed. Nullam convallis augue ac dolor mollis consectetur. Nam ac magna a odio bibendum laoreet sit amet et diam. Sed sit amet orci egestas, suscipit urna at, cursus diam. In hac habitasse platea dictumst.
