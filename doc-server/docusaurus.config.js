@@ -98,13 +98,11 @@ const config = {
         items: [
             {
                 to: '/blog',
-                type: 'blog',
                 label: 'Blog',
                 position: 'left'
             },
             {
                 to: '/docs',
-                type: 'doc',
                 position: 'left',
                 label: 'Docs',
             },
