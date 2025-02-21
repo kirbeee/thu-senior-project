@@ -1,8 +1,8 @@
-import globals from "globals";
-import pluginJs from "@eslint/js";
-import tseslint from "typescript-eslint";
-import pluginReact from "eslint-plugin-react";
+import { FlatCompat } from '@eslint/eslintrc';
 
+const compat = new FlatCompat({
+  baseDirectory: import.meta.dirname,
+});
 
 /** @type {import('eslint').Linter.Config[]} */
 export default [

@@ -1,15 +1,14 @@
-# 使用官方 Python 映像
-FROM python:3.10
-EXPOSE 8000
-# 设置工作目录
-WORKDIR /backend
+FROM python:3.10-slim-buster
 
-# 安装依赖
+WORKDIR /app
+
 COPY requirements.txt ./
-RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip install -r requirements.txt
 
-# 复制 Django 项目代码
 COPY . .
 
-# 启动命令
-CMD ["python","manage.py", "runserver", "0.0.0.0:8000"]
+# Collect static files (optional, if you want to serve static files via Nginx)
+# RUN python manage.py collectstatic --noinput
+
+CMD ["gunicorn", "thuHelper.wsgi", "-b", "0.0.0.0:8000"]
+# 啟動 Django 伺服器 (需根據你的專案調整)

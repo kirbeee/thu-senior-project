@@ -1,6 +1,7 @@
-from rest_framework import viewsets
-from .models import Category, Board, Post, Comment, Like
-from .serializers import CategorySerializer, BoardSerializer, PostSerializer, CommentSerializer, LikeSerializer
+from rest_framework import viewsets, mixins # Import mixins if you need them (e.g., for CreateModelMixin, DestroyModelMixin)
+from rest_framework.permissions import IsAuthenticatedOrReadOnly # Or your desired permission class
+from .models import Category, Board, Post, Comment, PostLike, CommentLike # Corrected import: PostLike, CommentLike, removed Like
+from .serializers import CategorySerializer, BoardSerializer, PostSerializer, CommentSerializer, PostLikeSerializer, CommentLikeSerializer # Corrected import: PostLikeSerializer, CommentLikeSerializer, removed LikeSerializer
 from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
@@ -27,6 +28,15 @@ class CommentViewSet(viewsets.ModelViewSet):
     serializer_class = CommentSerializer
 
 
-class LikeViewSet(viewsets.ModelViewSet):
-    queryset = Like.objects.all()
-    serializer_class = LikeSerializer
+class PostLikeViewSet(viewsets.ModelViewSet): # ViewSet for Post Likes
+    queryset = PostLike.objects.all()
+    serializer_class = PostLikeSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly] # Adjust permissions as needed
+
+class CommentLikeViewSet(viewsets.ModelViewSet): # ViewSet for Comment Likes
+    queryset = CommentLike.objects.all()
+    serializer_class = CommentLikeSerializer
+    permission_classes = [IsAuthenticatedOrReadOnly] # Adjust permissions as needed
+
+
+# LikeViewSet is removed

@@ -3,6 +3,7 @@ import Link from 'next/link'; // For navigation
 import { useTranslation, withTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import i18nConfig from '../../next-i18next.config'; // Import your i18n config
+import PropTypes from 'prop-types'; // Import PropTypes
 
 function Index() {
     const { t } = useTranslation('common'); // Use the 'common' namespace
@@ -38,6 +39,10 @@ const HeroSection = ({ t }) => (
     </section>
 );
 
+HeroSection.propTypes = {
+    t: PropTypes.func.isRequired,
+};
+
 // 2. Course Highlights / Featured Courses
 const CourseHighlights = ({ t }) => (
     <section className="mb-12">
@@ -63,6 +68,10 @@ const CourseHighlights = ({ t }) => (
     </section>
 );
 
+CourseHighlights.propTypes = {
+    t: PropTypes.func.isRequired,
+};
+
 const CourseCard = ({ title, description, viewDetailsText }) => (
     <div className="card bg-base-100 shadow-md">
         <div className="card-body">
@@ -74,6 +83,12 @@ const CourseCard = ({ title, description, viewDetailsText }) => (
         </div>
     </div>
 );
+
+CourseCard.propTypes = {
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    viewDetailsText: PropTypes.string.isRequired,
+};
 
 
 // 3. Key Features / Benefits
@@ -100,6 +115,10 @@ const FeatureList = ({ t }) => (
     </section>
 );
 
+FeatureList.propTypes = {
+    t: PropTypes.func.isRequired,
+};
+
 const FeatureItem = ({ title, description, icon }) => (
     <div className="flex flex-col items-center text-center p-6 bg-base-100 shadow-md rounded-lg">
         <div className="mb-4">{icon}</div>
@@ -107,6 +126,12 @@ const FeatureItem = ({ title, description, icon }) => (
         <p className="text-gray-600">{description}</p>
     </div>
 );
+
+FeatureItem.propTypes = {
+    title: PropTypes.string.isRequired,
+    description: PropTypes.string.isRequired,
+    icon: PropTypes.node.isRequired,
+};
 
 
 // 4. Announcements Section
@@ -125,6 +150,10 @@ const AnnouncementSection = ({ t }) => (
     </section>
 );
 
+AnnouncementSection.propTypes = {
+    t: PropTypes.func.isRequired,
+};
+
 // 5. Call to Action Section
 const CallToActionSection = ({ t }) => (
     <section className="text-center mb-12">
@@ -138,10 +167,15 @@ const CallToActionSection = ({ t }) => (
     </section>
 );
 
+CallToActionSection.propTypes = {
+    t: PropTypes.func.isRequired,
+};
+
 export const getStaticProps = async ({ locale }) => ({
     props: {
-        ...(await serverSideTranslations(locale, ['common'], i18nConfig)), // Pass i18n config here
+        ...(await serverSideTranslations(locale, ['common'], i18nConfig)), // 載入所有 namespaces
     },
-});
+})
 
-export default withTranslation('common')(Index); // Use 'withTranslation' to wrap the component
+
+export default withTranslation('common')(Index);

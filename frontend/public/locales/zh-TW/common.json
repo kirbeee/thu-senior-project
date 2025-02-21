@@ -1,48 +1,48 @@
 {
   "hero": {
-    "title": "欢迎来到清华大学选课系统",
-    "description": "您探索和注册清华大学课程的一站式平台。轻松规划您的学术旅程。",
-    "exploreCourses": "探索课程",
-    "signUpNow": "立即注册"
+    "title": "歡迎來到東海大學選課系統",
+    "description": "您探索和註冊東海大學課程的一站式平台。輕鬆規劃您的學術旅程。",
+    "exploreCourses": "探索課程",
+    "signUpNow": "立即註冊"
   },
-  "featuredCourses": "特色课程",
+  "featuredCourses": "特色課程",
   "courseCard": {
-    "viewDetails": "查看详情"
+    "viewDetails": "查看詳情"
   },
-  "keyFeatures": "主要特点",
+  "keyFeatures": "主要特點",
   "features": {
     "easySearch": {
-      "title": "轻松课程搜索",
-      "description": "使用过滤器、关键词和类别快速查找课程。"
+      "title": "輕鬆課程搜索",
+      "description": "使用過濾器、關鍵詞和類別快速查找課程。"
     },
     "personalizedSchedule": {
-      "title": "个性化日程安排",
-      "description": "根据课程可用性创建和管理您的每周日程。"
+      "title": "個性化日程安排",
+      "description": "根據課程可用性創建和管理您的每周日程。"
     },
     "enrollmentManagement": {
-      "title": "选课管理",
-      "description": "轻松注册课程并跟踪您的注册状态。"
+      "title": "選課管理",
+      "description": "輕鬆註冊課程並跟蹤您的註冊狀態。"
     }
   },
   "announcements": "公告",
   "announcementList": [
-    "秋季学期选课将于 8 月 15 日开始。",
-    "新课程已添加到即将到来的学期的目录中。",
-    "重要的注册日期和截止日期 - 查看日历。"
+    "秋季學期選課將於 8 月 15 日開始。",
+    "新課程已添加到即將到來的學期的目錄中。",
+    "重要的註冊日期和截止日期 - 查看日曆。"
   ],
   "callToAction": {
-    "ready": "准备好开始了吗？",
-    "description": "浏览我们广泛的课程目录，立即开始规划您的学术未来。",
-    "browseCoursesNow": "立即浏览课程"
+    "ready": "準備好開始了嗎？",
+    "description": "瀏覽我們廣泛的課程目錄，立即開始規劃您的學術未來。",
+    "browseCoursesNow": "立即瀏覽課程"
   },
   "courseTitles": {
-    "introCS": "计算机科学导论",
-    "calculus1": "微积分 I",
-    "linearAlgebra": "线性代数"
+    "introCS": "計算機科學導論",
+    "calculus1": "微積分 I",
+    "linearAlgebra": "線性代數"
   },
   "courseDescriptions": {
-    "introCS": "学习计算机科学和编程的基础知识。",
-    "calculus1": "微分和积分微积分的综合介绍。",
-    "linearAlgebra": "学习向量、矩阵、线性变换和线性方程组。"
+    "introCS": "學習計算機科學和編程的基礎知識。",
+    "calculus1": "微分和積分微積分的綜合介紹。",
+    "linearAlgebra": "學習向量、矩陣、線性變換和線性方程組。"
   }
 }
