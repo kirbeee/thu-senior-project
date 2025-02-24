@@ -1,58 +1,82 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import PostList from "../PostsList"; // Assuming PostList component is in the same directory or correctly pathed
+import PostList from "../PostsList"; // Ensure the path is correct
 
 const Id = () => {
     const router = useRouter();
-    const { id: idString } = router.query; // Rename id to idString to avoid confusion
-    const id = Number(idString); // Convert id string to number
+    const { id: idString } = router.query;
+    const id = Number(idString);
     const [board, setBoard] = useState(null);
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        console.log("router.query in Id Component:", router.query);
-        console.log("id from router.query in Id Component:", id);
-        setLoading(true); // Set loading to true before fetching
+        setLoading(true);
         axios
-            // eslint-disable-next-line no-undef
             .create({ baseURL: process.env.NEXT_PUBLIC_API_URL })
             .get(`/bbs/boards/${id}/`)
             .then(response => {
                 setBoard(response.data);
-                console.log("Fetched board object:", response.data); // Keep this line for debugging
                 setLoading(false);
             })
-            .catch(error => {
-                console.error("There was an error fetching the board details!", error);
+            .catch(() => {
                 setLoading(false);
             });
     }, [id]);
 
     if (loading) {
-        return <p className="text-center py-4">Loading board information...</p>;
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <span className="loading loading-spinner loading-lg text-primary"></span>
+            </div>
+        );
     }
 
     if (!board) {
-        return <p className="text-center py-4 text-red-500">Error loading board information.</p>; // Handle case where board is null (e.g., API error after loading)
+        return (
+            <div className="flex justify-center items-center h-screen">
+                <div className="alert alert-error">
+                    <svg xmlns="http://www.w3.org/2000/svg" className="stroke-current shrink-0 h-6 w-6" fill="none" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span>Board not found.</span>
+                </div>
+            </div>
+        );
     }
 
     return (
         <div className="container mx-auto px-4 py-8">
-            {/* Board Header Section (Similar to Reddit board header) */}
-            <header className="mb-6 p-4 bg-base-200 rounded-lg shadow">
-                <h2 className="text-2xl font-bold text-primary mb-2">{board.name}</h2>
-                <p className="text-gray-600">{board.description}</p>
-                <div className="mt-2 flex space-x-4 text-sm text-gray-500">
-                    <p>Category: <span className="font-semibold">{board.category?.name || 'N/A'}</span></p> {/* Updated line */}
-                    <p>Course ID: <span className="font-semibold">{board.course_id || 'N/A'}</span></p>
+            {/* Board Header Section */}
+            <header className="mb-8 p-6 bg-base-100 rounded-2xl shadow-lg transition-shadow duration-300 hover:shadow-2xl">
+                <div className="flex items-center mb-4">
+                    <div className="flex-shrink-0">
+                        <div className="avatar placeholder">
+                            <div className="bg-primary text-primary-content rounded-full w-14">
+                                <span className="text-3xl font-semibold">{board.name.charAt(0).toUpperCase()}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div className="ml-6">
+                        <h2 className="text-4xl font-extrabold text-gray-900">{board.name}</h2>
+                        <p className="text-lg text-gray-600 mt-1">{board.description}</p>
+                    </div>
+                </div>
+                <div className="flex flex-wrap gap-4 text-sm text-gray-500">
+                    <div className="badge badge-outline">Category: {board.category?.name || 'N/A'}</div>
+                    <div className="badge badge-outline">Course ID: {board.course_id || 'N/A'}</div>
                 </div>
             </header>
 
-            {/* Post List Section (Main content area, like Reddit post listings) */}
+            {/* Post List Section */}
             <section className="mb-8">
-                <h3 className="text-xl font-semibold mb-4">Posts in <span className="font-bold">{board.name}</span></h3>
-                <PostList boardId={id} /> {/* Pass the numeric id here */}
+                <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-3xl font-semibold text-gray-800">Posts in <span className="font-bold text-primary">{board.name}</span></h3>
+                    {/* Add a button here if you want to create a new post */}
+                </div>
+                <div className="bg-base-100 rounded-2xl shadow-md p-6">
+                    <PostList boardId={id} />
+                </div>
             </section>
         </div>
     );

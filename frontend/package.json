@@ -5,6 +5,7 @@
   "dependencies": {
     "@eslint/eslintrc": "^3.2.0",
     "@headlessui/react": "^2.1.2",
+    "@heroicons/react": "^2.2.0",
     "@reduxjs/toolkit": "^2.2.7",
     "axios": "^1.7.2",
     "classnames": "^2.5.1",
