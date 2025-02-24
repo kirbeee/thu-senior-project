@@ -89,7 +89,7 @@ const Header = () => {
                 <ul className="menu menu-horizontal px-1">
                     <li><Link href="/">Home</Link></li>
                     <li><Link href="/bbs/Board">Discussion</Link></li>
-                    <li><Link href="/CoursePage">Courses</Link></li>
+                    <li><Link href="/courses/Course">Courses</Link></li>
                     <li><Link href="/AboutPage">About</Link></li>
                 </ul>
             </div>

@@ -1,13 +1,16 @@
 import React from "react";
 import { useRouter } from "next/router"; // 用於路由跳轉
 import PropTypes from 'prop-types'; // Import PropTypes
-
+import Link from 'next/link'; // Import Link component from Next.js
 const CourseCard = ({ course }) => {
     const router = useRouter();
 
     const handleCardClick = () => {
         // 使用 router.push 跳轉並附帶 course_id 查詢參數
-        router.push(`/bbs/boards?course_id=${course.id}`);
+        router.push({
+            pathname:`/courses/Course/[id]`,
+            query: { course_id: course.id }
+        });
     };
 
     return (
@@ -16,7 +19,14 @@ const CourseCard = ({ course }) => {
             onClick={handleCardClick}
         >
             <div className="card-body">
-                <h3 className="card-title">{course.name}</h3>
+                <h2 className="card-title text-lg font-semibold hover:underline cursor-pointer">
+                    <Link  href={{
+                        pathname:`/courses/Course/[id]`,
+                        query: { id: course.id }
+                    }}>
+                        {course.name}
+                    </Link>
+                </h2>
                 <p>Code: {course.code}</p>
                 <p>Credits: {course.credits}</p>
                 <p>Description: {course.description}</p>

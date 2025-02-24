@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
-import PostList from "../PostsList"; // Ensure the path is correct
+import PostList from "../../../components/PostsList"; // Ensure the path is correct
+import Link from "next/link"; // Import Link from next/link
 
 const Id = () => {
     const router = useRouter();
@@ -64,7 +65,11 @@ const Id = () => {
                 </div>
                 <div className="flex flex-wrap gap-4 text-sm text-gray-500">
                     <div className="badge badge-outline">Category: {board.category?.name || 'N/A'}</div>
-                    <div className="badge badge-outline">Course ID: {board.course_id || 'N/A'}</div>
+                    {board.course_id && ( // Conditional rendering to prevent errors if course_id is null
+                        <Link href={`/courses/${board.course_id}`} passHref>
+                            <div className="badge badge-outline cursor-pointer">Course ID: {board.course_id}</div>
+                        </Link>
+                    )}
                 </div>
             </header>
 
@@ -74,9 +79,7 @@ const Id = () => {
                     <h3 className="text-3xl font-semibold text-gray-800">Posts in <span className="font-bold text-primary">{board.name}</span></h3>
                     {/* Add a button here if you want to create a new post */}
                 </div>
-                <div className="bg-base-100 rounded-2xl shadow-md p-6">
-                    <PostList boardId={id} />
-                </div>
+                <PostList boardId={id} />
             </section>
         </div>
     );
