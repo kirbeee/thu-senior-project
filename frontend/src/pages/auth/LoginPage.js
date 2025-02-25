@@ -36,7 +36,7 @@ function LoginPage() {
                     <h1 className="text-5xl font-bold">選課系統登入</h1>
                     <p className="py-6">歡迎使用 THU 選課社群系統，請輸入您的帳號密碼進行登入。</p>
                 </div>
-                <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100"> {/* 卡片容器，限制寬度 */}
+                <div className="card flex-shrink-0 w-full max-w-sm min-w-[400px] shadow-2xl bg-base-100"> {/* 卡片容器，限制寬度 */}
                     <figure className="px-10 pt-10">
                         <Image
                             src="/login-illustration.jpeg" // 替換成您的插圖路徑
