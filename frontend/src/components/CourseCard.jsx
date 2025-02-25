@@ -6,7 +6,6 @@ const CourseCard = ({ course }) => {
     const router = useRouter();
 
     const handleCardClick = () => {
-        // 使用 router.push 跳轉並附帶 course_id 查詢參數
         router.push({
             pathname:`/courses/Course/[id]`,
             query: { course_id: course.id }
@@ -37,16 +36,15 @@ const CourseCard = ({ course }) => {
     );
 };
 
-CourseCard.propTypes = { // Define propTypes for CourseCard
-    course: PropTypes.shape({ // course prop should be an object with specific shape
+CourseCard.propTypes = {
+    course: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         code: PropTypes.string.isRequired,
         credits: PropTypes.number.isRequired,
         description: PropTypes.string.isRequired,
-        teacher: PropTypes.string, // Optional teacher (string)
+        teacher: PropTypes.string,
         students: PropTypes.arrayOf(PropTypes.object).isRequired, // students is an array of objects and is required
-        // Assuming students is always an array, even if empty. If it could be null/undefined, make it optional and handle null case
     }).isRequired,
 };
 

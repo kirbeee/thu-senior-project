@@ -9,7 +9,6 @@ const BoardCard = ({ board }) => {
                 <h3 className="card-title text-brown-800">{board.name}</h3>
                 <p className="text-brown-700">{board.description}</p>
                 <p className="text-gray-500">Course ID: {board.course_id}</p>
-                {/*  ✅  請確認這裡的程式碼是否已修改為以下形式 ✅ */}
                 {board.category && (
                     <p className="text-gray-500">Category: {board.category.name || "Uncategorized"}</p>
                 )}

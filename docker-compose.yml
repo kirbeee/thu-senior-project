@@ -64,7 +64,8 @@ services:
     volumes:
       - ./frontend:/app # 掛載程式碼方便開發時修改
     environment:
-      NEXT_PUBLIC_API_BASE_URL: "/api" # 設定 API 請求基礎路徑 (透過 Nginx 反向代理)
+      NODE_ENV: development # 開發模式 (生產環境請改為 production)
+      NEXT_PUBLIC_API_BASE_URL: "http://localhost:8000" # 設定 API 請求基礎路徑 (透過 Nginx 反向代理)
     depends_on:
       backend:
         condition: service_started # 等待 Django 啟動即可 (不需健康檢查)
