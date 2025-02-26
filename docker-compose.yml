@@ -33,7 +33,7 @@ services:
   backend:
     container_name: django_app
     build: ./backend  # 指定 Dockerfile 路徑
-    command: sh -c "python manage.py collectstatic --noinput --clear && python manage.py migrate && gunicorn thuHelper.wsgi -b 0.0.0.0:8000" # 啟動 Django 伺服器 (需根據你的專案調整)
+    command: sh -c "python manage.py collectstatic --noinput --clear && python manage.py migrate && gunicorn thuHelper.wsgi -b 0.0.0.0:8000 && python manage.py shell < app/templates/fake_data/bbs/fakeData.py " # 啟動 Django 伺服器 (需根據你的專案調整)
     volumes:
       - ./backend:/app  # 掛載程式碼方便開發時修改
       - static_volume:/app/staticfiles # 靜態資源 volume (可選)

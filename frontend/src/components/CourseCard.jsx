@@ -8,7 +8,7 @@ const CourseCard = ({ course }) => {
     const handleCardClick = () => {
         router.push({
             pathname:`/courses/Course/[id]`,
-            query: { course_id: course.id }
+            query: { id: course.id }
         });
     };
 
@@ -19,12 +19,7 @@ const CourseCard = ({ course }) => {
         >
             <div className="card-body">
                 <h2 className="card-title text-lg font-semibold hover:underline cursor-pointer">
-                    <Link  href={{
-                        pathname:`/courses/Course/[id]`,
-                        query: { id: course.id }
-                    }}>
-                        {course.name}
-                    </Link>
+                    {course.name}
                 </h2>
                 <p>Code: {course.code}</p>
                 <p>Credits: {course.credits}</p>
