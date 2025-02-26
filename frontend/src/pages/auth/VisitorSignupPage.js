@@ -1,104 +1,123 @@
 import React, {useState} from "react";
 import {signupApi} from "../../lib/store";
 import {useDispatch, useSelector} from "react-redux";
+import {useRouter} from "next/router";
 
-function StudentSignupPage(){
+function VisitorSignupPage(){
     const dispatch = useDispatch();
-    // Remove unused variable: user
     const { loading, error} = useSelector((state) => state.users);
-
+    const router = useRouter();
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
-    const [password1, setPassword1] = useState('');
-    const [password2, setPassword2] = useState('');
+    const [password, setPassword] = useState('');
+    const [confirmPassword, setConfirmPassword] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+
+    const validatePassword = (passwordToCheck) => {
+        if (passwordToCheck.length < 6) {
+            return '密碼長度至少需要 6 個字元';
+        }
+        return '';
+    };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(signupApi({username, email, password1, password2}));
+
+        const passwordValidationResult = validatePassword(password);
+        if (passwordValidationResult) {
+            setPasswordError(passwordValidationResult);
+            return;
+        } else {
+            setPasswordError('');
+        }
+
+        if (password !== confirmPassword) {
+            setPasswordError('兩次輸入的密碼不一致');
+            return;
+        } else {
+            setPasswordError('');
+        }
+
+        await dispatch(signupApi({username, email, password1: password, password2: confirmPassword}));
+        await router.push('/')
     };
 
     return (
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-            {error && <div className="alert alert-error">{error}</div>}
-            <label className="input input-bordered flex items-center gap-2">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                    className="h-4 w-4 opacity-70">
-                    <path
-                        d="M8 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6ZM12.735 14c.618 0 1.093-.561.872-1.139a6.002 6.002 0 0 0-11.215 0c-.22.578.254 1.139.872 1.139h9.47Z"/>
-                </svg>
-                <input
-                    placeholder="Username"
-                    type="username"
-                    value={username}
-                    className="grow"
-                    onChange={(e) => setUsername(e.target.value)}
-                />
-            </label>
-            <label className="input input-bordered flex items-center gap-2">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                    className="h-4 w-4 opacity-70">
-                    <path
-                        d="M2.5 3A1.5 1.5 0 0 0 1 4.5v.793c.026.009.051.02.076.032L7.674 8.51c.206.1.446.1.652 0l6.598-3.185A.755.755 0 0 1 15 5.293V4.5A1.5 1.5 0 0 0 13.5 3h-11Z"/>
-                    <path
-                        d="M15 6.954 8.978 9.86a2.25 2.25 0 0 1-1.956 0L1 6.954V11.5A1.5 1.5 0 0 0 2.5 13h11a1.5 1.5 0 0 0 1.5-1.5V6.954Z"/>
-                </svg>
-                <input
-                    className="grow"
-                    placeholder="Email"
-                    type="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                />
-            </label>
-            <label className="input input-bordered flex items-center gap-2">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                    className="h-4 w-4 opacity-70">
-                    <path
-                        fillRule="evenodd"
-                        d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
-                        clipRule="evenodd"/>
-                </svg>
-                <input
-                    className="grow"
-                    placeholder="Password"
-                    type="password"
-                    value={password1}
-                    onChange={(e) => setPassword1(e.target.value)}
-                /></label>
-            <label className="input input-bordered flex items-center gap-2">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 16 16"
-                    fill="currentColor"
-                    className="h-4 w-4 opacity-70">
-                    <path
-                        fillRule="evenodd"
-                        d="M14 6a4 4 0 0 1-4.899 3.899l-1.955 1.955a.5.5 0 0 1-.353.146H5v1.5a.5.5 0 0 1-.5.5h-2a.5.5 0 0 1-.5-.5v-2.293a.5.5 0 0 1 .146-.353l3.955-3.955A4 4 0 1 1 14 6Zm-4-2a.75.75 0 0 0 0 1.5.5.5 0 0 1 .5.5.75.75 0 0 0 1.5 0 2 2 0 0 0-2-2Z"
-                        clipRule="evenodd"/>
-                </svg>
-                <input
-                    className="grow"
-                    placeholder="Varify Password"
-                    type="password"
-                    value={password2}
-                    onChange={(e) => setPassword2(e.target.value)}
-                /></label>
-            <button
-                className="btn btn-primary"
-                type="submit">{loading? `Sign Up ${(
-                <span className="loading loading-spinner loading-xs"></span>)}` : 'Sign Up'}
-            </button>
-        </form>
+        <div className="hero min-h-screen">
+            <div className="hero-content flex-col lg:flex-row-reverse">
+                <div className="text-center lg:text-left">
+                    <h1 className="text-5xl font-bold">訪客註冊</h1>
+                    <p className="py-6">歡迎加入！註冊訪客帳號，體驗更多功能。</p>
+                </div>
+                <div className="card shrink-0 w-full max-w-max min-w-[400px] shadow-2xl bg-base-100">
+                    <form onSubmit={handleSubmit} className="card-body">
+                        {error && <div className="alert alert-error">{error}</div>}
+                        {passwordError && <div className="alert alert-warning">{passwordError}</div>}
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">使用者名稱</span>
+                            </label>
+                            <input
+                                type="text"
+                                placeholder="請輸入使用者名稱"
+                                className="input input-bordered"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">電子郵件</span>
+                            </label>
+                            <input
+                                type="email"
+                                placeholder="請輸入電子郵件"
+                                className="input input-bordered"
+                                value={email}
+                                onChange={(e) => setEmail(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">密碼</span>
+                            </label>
+                            <input
+                                type="password"
+                                placeholder="請輸入密碼"
+                                className="input input-bordered"
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                required
+                            />
+                            {passwordError && <label className="label">
+                                <span className="label-text-alt text-warning">{passwordError}</span>
+                            </label>}
+                        </div>
+                        <div className="form-control">
+                            <label className="label">
+                                <span className="label-text">確認密碼</span>
+                            </label>
+                            <input
+                                type="password"
+                                placeholder="再次輸入密碼"
+                                className="input input-bordered"
+                                value={confirmPassword}
+                                onChange={(e) => setConfirmPassword(e.target.value)}
+                                required
+                            />
+                        </div>
+                        <div className="form-control mt-6">
+                            <button className="btn btn-primary" type="submit" disabled={loading}>
+                                {loading?  <span className="loading loading-spinner">註冊中</span> : '註冊'}
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
     )
 }
 
-export default StudentSignupPage;
+export default VisitorSignupPage;

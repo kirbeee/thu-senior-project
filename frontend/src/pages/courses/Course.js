@@ -1,9 +1,9 @@
-import React, { useState, useEffect } from "react";
-import { fetchCourses } from "../lib/apis/api";
-import CourseCard from "../components/CourseCard";
-import Pagination from "../components/Pagination";
+import React, {useState, useEffect} from "react";
+import {fetchCourses} from "../../lib/apis/api";
+import CourseCard from "../../components/CourseCard";
+import Pagination from "../../components/Pagination";
 
-const CoursePage = () => {
+const Course = () => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
@@ -36,7 +36,7 @@ const CoursePage = () => {
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {courses.map((course) => (
-                        <CourseCard key={course.id} course={course} />
+                        <CourseCard key={course.id} course={course}/>
                     ))}
                 </div>
             )}
@@ -51,4 +51,4 @@ const CoursePage = () => {
     );
 };
 
-export default CoursePage;
+export default Course;

@@ -1,13 +1,15 @@
 import React from "react";
 import { useRouter } from "next/router"; // 用於路由跳轉
 import PropTypes from 'prop-types'; // Import PropTypes
-
+import Link from 'next/link'; // Import Link component from Next.js
 const CourseCard = ({ course }) => {
     const router = useRouter();
 
     const handleCardClick = () => {
-        // 使用 router.push 跳轉並附帶 course_id 查詢參數
-        router.push(`/bbs/boards?course_id=${course.id}`);
+        router.push({
+            pathname:`/courses/Course/[id]`,
+            query: { id: course.id }
+        });
     };
 
     return (
@@ -16,7 +18,9 @@ const CourseCard = ({ course }) => {
             onClick={handleCardClick}
         >
             <div className="card-body">
-                <h3 className="card-title">{course.name}</h3>
+                <h2 className="card-title text-lg font-semibold hover:underline cursor-pointer">
+                    {course.name}
+                </h2>
                 <p>Code: {course.code}</p>
                 <p>Credits: {course.credits}</p>
                 <p>Description: {course.description}</p>
@@ -27,16 +31,15 @@ const CourseCard = ({ course }) => {
     );
 };
 
-CourseCard.propTypes = { // Define propTypes for CourseCard
-    course: PropTypes.shape({ // course prop should be an object with specific shape
+CourseCard.propTypes = {
+    course: PropTypes.shape({
         id: PropTypes.number.isRequired,
         name: PropTypes.string.isRequired,
         code: PropTypes.string.isRequired,
         credits: PropTypes.number.isRequired,
         description: PropTypes.string.isRequired,
-        teacher: PropTypes.string, // Optional teacher (string)
+        teacher: PropTypes.string,
         students: PropTypes.arrayOf(PropTypes.object).isRequired, // students is an array of objects and is required
-        // Assuming students is always an array, even if empty. If it could be null/undefined, make it optional and handle null case
     }).isRequired,
 };
 

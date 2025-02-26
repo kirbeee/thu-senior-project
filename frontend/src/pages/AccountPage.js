@@ -1,5 +1,4 @@
-import React from "react";
-import {useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { authApi } from "../lib/store";
 import Skeleton from "../components/Skeleton";
@@ -11,72 +10,117 @@ function AccountPage() {
         dispatch(authApi());
     }, [dispatch]);
 
-    // Remove unused variable username, and use setters in onChange handlers
-    // const [username, setUsername] = useState(data.username); // username is not used
-    const [email, setEmail] = useState(data?.email || ""); // Use optional chaining and default value in case data is initially undefined
-    const [firstName, setFirstName] = useState(data?.first_name || ""); // Use optional chaining and default value
-    const [lastName, setLastName] = useState(data?.last_name || ""); // Use optional chaining and default value
-    const [username, setUsername] = useState(data?.username || ""); // Keep username for display and potentially editing
+    const [email, setEmail] = useState(data?.email || "");
+    const [firstName, setFirstName] = useState(data?.first_name || "");
+    const [lastName, setLastName] = useState(data?.last_name || "");
+    const [username, setUsername] = useState(data?.username || "");
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         // TODO: Implement update account API call here using username, email, firstName, lastName
-        console.log("Form submitted with:", { username, email, firstName, lastName }); // For now, just log the data
+        console.log("Form submitted with:", { username, email, firstName, lastName });
     }
 
-    if(isLoading) return <Skeleton times={6} className="h-10 w-full"/>;
+    if(isLoading) return (
+        <div className="hero min-h-screen bg-base-200">
+            <div className="hero-content flex-col">
+                <div className="text-center">
+                    <h1 className="text-3xl font-bold">載入中</h1>
+                    <p className="py-2">帳戶資訊載入中，請稍候...</p>
+                    <Skeleton times={6} className="h-10 w-full my-2"/>
+                </div>
+            </div>
+        </div>
+
+    );
+
     if(data) return (
-        <form onSubmit={handleSubmit} className="flex flex-col space-y-4">
-            <label className="input input-bordered flex items-center gap-2">
-                First Name
-                <input
-                    type="text"
-                    className="grow"
-                    placeholder="first name"
-                    value={firstName}
-                    onChange={(e) => setFirstName(e.target.value)} // Add onChange handler
-                />
-            </label>
-            <label className="input input-bordered flex items-center gap-2">
-                Last Name
-                <input
-                    type="text"
-                    className="grow"
-                    placeholder="last name"
-                    value={lastName}
-                    onChange={(e) => setLastName(e.target.value)} // Add onChange handler
-                />
-            </label>
-            <label className="input input-bordered flex items-center gap-2">
-                Email
-                <input
-                    type="text"
-                    className="grow"
-                    placeholder="email"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)} // Add onChange handler
-                />
-            </label>
-            <label className="input input-bordered flex items-center gap-2">
-                Username
-                <input
-                    type="text"
-                    className="grow"
-                    placeholder="username"
-                    value={username}
-                    onChange={(e) => setUsername(e.target.value)} // Add onChange handler
-                    disabled // Consider disabling username editing for now, or implement username update logic
-                />
-            </label>
-            <button
-                className="btn btn-primary"
-                type="submit">
-                Update Account
-            </button>
-        </form>
+        <div className="hero min-h-screen">
+            <div className="hero-content flex-col lg:items-stretch">
+                <div className="card flex-shrink-0 w-full max-w-lg min-w-[400px] shadow-2xl bg-base-100">
+                    <div className="card-body">
+                        <h2 className="text-2xl font-bold text-center mb-4">帳戶資訊</h2>
+                        <form onSubmit={handleSubmit} className="space-y-4">
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">使用者名稱</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="使用者名稱"
+                                    className="input input-bordered"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    disabled
+                                />
+                                <label className="label">
+                                    <span className="label-text-alt">使用者名稱無法修改</span>
+                                </label>
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">電子郵件</span>
+                                </label>
+                                <input
+                                    type="email"
+                                    placeholder="電子郵件"
+                                    className="input input-bordered"
+                                    value={email}
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    required
+                                />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">名字</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="名字"
+                                    className="input input-bordered"
+                                    value={firstName}
+                                    onChange={(e) => setFirstName(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-control">
+                                <label className="label">
+                                    <span className="label-text">姓氏</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    placeholder="姓氏"
+                                    className="input input-bordered"
+                                    value={lastName}
+                                    onChange={(e) => setLastName(e.target.value)}
+                                />
+                            </div>
+                            <div className="form-control mt-6">
+                                <button
+                                    className="btn btn-primary"
+                                    type="submit"
+                                    disabled={isLoading}
+                                >
+                                    {isLoading ? <span className="loading loading-spinner">更新中</span> : '更新帳戶'}
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
     )
-    if (error) return <div>Error</div>;
-    return null; // Add a default return to handle cases where isLoading and data are both false, and there is no error (initial state maybe)
+    if (error) return (
+        <div className="hero min-h-screen bg-base-200">
+            <div className="hero-content flex-col">
+                <div className="text-center">
+                    <h1 className="text-3xl font-bold">錯誤</h1>
+                    <p className="py-2">載入帳戶資訊時發生錯誤，請稍後再試。</p>
+                    <p className="py-2 text-error">{error}</p>
+                </div>
+            </div>
+        </div>
+    );
+    return null;
 }
 
 export default AccountPage;

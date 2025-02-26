@@ -1,0 +1,1 @@
+Type of pluginNext.configs["core-web-vitals"]: object, Is Iterable: false

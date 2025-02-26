@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "title": "歡迎來到東海大學選課系統",
+    "description": "您探索和註冊東海大學課程的一站式平台。輕鬆規劃您的學術旅程。",
+    "exploreCourses": "探索課程",
+    "signUpNow": "立即註冊"
+  },
+  "featuredCourses": "特色課程",
+  "courseCard": {
+    "viewDetails": "查看詳情"
+  },
+  "keyFeatures": "主要特點",
+  "features": {
+    "easySearch": {
+      "title": "輕鬆課程搜索",
+      "description": "使用過濾器、關鍵詞和類別快速查找課程。"
+    },
+    "personalizedSchedule": {
+      "title": "個性化日程安排",
+      "description": "根據課程可用性創建和管理您的每周日程。"
+    },
+    "enrollmentManagement": {
+      "title": "選課管理",
+      "description": "輕鬆註冊課程並跟蹤您的註冊狀態。"
+    }
+  },
+  "announcements": "公告",
+  "announcementList": [
+    "秋季學期選課將於 8 月 15 日開始。",
+    "新課程已添加到即將到來的學期的目錄中。",
+    "重要的註冊日期和截止日期 - 查看日曆。"
+  ],
+  "callToAction": {
+    "ready": "準備好開始了嗎？",
+    "description": "瀏覽我們廣泛的課程目錄，立即開始規劃您的學術未來。",
+    "browseCoursesNow": "立即瀏覽課程"
+  },
+  "courseTitles": {
+    "introCS": "計算機科學導論",
+    "calculus1": "微積分 I",
+    "linearAlgebra": "線性代數"
+  },
+  "courseDescriptions": {
+    "introCS": "學習計算機科學和編程的基礎知識。",
+    "calculus1": "微分和積分微積分的綜合介紹。",
+    "linearAlgebra": "學習向量、矩陣、線性變換和線性方程組。"
+  }
+}

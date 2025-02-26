@@ -1,0 +1,48 @@
+{
+  "hero": {
+    "title": "Welcome to THU Course Selection System",
+    "description": "Your one-stop platform to explore and enroll in courses at THU. Plan your academic journey with ease.",
+    "exploreCourses": "Explore Courses",
+    "signUpNow": "Sign Up Now"
+  },
+  "featuredCourses": "Featured Courses",
+  "courseCard": {
+    "viewDetails": "View Details"
+  },
+  "keyFeatures": "Key Features",
+  "features": {
+    "easySearch": {
+      "title": "Easy Course Search",
+      "description": "Find courses quickly using filters, keywords, and categories."
+    },
+    "personalizedSchedule": {
+      "title": "Personalized Schedule",
+      "description": "Create and manage your weekly schedule based on course availability."
+    },
+    "enrollmentManagement": {
+      "title": "Enrollment Management",
+      "description": "Easily enroll in courses and track your enrollment status."
+    }
+  },
+  "announcements": "Announcements",
+  "announcementList": [
+    "Course selection for the Fall semester begins on August 15th.",
+    "New courses added to the catalog for the upcoming semester.",
+    "Important dates and deadlines for enrollment - check the calendar."
+  ],
+  "callToAction": {
+    "ready": "Ready to get started?",
+    "description": "Browse our extensive course catalog and begin planning your academic future today.",
+    "browseCoursesNow": "Browse Courses Now"
+  },
+  "courseTitles": {
+    "introCS": "Introduction to Computer Science",
+    "calculus1": "Calculus I",
+    "linearAlgebra": "Linear Algebra"
+  },
+  "courseDescriptions": {
+    "introCS": "Learn the fundamentals of computer science and programming.",
+    "calculus1": "A comprehensive introduction to differential and integral calculus.",
+    "linearAlgebra": "Study vectors, matrices, linear transformations, and systems of linear equations."
+  }
+}
