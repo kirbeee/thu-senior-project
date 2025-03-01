@@ -2,6 +2,7 @@ import React, {useState, useEffect} from "react";
 import axios from "axios";
 import PropTypes from 'prop-types';
 import {useRouter} from "next/router";
+import Link from "next/link";
 
 const Id = () => {
     const router = useRouter();
@@ -81,10 +82,8 @@ const Id = () => {
                         )}
                     </div>
                     <div className="card-actions justify-end mt-4">
-                        <button className="btn btn-primary">編輯課程</button>
-                        {/*  你可以根據需求添加編輯課程的連結或功能 */}
-                        <button className="btn btn-ghost">返回課程列表</button>
-                        {/* 你可以根據需求添加返回課程列表的連結 */}
+                        <button className="btn btn-primary"><Link href="">編輯課程</Link></button>
+                        <button className="btn btn-ghost"><Link href="/courses/Course">返回課程列表</Link></button>
                     </div>
                 </div>
             </div>

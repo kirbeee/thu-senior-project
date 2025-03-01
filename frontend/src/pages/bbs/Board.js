@@ -41,7 +41,7 @@ const Board = () => {
 
     const handleCreateBoardClick = () => {
         router.push({
-            pathname: '/bbs/Boards/[id]', // Keep this path if intended for dynamic board creation
+            pathname: '/bbs/CreatePost', // Keep this path if intended for dynamic board creation
             query: { course_id: courseId } , // Keep course_id if relevant for board creation context
         });
     };

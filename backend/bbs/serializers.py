@@ -1,31 +1,31 @@
 from rest_framework import serializers
 from .models import Category, Board, Post, Comment, PostLike, CommentLike, Tag
-from django.contrib.auth.models import User # 或是你自訂的使用者模型
-from school_system.models import Course # 假設 Course 模型在 school_system app 裡
+from django.contrib.auth.models import User
+from school_system.models import Course
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = User # 或是你自訂的使用者模型
-        fields = ['id', 'username'] # 包含你想公開的欄位 (避免密碼等敏感資訊)
-        read_only_fields = ['id', 'username'] # 或是根據需求調整 - 也許使用者名稱在個人資料更新時可寫入
+        model = User
+        fields = ['id', 'username']
+        read_only_fields = ['id', 'username']
 
 class CategorySerializer(serializers.ModelSerializer):
-    boards = serializers.HyperlinkedRelatedField(  # 或是如果你偏好 ID 則使用 PrimaryKeyRelatedField
+    boards = serializers.HyperlinkedRelatedField(
         many=True,
         read_only=True,
-        view_name='board-detail' # 假設你有名為 'board-detail' 的 URL 名稱
+        view_name='board-detail'
     )
 
     class Meta:
         model = Category
-        fields = ['id', 'name', 'description', 'slug', 'boards', 'created_at', 'updated_at'] # 明確列出欄位
-        read_only_fields = ['id', 'slug', 'created_at', 'updated_at', 'boards'] # 標記在更新時不應變更的欄位
+        fields = ['id', 'name', 'description', 'slug', 'boards', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'slug', 'created_at', 'updated_at', 'boards']
 
 class BoardSerializer(serializers.ModelSerializer):
-    category = CategorySerializer(read_only=True) # Category 的巢狀序列化器
-    course_id = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all()) # 可寫入，使用 PK
-    moderators = serializers.PrimaryKeyRelatedField(many=True, queryset=User.objects.all(), required=False) # 可寫入，版主使用 PK
-    posts = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='post-detail') # 連到貼文的連結
+    category = CategorySerializer(read_only=True)
+    course_id = serializers.PrimaryKeyRelatedField(queryset=Course.objects.all())
+    moderators = serializers.PrimaryKeyRelatedField(many=True, queryset=User.objects.all(), required=False)
+    posts = serializers.HyperlinkedRelatedField(many=True, read_only=True, view_name='post-detail')
 
     class Meta:
         model = Board
@@ -33,7 +33,7 @@ class BoardSerializer(serializers.ModelSerializer):
             'id', 'name', 'description', 'board_type', 'category', 'course_id',
             'moderators', 'is_private', 'posts', 'created_at', 'updated_at'
         ]
-        read_only_fields = ['id', 'created_at', 'updated_at', 'posts', 'category'] # Category 在此為唯讀，透過 CategorySerializer 更新
+        read_only_fields = ['id', 'created_at', 'updated_at', 'posts', 'category']
 
 class TagSerializer(serializers.ModelSerializer):
     class Meta:
@@ -55,25 +55,25 @@ class CommentSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id', 'created_at', 'updated_at', 'replies', 'comment_likes_count']
 
-    def get_replies(self, obj): # 取得巢狀回覆的方法
-        serializer = CommentSerializer(obj.replies.all(), many=True) # 直接使用 CommentSerializer, 並設定 many=True
-        return serializer.data # 返回 serializer.data
+    def get_replies(self, obj):
+        serializer = CommentSerializer(obj.replies.all(), many=True)
+        return serializer.data
 
 
-    def get_comment_likes_count(self, obj): # 取得讚數的方法
+    def get_comment_likes_count(self, obj):
         return obj.comment_likes.count()
 
-    def to_representation(self, instance): # 和 PostSerializer 一樣嵌入使用者資料
+    def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation['user'] = UserSerializer(instance.user_id).data if instance.user_id else None # 嵌入使用者，處理空值情況
+        representation['user'] = UserSerializer(instance.user_id).data if instance.user_id else None
         return representation
 
 class PostSerializer(serializers.ModelSerializer):
-    user_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all()) # 可寫入，使用 PK
-    board_id = serializers.PrimaryKeyRelatedField(queryset=Board.objects.all()) # 可寫入，使用 PK
-    tags = serializers.PrimaryKeyRelatedField(many=True, queryset=Tag.objects.all(), required=False) # 標籤可寫入
-    comments = CommentSerializer(many=True, read_only=True) # 巢狀 CommentSerializer
-    post_likes_count = serializers.SerializerMethodField() # 計算讚數
+    user_id = serializers.PrimaryKeyRelatedField(queryset=User.objects.all())
+    board_id = serializers.PrimaryKeyRelatedField(queryset=Board.objects.all())
+    tags = serializers.PrimaryKeyRelatedField(many=True, queryset=Tag.objects.all(), required=False)
+    comments = CommentSerializer(many=True, read_only=True)
+    post_likes_count = serializers.SerializerMethodField()
 
     class Meta:
         model = Post
@@ -83,12 +83,12 @@ class PostSerializer(serializers.ModelSerializer):
         ]
         read_only_fields = ['id', 'created_at', 'updated_at', 'comments', 'post_likes_count']
 
-    def get_post_likes_count(self, obj): # 取得讚數的方法
-        return obj.post_likes.count() # 透過反向關聯 'post_likes' 存取相關的 PostLike 物件
+    def get_post_likes_count(self, obj):
+        return obj.post_likes.count()
 
-    def to_representation(self, instance): # 客製化呈現方式以嵌入使用者資訊
+    def to_representation(self, instance):
         representation = super().to_representation(instance)
-        representation['user'] = UserSerializer(instance.user_id).data # 嵌入使用者資料
+        representation['user'] = UserSerializer(instance.user_id).data
         return representation
 
 class PostLikeSerializer(serializers.ModelSerializer):
