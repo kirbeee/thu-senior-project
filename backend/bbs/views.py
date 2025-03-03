@@ -6,16 +6,17 @@ from rest_framework.filters import OrderingFilter
 from django_filters.rest_framework import DjangoFilterBackend
 
 
-class CategoryViewSet(viewsets.ModelViewSet):
+class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
+    filter_backends = [DjangoFilterBackend]
+    filterset_fields = ['id']
 
-
-class BoardViewSet(viewsets.ModelViewSet):
+class BoardViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields = ['course_id']  # 允许通过 course_id 过滤
+    filterset_fields = ['course_id','category_id']  # 允许通过 course_id 过滤
 
 class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
@@ -37,6 +38,3 @@ class CommentLikeViewSet(viewsets.ModelViewSet): # ViewSet for Comment Likes
     queryset = CommentLike.objects.all()
     serializer_class = CommentLikeSerializer
     permission_classes = [IsAuthenticatedOrReadOnly] # Adjust permissions as needed
-
-
-# LikeViewSet is removed

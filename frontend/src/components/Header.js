@@ -98,8 +98,8 @@ const Header = () => {
             <div className={`md:hidden absolute top-full right-0 bg-base-100 rounded-box shadow-md w-full z-10 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
                 <ul className="menu menu-vertical w-full rounded-box">
                     <li><Link href="/">Home</Link></li>
-                    <li><Link href="/frontend/src/pages/bbs/Board">Discussion</Link></li>
-                    <li><Link href="/CoursePage">Courses</Link></li>
+                    <li><Link href="/bbs/Board">Discussion</Link></li>
+                    <li><Link href="/courses/Course">Courses</Link></li>
                     <li><Link href="/AboutPage">About</Link></li>
                     <li>{renderLanguageSelector()}</li>
                     {renderBtn()} {/* 行動裝置選單中也加入登入/註冊/帳戶按鈕 */}

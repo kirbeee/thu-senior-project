@@ -108,7 +108,7 @@ function CreatePost() {
                 {/* User ID input is now removed */}
                 <div>
                     <label htmlFor="boardId" className="block text-gray-700 text-sm font-bold mb-2">
-                        Board ID:
+                        Course ID
                     </label>
                     <input
                         type="number"

@@ -1,15 +1,15 @@
 import React from "react";
-import Link from 'next/link'; // For navigation
+import Link from 'next/link';
 import { useTranslation, withTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import i18nConfig from '../../next-i18next.config'; // Import your i18n config
-import PropTypes from 'prop-types'; // Import PropTypes
+import i18nConfig from '../../next-i18next.config';
+import PropTypes from 'prop-types';
 
 function Index() {
-    const { t } = useTranslation('common'); // Use the 'common' namespace
+    const { t } = useTranslation('common');
 
     return (
-        <div className="container mx-auto px-4 py-8"> {/* Container for centering and padding */}
+        <div className="container mx-auto px-4 py-8">
             <HeroSection t={t} />
             <CourseHighlights t={t} />
             <FeatureList t={t} />
@@ -29,7 +29,7 @@ const HeroSection = ({ t }) => (
             {t('hero.description')}
         </p>
         <div className="space-x-4">
-            <Link href="/CoursePage" className="btn btn-primary">
+            <Link href="/courses/Course" className="btn btn-primary">
                 {t('hero.exploreCourses')}
             </Link>
             <Link href="/auth/RegistrationSelector" className="btn btn-secondary">
@@ -78,7 +78,7 @@ const CourseCard = ({ title, description, viewDetailsText }) => (
             <h3 className="card-title">{title}</h3>
             <p>{description}</p>
             <div className="card-actions justify-end">
-                <Link href="/CoursePage" className="btn btn-sm btn-primary">{viewDetailsText}</Link>
+                <Link href="/courses/Course" className="btn btn-sm btn-primary">{viewDetailsText}</Link>
             </div>
         </div>
     </div>
@@ -135,21 +135,29 @@ FeatureItem.propTypes = {
 
 
 // 4. Announcements Section
-const AnnouncementSection = ({ t }) => (
-    <section className="mb-12">
-        <h2 className="text-2xl font-bold mb-6 text-center">{t('announcements')}</h2>
-        <div className="card bg-base-100 shadow-md">
-            <div className="card-body">
-                <ul className="list-disc list-inside">
-                    {/*{t('announcementList').map((announcement, index) => (*/}
-                    {/*    <li key={index}>{announcement}</li>*/}
-                    {/*))}*/}
-                </ul>
-            </div>
-        </div>
-    </section>
-);
+const AnnouncementSection = ({ t }) => {
+    // Make sure announcementList exists and is an array
+    const announcements = t('announcementList', { returnObjects: true }) || [];
+    const isArray = Array.isArray(announcements);
 
+    return (
+        <section className="mb-12">
+            <h2 className="text-2xl font-bold mb-6 text-center">{t('announcements')}</h2>
+            <div className="card bg-base-100 shadow-md">
+                <div className="card-body">
+                    <ul className="list-disc list-inside">
+                        {isArray
+                            ? announcements.map((announcement, index) => (
+                                <li key={index}>{announcement}</li>
+                            ))
+                            : <li>{t('announcementList')}</li> // Fallback if it's not an array
+                        }
+                    </ul>
+                </div>
+            </div>
+        </section>
+    );
+};
 AnnouncementSection.propTypes = {
     t: PropTypes.func.isRequired,
 };
@@ -161,7 +169,7 @@ const CallToActionSection = ({ t }) => (
         <p className="text-lg mb-8">
             {t('callToAction.description')}
         </p>
-        <Link href="/CoursePage" className="btn btn-lg btn-primary">
+        <Link href="/courses/Course" className="btn btn-lg btn-primary">
             {t('callToAction.browseCoursesNow')}
         </Link>
     </section>
