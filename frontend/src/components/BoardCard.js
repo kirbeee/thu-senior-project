@@ -9,12 +9,9 @@ const BoardCard = ({ board }) => {
                 <h3 className="card-title text-brown-800">{board.name}</h3>
                 <p className="text-brown-700">{board.description}</p>
                 <p className="text-gray-500">Course ID: {board.course_id}</p>
-                {board.category && (
-                    <p className="text-gray-500">Category: {board.category.name || "Uncategorized"}</p>
-                )}
                 <Link href={`/bbs/Board/${board.id}`}>
                     <div className="mt-4 inline-block text-amber-500 hover:text-amber-700">
-                        View Board
+                        View Post
                     </div>
                 </Link>
             </div>
@@ -27,7 +24,6 @@ BoardCard.propTypes = {
         name: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         course_id: PropTypes.number.isRequired,
-        //  ✅  請確認這裡的 propTypes 是否已修改為以下形式 ✅
         category: PropTypes.shape({
             name: PropTypes.string,
         }),

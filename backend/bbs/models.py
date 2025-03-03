@@ -33,7 +33,6 @@ class Board(models.Model):
         ('qna', 'Q&A'),      # Question & Answer format
         ('announcement', 'Announcement'), # One-way communication, admin/moderator posts only
         ('study_group', 'Study Group'), # For study group organization
-        # Add more types as needed (e.g., 'help', 'project_group')
     ]
 
     name = models.CharField(max_length=100, unique=True, verbose_name="Board Name")
@@ -45,7 +44,6 @@ class Board(models.Model):
     is_private = models.BooleanField(default=False, verbose_name="Private Board") # For private boards, need to implement permissions
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    # Optional: banner image for boards - ImageField or URLField
 
     class Meta:
         ordering = ['category', 'name'] # Default ordering for boards
