@@ -2,12 +2,16 @@ import React, {useState, useEffect} from "react";
 import {fetchCourses} from "../../lib/apis/api";
 import CourseCard from "../../components/CourseCard";
 import Pagination from "../../components/Pagination";
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // 引入 serverSideTranslations
+import i18nConfig from '../../../next-i18next.config'; // 引入 i18nConfig
 
 const Course = () => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
     const [totalPages, setTotalPages] = useState(0);
+    const { t } = useTranslation('courses');
 
     useEffect(() => {
         const loadCourses = async () => {
@@ -32,7 +36,7 @@ const Course = () => {
     return (
         <div className="p-4">
             {loading ? (
-                <p className="text-center">Loading...</p>
+                <p className="text-center">{t('loading')}</p>
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {courses.map((course) => (
@@ -50,5 +54,12 @@ const Course = () => {
         </div>
     );
 };
+
+export const getStaticProps = async ({ locale }) => ({ // 加入 getStaticProps
+    props: {
+        ...(await serverSideTranslations(locale, ['courses', 'header', 'common'], i18nConfig)), // 載入 'courses', 'header', 和 'common' 命名空間
+    },
+});
+
 
 export default Course;

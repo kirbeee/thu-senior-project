@@ -21,9 +21,6 @@ const Id = () => {
                     .create({baseURL: process.env.NEXT_PUBLIC_API_URL})
                     .get(`/courses/${id}/`); // 使用 courseId 拼接 API endpoint
 
-                console.log("Course API Response:", response); // 檢查 API 回應
-                console.log("Course Data:", response.data); // 檢查課程資料
-
                 setCourse(response.data);
             } catch (err) {
                 setError(err.message || "Failed to load course details");
@@ -82,7 +79,6 @@ const Id = () => {
                         )}
                     </div>
                     <div className="card-actions justify-end mt-4">
-                        <button className="btn btn-primary"><Link href="">編輯課程</Link></button>
                         <button className="btn btn-ghost"><Link href="/courses/Course">返回課程列表</Link></button>
                     </div>
                 </div>

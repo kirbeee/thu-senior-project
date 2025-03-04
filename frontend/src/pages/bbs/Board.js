@@ -1,18 +1,21 @@
-// pages/bbs/Boards.js
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import BoardCard from "../../components/BoardCard";
 import Pagination from "../../components/Pagination";
-import CategorySidebar from "../../components/CatagorySidebar"; // Import CategorySidebar
+import CategorySidebar from "../../components/CatagorySidebar";
 import axios from "axios";
+import { useTranslation } from 'next-i18next';
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // 引入 serverSideTranslations
+import i18nConfig from '../../../next-i18next.config'; // 引入 i18nConfig
 
 const Board = () => {
     const [boards, setBoards] = useState([]);
     const [loading, setLoading] = useState(true);
     const [totalPages] = useState(1);
-    const [courseDescription, setCourseDescription] = useState("All Boards Post"); // Default description - CHANGE THIS if you want something else
+    const [courseDescription, setCourseDescription] = useState("All Boards Post");
     const router = useRouter();
     const { course_id: courseId = null, page = 1, category_id: categoryId = null } = router.query;
+    const { t } = useTranslation('boards');
 
     useEffect(() => {
         const loadBoardsAndData = async () => { // Combined function name
@@ -56,7 +59,6 @@ const Board = () => {
         });
     };
 
-
     return (
         <div className="p-6 flex">
             <aside className="w-1/4 pr-6">
@@ -65,17 +67,16 @@ const Board = () => {
 
             <main className="w-3/4">
                 <div className="mb-6 flex justify-between items-center">
-                    {courseDescription && (  // Only render if courseDescription has a value
+                    {courseDescription && (
                         <div className="mb-4 text-gray-700">
                             {courseDescription}
                         </div>
                     )}
                 </div>
 
-
                 {loading ? (
                     <div className="text-center py-8">
-                        <p className="text-lg text-gray-600 animate-pulse">Loading Boards...</p>
+                        <p className="text-lg text-gray-600 animate-pulse">{t('loadingBoards')}</p>
                     </div>
                 ) : boards.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -85,7 +86,7 @@ const Board = () => {
                     </div>
                 ) : (
                     <div className="text-center py-8">
-                        <p className="text-gray-600 italic">No boards available yet.</p>
+                        <p className="text-gray-600 italic">{t('noBoardsAvailable')}</p>
                     </div>
                 )}
 
@@ -100,5 +101,11 @@ const Board = () => {
         </div>
     );
 };
+
+export const getStaticProps = async ({ locale }) => ({ // 加入 getStaticProps
+    props: {
+        ...(await serverSideTranslations(locale, ['boards', 'header', 'common'], i18nConfig)), // 載入 'boards', 'header', 和 'common' 命名空間
+    },
+});
 
 export default Board;

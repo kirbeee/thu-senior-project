@@ -17,4 +17,4 @@ MyApp.propTypes = { // Add propTypes for MyApp
     pageProps: PropTypes.object, // pageProps is an object and is optional (no isRequired)
 };
 
-export default appWithTranslation(MyApp, i18nConfig); // Export with i18n config
+export default appWithTranslation(MyApp); // Export with i18n config

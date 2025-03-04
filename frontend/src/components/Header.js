@@ -3,12 +3,14 @@ import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
 import { authApi } from "../lib/store";
 import { useRouter } from 'next/router';
+import {useTranslation} from "next-i18next";
 
 const Header = () => {
     const { user, isLoading } = useSelector(state => state.users);
     const dispatch = useDispatch();
     const router = useRouter();
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false); // 管理手機選單開關狀態
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const {t, i18n} = useTranslation('header'); //  指定命名空間為 'header'
 
     useEffect(() => {
         if (!user && router.pathname !== '/auth/LoginPage' && router.pathname !== '/auth/RegistrationSelector') {
@@ -20,15 +22,20 @@ const Header = () => {
         setIsMobileMenuOpen(!isMobileMenuOpen);
     };
 
-    // Language selector dropdown as a reusable function
+    const changeLanguage = (lng) => {
+        i18n.changeLanguage(lng); // 切換 i18next 的語系
+        router.push(router.pathname, router.asPath, { locale: lng }); // 使用 router.push 更新 Next.js 路由，帶入 locale 參數
+    };
+
+
     const renderLanguageSelector = () => (
         <div className="dropdown dropdown-hover">
             <button tabIndex={0} className="btn btn-outline">
-                Language
+                {t('language')}
             </button>
             <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-                <li><Link href="/en">English</Link></li>
-                <li><Link href="/zh-TW" >繁體中文</Link></li>
+                <li><button onClick={() => changeLanguage('en')}>English</button></li>
+                <li><button onClick={() => changeLanguage('zh-TW')}>繁體中文</button></li>
             </ul>
         </div>
     );
@@ -38,7 +45,7 @@ const Header = () => {
             return (
                 <button className="btn">
                     <span className="loading loading-spinner"></span>
-                    loading
+                    {t('loading')} {/* 使用 t('loading') 從 header.json 取得翻譯 */}
                 </button>
             );
         }
@@ -46,8 +53,8 @@ const Header = () => {
         if (!user) {
             return (
                 <>
-                    <li><Link href="/auth/LoginPage">Sign In</Link></li>
-                    <li><Link href="/auth/RegistrationSelector">Sign Up</Link></li>
+                    <li><Link href="/auth/LoginPage">{t('signIn')}</Link> {/* 使用 t('signIn') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/auth/RegistrationSelector">{t('signUp')}</Link> {/* 使用 t('signUp') 從 header.json 取得翻譯 */}</li>
                 </>
             );
         }
@@ -57,13 +64,13 @@ const Header = () => {
                 <summary className="btn m-1">
                     <div className="avatar placeholder">
                         <div className="bg-neutral text-neutral-content w-12 rounded-full">
-                            {/*<span>{user.username.charAt(0).toUpperCase()}</span>*/}
+                            <span>{user}</span>
                         </div>
                     </div>
                 </summary>
                 <ul className="menu dropdown-content bg-base-100 rounded-box w-52">
-                    <li><Link href="/AccountPage">Settings</Link></li>
-                    <li><Link href="/auth/LogoutPage">Logout</Link></li>
+                    <li><Link href="/AccountPage">{t('settings')}</Link> {/* 使用 t('settings') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/auth/LogoutPage">{t('logout')}</Link> {/* 使用 t('logout') 從 header.json 取得翻譯 */}</li>
                 </ul>
             </details>
         );
@@ -72,7 +79,7 @@ const Header = () => {
     return (
         <header className="navbar bg-base-100 relative">
             <div className="flex-1">
-                <Link href="/" className="btn btn-ghost text-xl">THU Helper</Link>
+                <Link href="/" className="btn btn-ghost text-xl">THU Helper</Link> {/*  "THU Helper"  通常不需要翻譯，保持不變 */}
             </div>
 
             {/* 行動裝置選單按鈕 (漢堡圖示) - 平板以上尺寸隱藏 */}
@@ -87,20 +94,20 @@ const Header = () => {
             {/* 桌機/平板選單 (水平選單) - 手機尺寸隱藏 */}
             <div className="hidden md:flex flex-1 justify-center">
                 <ul className="menu menu-horizontal px-1">
-                    <li><Link href="/">Home</Link></li>
-                    <li><Link href="/bbs/Board">Discussion</Link></li>
-                    <li><Link href="/courses/Course">Courses</Link></li>
-                    <li><Link href="/AboutPage">About</Link></li>
+                    <li><Link href="/">{t('home')}</Link> {/* 使用 t('home') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/bbs/Board">{t('discussion')}</Link> {/* 使用 t('discussion') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/courses/Course">{t('courses')}</Link> {/* 使用 t('courses') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/AboutPage">{t('about')}</Link> {/* 使用 t('about') 從 header.json 取得翻譯 */}</li>
                 </ul>
             </div>
 
             {/* 行動裝置選單 (垂直下拉選單) - 平板以上尺寸隱藏，根據 isMobileMenuOpen 狀態決定是否顯示 */}
             <div className={`md:hidden absolute top-full right-0 bg-base-100 rounded-box shadow-md w-full z-10 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
                 <ul className="menu menu-vertical w-full rounded-box">
-                    <li><Link href="/">Home</Link></li>
-                    <li><Link href="/bbs/Board">Discussion</Link></li>
-                    <li><Link href="/courses/Course">Courses</Link></li>
-                    <li><Link href="/AboutPage">About</Link></li>
+                    <li><Link href="/">{t('home')}</Link> {/* 使用 t('home') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/bbs/Board">{t('discussion')}</Link> {/* 使用 t('discussion') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/courses/Course">{t('courses')}</Link> {/* 使用 t('courses') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/AboutPage">{t('about')}</Link> {/* 使用 t('about') 從 header.json 取得翻譯 */}</li>
                     <li>{renderLanguageSelector()}</li>
                     {renderBtn()} {/* 行動裝置選單中也加入登入/註冊/帳戶按鈕 */}
                 </ul>

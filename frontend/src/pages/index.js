@@ -181,9 +181,9 @@ CallToActionSection.propTypes = {
 
 export const getStaticProps = async ({ locale }) => ({
     props: {
-        ...(await serverSideTranslations(locale, ['common'], i18nConfig)), // 載入所有 namespaces
+        ...(await serverSideTranslations(locale, ['common', 'header'], i18nConfig)), // Load namespaces: 'common', 'header', 'layout'
     },
-})
+});
 
 
 export default withTranslation('common')(Index);
