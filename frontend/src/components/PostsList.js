@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { formatDistanceToNow } from 'date-fns';
 import { enUS } from 'date-fns/locale';
 import { FaArrowUp, FaArrowDown, FaComment } from 'react-icons/fa';
+import Link from "next/link";
 
 const PostList = ({ boardId }) => {
     const [posts, setPosts] = useState([]);
@@ -71,9 +72,11 @@ const PostList = ({ boardId }) => {
                             <article className="card-body p-4">
                                 <div className="flex justify-between items-start mb-2">
                                     <div>
-                                        <h2 className="card-title text-lg font-semibold hover:underline cursor-pointer">
-                                            {post.title}
-                                        </h2>
+                                        <Link href={`/bbs/posts/${post.id}`} passHref> {/* 使用 Link 包覆 h2 */}
+                                            <h2 className="card-title text-lg font-semibold hover:underline cursor-pointer">
+                                                {post.title}
+                                            </h2>
+                                        </Link>
                                     </div>
                                     {/* 版塊名稱 badge 先移除，因為 API 回應中沒有版塊名稱 */}
                                     {/* <div className="badge badge-secondary badge-sm">{post.board_name}</div> */}

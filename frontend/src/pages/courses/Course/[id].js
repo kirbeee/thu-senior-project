@@ -19,7 +19,7 @@ const Id = () => {
             try {
                 const response = await axios
                     .create({baseURL: process.env.NEXT_PUBLIC_API_URL})
-                    .get(`/courses/${id}/`); // 使用 courseId 拼接 API endpoint
+                    .get(`/school_system/courses/${id}/`); // 使用 courseId 拼接 API endpoint
 
                 setCourse(response.data);
             } catch (err) {

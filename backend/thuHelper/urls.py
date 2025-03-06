@@ -77,7 +77,7 @@ urlpatterns += [
 
 # course settings
 urlpatterns += [
-    path('', include('school_system.urls')),
+    path('school_system/', include('school_system.urls')),
 ]
 
 # bbs settings

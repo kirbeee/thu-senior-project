@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import axios from "axios";
 import PostList from "../../../components/PostsList"; // Ensure the path is correct
 import Link from "next/link"; // Import Link from next/link
-
+import CommentActions from "../../../components/Comment";
 const Id = () => {
     const router = useRouter();
     const { id: idString } = router.query;

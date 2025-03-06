@@ -5,8 +5,8 @@ import Pagination from "../../components/Pagination";
 import CategorySidebar from "../../components/CatagorySidebar";
 import axios from "axios";
 import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // 引入 serverSideTranslations
-import i18nConfig from '../../../next-i18next.config'; // 引入 i18nConfig
+import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
+import i18nConfig from '../../../next-i18next.config';
 
 const Board = () => {
     const [boards, setBoards] = useState([]);
@@ -54,7 +54,7 @@ const Board = () => {
 
     const handlePageChange = (newPage) => {
         router.push({
-            pathname: '/bbs/Boards',
+            pathname: '/bbs/Board',
             query: { course_id: courseId, page: newPage, category_id: categoryId },
         });
     };
@@ -72,6 +72,13 @@ const Board = () => {
                             {courseDescription}
                         </div>
                     )}
+                    <button
+                        onClick={() => router.push('/bbs/Board/new')}
+                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                        type="button"
+                    >
+                        {t('addNewBoard')} {/* 使用 i18n 翻譯 */}
+                    </button>
                 </div>
 
                 {loading ? (
@@ -102,9 +109,9 @@ const Board = () => {
     );
 };
 
-export const getStaticProps = async ({ locale }) => ({ // 加入 getStaticProps
+export const getStaticProps = async ({ locale }) => ({
     props: {
-        ...(await serverSideTranslations(locale, ['boards', 'header', 'common'], i18nConfig)), // 載入 'boards', 'header', 和 'common' 命名空間
+        ...(await serverSideTranslations(locale, ['boards', 'header', 'common'], i18nConfig)),
     },
 });
 

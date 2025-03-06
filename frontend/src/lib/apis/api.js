@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export const fetchCourses = async (page = 1) => {
     // eslint-disable-next-line no-undef
-    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/courses/`, {
+    const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/school_system/courses/`, {
         params: { page },
     });
     return response.data;

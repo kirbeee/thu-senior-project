@@ -53,7 +53,7 @@ class CommentSerializer(serializers.ModelSerializer):
             'id', 'content', 'post_id', 'user_id', 'parent_comment',
             'replies', 'comment_likes_count', 'created_at', 'updated_at', 'deleted_at'
         ]
-        read_only_fields = ['id', 'created_at', 'updated_at', 'replies', 'comment_likes_count']
+        read_only_fields = ['id', 'created_at', 'updated_at', 'replies', 'comment_likes_count',"deleted_at"]
 
     def get_replies(self, obj):
         serializer = CommentSerializer(obj.replies.all(), many=True)
