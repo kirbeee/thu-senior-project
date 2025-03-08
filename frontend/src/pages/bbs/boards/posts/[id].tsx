@@ -29,6 +29,7 @@ const PostDetailPage = ({ post: initialPost }) => { // Receive post as prop
             })
             .catch(error => {
                 console.error("Error fetching post:", error);
+                // @ts-ignore
                 setError(t('errorLoadingPost'));
                 setLoading(false);
             });

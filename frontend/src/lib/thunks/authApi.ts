@@ -1,63 +1,80 @@
-import {createAsyncThunk} from "@reduxjs/toolkit";
+import { createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-const authApi = createAsyncThunk("users/fetch", async (userId, thunkAPI) => {
-    try {
-        if (!localStorage.getItem("authToken")) {
-            return thunkAPI.rejectWithValue("User is not authenticated");
-        }
-        // eslint-disable-next-line no-undef
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/user/`, {
-            headers: {
-                Authorization: `Token ${localStorage.getItem("authToken")}`
-            }
-        });
-        return response.data;
-    } catch (error) {
-        return thunkAPI.rejectWithValue(error.response.data || error.message);
-    }
-});
+interface LoginPayload {
+    username: string;
+    email: string;
+    password: string;
+}
 
-const logoutApi = createAsyncThunk("users/logout", async (userId, thunkAPI) => {
-    if (!localStorage.getItem("authToken")) {
+interface SignupPayload {
+    username: string;
+    email: string;
+    password1: string;
+    password2: string;
+    role?: string;
+    id_card_number?: string;
+}
+
+interface UserResponse {
+    last_name: string;
+    first_name: string;
+    token: string;
+    username: string;
+    key: string;
+}
+
+export const authApi = createAsyncThunk<UserResponse, void, { rejectValue: string }>(
+    "users/fetch",
+    async (_, thunkAPI) => {
+        try {
+            const token = localStorage.getItem("authToken");
+            if (!token) {
+                return thunkAPI.rejectWithValue("User is not authenticated");
+            }
+            const response = await axios.get<UserResponse>(`${process.env.NEXT_PUBLIC_API_URL}/user/`, {
+                headers: { Authorization: `Token ${token}` },
+            });
+            return response.data;
+        } catch (error: any) {
+            return thunkAPI.rejectWithValue(error.response?.data || error.message);
+        }
+    }
+);
+
+export const logoutApi = createAsyncThunk<
+    void,
+    void,
+    { rejectValue: string }
+>("users/logout", async (_, thunkAPI) => {
+    const token = localStorage.getItem("authToken");
+    if (!token) {
         return thunkAPI.rejectWithValue("User is not authenticated");
     }
-    // eslint-disable-next-line no-undef
-    const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/logout/`, {
-        headers: {
-            Authorization: `Token ${localStorage.getItem("authToken")}`
-        }
+    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/logout/`, {}, {
+        headers: { Authorization: `Token ${token}` },
     });
-    return response.data;
 });
 
-const loginApi = createAsyncThunk("users/login", async ({ username, email, password }, thunkAPI) => {
+export const loginApi = createAsyncThunk<UserResponse, LoginPayload, { rejectValue: string }>(
+    "users/login",
+    async ({ username, email, password }, thunkAPI) => {
         try {
-            const response = await axios
-                // eslint-disable-next-line no-undef
-                .create({baseURL: process.env.NEXT_PUBLIC_API_URL})
-                .post(`/login/`, {
-                username,
-                email,
-                password
-            });
-
-            // 將 authToken 儲存到 localStorage 中
+            const response = await axios.create({ baseURL: process.env.NEXT_PUBLIC_API_URL })
+                .post<UserResponse>(`/login/`, { username, email, password });
             localStorage.setItem("authToken", response.data.key);
-
-            // 返回用戶資料，便於在 Redux 中更新
             return response.data;
-        } catch (error) {
-            // 這裡捕獲錯誤並返回錯誤訊息
+        } catch (error: any) {
             return thunkAPI.rejectWithValue(error.response?.data || "Error logging in");
         }
-    });
+    }
+);
 
-const signupApi = createAsyncThunk("users/signup", async ({username, email, password1, password2, role="visitor", id_card_number}) => {
-    // eslint-disable-next-line no-undef
-    await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/registration/`, {
-        username, email, password1, password2, role, id_card_number
-    });
-});
-
-export {authApi, logoutApi, loginApi, signupApi};
+export const signupApi = createAsyncThunk<void, SignupPayload>(
+    "users/signup",
+    async ({ username, email, password1, password2, role = "visitor", id_card_number }) => {
+        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/registration/`, {
+            username, email, password1, password2, role, id_card_number
+        });
+    }
+);

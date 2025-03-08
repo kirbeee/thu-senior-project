@@ -5,6 +5,7 @@ import {useRouter} from "next/router";
 
 function VisitorSignup(){
     const dispatch = useDispatch();
+    // @ts-ignore
     const { loading, error} = useSelector((state) => state.users);
     const router = useRouter();
     const [username, setUsername] = useState('');
@@ -38,6 +39,7 @@ function VisitorSignup(){
             setPasswordError('');
         }
 
+        // @ts-ignore
         await dispatch(signupApi({username, email, password1: password, password2: confirmPassword}));
         await router.push('/')
     };

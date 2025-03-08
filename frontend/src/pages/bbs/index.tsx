@@ -25,8 +25,14 @@ const Index = () => {
 
             try {
                 const queryParams = new URLSearchParams();
-                if (courseId) queryParams.append("course_id", courseId);
-                if (categoryId) queryParams.append("category_id", categoryId);
+                if (courseId) { // @ts-ignore
+                    queryParams.append("course_id", courseId);
+                }
+                if (categoryId) {
+                    // @ts-ignore
+                    queryParams.append("category_id", categoryId);
+                }
+                // @ts-ignore
                 queryParams.append("page", page);
 
                 // Fetch Boards

@@ -1,46 +1,63 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FormEvent } from 'react';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
-import axios from 'axios';
+import axios, { AxiosResponse } from 'axios'; // Import AxiosResponse
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import i18nConfig from '../../../../next-i18next.config';
+import { NextPage, GetStaticProps } from 'next'; // Import NextPage and GetStaticProps
 
-const NewBoardPage = () => {
+interface NewBoardPageProps {
+    // Define any props passed to the component from getStaticProps here if needed
+}
+
+interface CategoryOption {
+    id: number;
+    name: string;
+    // ... other category properties as needed
+}
+
+interface CourseOption {
+    id: number;
+    name: string;
+    // ... other course properties as needed
+}
+
+const NewBoardPage: NextPage<NewBoardPageProps> = () => { // Use NextPage and NewBoardPageProps
     const { t } = useTranslation('boards');
     const router = useRouter();
 
     // Form State
-    const [name, setName] = useState('');
-    const [description, setDescription] = useState('');
-    const [board_type, setBoardType] = useState('forum'); // Default value
-    const [category, setCategory] = useState('');
-    const [course_id, setCourseId] = useState('');
-    const [moderators, setModerators] = useState(''); // Comma-separated user IDs
-    const [is_private, setIsPrivate] = useState(false);
+    const [name, setName] = useState<string>('');
+    const [description, setDescription] = useState<string>('');
+    const [board_type, setBoardType] = useState<string>('forum'); // Default value
+    const [category, setCategory] = useState<string>('');
+    const [course_id, setCourseId] = useState<string>('');
+    const [moderators, setModerators] = useState<string>(''); // Comma-separated user IDs
+    const [is_private, setIsPrivate] = useState<boolean>(false);
 
     // Options Data
-    const [categories, setCategories] = useState([]);
-    const [courses, setCourses] = useState([]);
+    const [categories, setCategories] = useState<CategoryOption[]>([]); // Type categories state
+    const [courses, setCourses] = useState<CourseOption[]>([]); // Type courses state
 
     // Error State
-    const [errors, setErrors] = useState({});
-    const [apiError, setApiError] = useState(null);
-    const [successMessage, setSuccessMessage] = useState(null);
+    const [errors, setErrors] = useState<Record<string, string[]>>({}); // Type errors state to Record<string, string[]>
+    const [apiError, setApiError] = useState<string | null>(null); // Type apiError state to string | null
+    const [successMessage, setSuccessMessage] = useState<string | null>(null); // Type successMessage state to string | null
 
 
     useEffect(() => {
         const fetchOptions = async () => {
             try {
                 // Fetch Categories
-                const categoriesResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/bbs/categories/`);
+                const categoriesResponse: AxiosResponse<{ results: CategoryOption[] }> = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/bbs/categories/`); // Type categoriesResponse
                 setCategories(categoriesResponse.data.results);
 
                 // Fetch Courses (Replace with your actual course API endpoint)
-                const coursesResponse = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/school_system/courses/`); // Adjust endpoint if necessary
+                const coursesResponse: AxiosResponse<{ results: CourseOption[] }> = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/school_system/courses/`); // Adjust endpoint if necessary // Type coursesResponse
                 setCourses(coursesResponse.data.results);
 
-            } catch (error) {
+            } catch (error: any) { // Type error as any, consider AxiosError for more specific typing
                 console.error("Error fetching categories or courses:", error);
                 setApiError(t('errorFetchingOptions')); // Translate error message
             }
@@ -49,13 +66,13 @@ const NewBoardPage = () => {
         fetchOptions();
     }, [t]);
 
-    const handleSubmit = async (event) => {
+    const handleSubmit = async (event: FormEvent) => { // Type handleSubmit event
         event.preventDefault();
         setApiError(null);
         setSuccessMessage(null);
         setErrors({});
 
-        const boardData = {
+        const boardData: { [key: string]: any } = { // Type boardData as a flexible object
             name: name,
             description: description,
             board_type: board_type,
@@ -72,7 +89,7 @@ const NewBoardPage = () => {
 
 
         try {
-            const response = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/bbs/boards/`, boardData);
+            const response: AxiosResponse = await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/bbs/boards/`, boardData); // Type axios.post response
             if (response.status === 201) {
                 setSuccessMessage(t('boardCreatedSuccessfully'));
                 // Redirect to board list after successful creation
@@ -80,7 +97,7 @@ const NewBoardPage = () => {
                     router.push('/bbs/Board');
                 }, 1500); // Redirect after 1.5 seconds, adjust as needed
             }
-        } catch (error) {
+        } catch (error: any) { // Type error as any, consider AxiosError for more specific typing
             console.error("Error creating board:", error.response);
             if (error.response && error.response.data) {
                 setErrors(error.response.data); // Set API error details
@@ -242,8 +259,10 @@ const NewBoardPage = () => {
     );
 };
 
-export const getStaticProps = async ({ locale }) => ({
+// @ts-ignore
+export const getStaticProps: GetStaticProps = async ({ locale }) => ({
     props: {
+        // @ts-ignore
         ...(await serverSideTranslations(locale, ['boards', 'header', 'common'], i18nConfig)),
     },
 });

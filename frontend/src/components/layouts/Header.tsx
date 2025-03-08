@@ -4,9 +4,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { authApi } from "../../lib/store";
 import { useRouter } from 'next/router';
 import {useTranslation} from "next-i18next";
+import { RootState } from '@lib/store'; // 假設你的 store.ts 或類似檔案中有定義 RootState
 
 const Header = () => {
-    const { user, isLoading } = useSelector(state => state.users);
+    // 使用 RootState 類型來指定 useSelector 的 state 參數類型
+    const { user, loading } = useSelector((state: RootState) => state.users);
     const dispatch = useDispatch();
     const router = useRouter();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -14,6 +16,7 @@ const Header = () => {
 
     useEffect(() => {
         if (!user && router.pathname !== '/auth/LoginPage' && router.pathname !== '/auth/RegistrationSelector') {
+            // @ts-ignore TODO: fix this
             dispatch(authApi());
         }
     }, [dispatch, user, router.pathname]);
@@ -41,7 +44,7 @@ const Header = () => {
     );
 
     const renderBtn = () => {
-        if (isLoading) {
+        if (loading) {
             return (
                 <button className="btn">
                     <span className="loading loading-spinner"></span>

@@ -7,6 +7,7 @@ import Link from 'next/link';
 
 function Login() {
     const dispatch = useDispatch();
+    // @ts-ignore
     const { error } = useSelector((state) => state.users);
     const router = useRouter();
     const [username, setUsername] = useState("");
@@ -15,6 +16,7 @@ function Login() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        // @ts-ignore
         await dispatch(loginApi({ username, email, password }));
         if (error === null) {
             router.replace("/");

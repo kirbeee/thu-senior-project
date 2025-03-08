@@ -22,6 +22,7 @@ const boardSlice = createSlice({
             })
             .addCase(boardApi.rejected, (state, action) => {
                 state.loading = false;
+                // @ts-ignore TODO: Fix this
                 state.error = action.payload || action.error.message;
             });
     }

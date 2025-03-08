@@ -1,7 +1,6 @@
 import axios from 'axios';
 
 export const fetchCourses = async (page = 1) => {
-    // eslint-disable-next-line no-undef
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/school_system/courses/`, {
         params: { page },
     });
@@ -9,7 +8,6 @@ export const fetchCourses = async (page = 1) => {
 };
 
 export const fetchBoard = async (page = 1) => {
-    // eslint-disable-next-line no-undef
     const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/bbs/boards/`, {
         params: { page },
     });

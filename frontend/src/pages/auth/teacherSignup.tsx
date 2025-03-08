@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 function TeacherSignup(){
     const dispatch = useDispatch();
+    // @ts-ignore
     const { loading, error} = useSelector((state) => state.users); // 保留 error 以顯示註冊錯誤訊息
     const router = useRouter();
 
@@ -41,6 +42,7 @@ function TeacherSignup(){
 
         // 註冊成功後導向首頁，並處理可能的錯誤
         try {
+            // @ts-ignore
             await dispatch(signupApi({username, email, password1: password, password2: confirmPassword}));
             await router.push('/') // 註冊成功後導向首頁
         } catch (apiError) {

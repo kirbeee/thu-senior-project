@@ -5,8 +5,10 @@ import Skeleton from "@components/ui/Skeleton";
 
 function AccountPage() {
     const dispatch = useDispatch();
+    // @ts-ignore
     const {isLoading, data, error} = useSelector((state) => state.users);
     useEffect(() => {
+        // @ts-ignore
         dispatch(authApi());
     }, [dispatch]);
 

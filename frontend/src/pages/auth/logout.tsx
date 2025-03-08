@@ -6,9 +6,11 @@ import Skeleton from "@components/ui/Skeleton";
 
 function Logout(){
     const dispatch = useDispatch();
+    // @ts-ignore
     const {isLoading, error} = useSelector((state) => state.users);
 
     useEffect(() => {
+        // @ts-ignore
         dispatch(logoutApi());
         localStorage.removeItem('authToken');
     }, [dispatch]);

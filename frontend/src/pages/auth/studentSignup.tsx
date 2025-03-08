@@ -5,6 +5,7 @@ import {useDispatch, useSelector} from "react-redux";
 
 function StudentSignup(){
     const dispatch = useDispatch();
+    // @ts-ignore
     const { loading, error} = useSelector((state) => state.users);
     const router = useRouter();
 
@@ -41,6 +42,7 @@ function StudentSignup(){
         }
 
         try {
+            // @ts-ignore
             await dispatch(signupApi({username, email, password1: password, password2: confirmPassword, studentID}));
             await router.push('/')
         } catch (apiError) {

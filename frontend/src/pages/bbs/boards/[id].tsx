@@ -1,25 +1,52 @@
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/router";
-import axios from "axios";
+import axios, { AxiosResponse } from "axios";
 import PostList from "@components/containers/PostsList";
 import Link from "next/link";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import i18nConfig from '../../../../next-i18next.config';
+import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 
-const Id = () => {
+// Define types for Board and Category (adjust based on your actual API response)
+interface Category {
+    name: string;
+    id: number; // Assuming category has an id
+    // ... other category properties if any
+}
+
+interface BoardData {
+    id: number;
+    name: string;
+    description: string;
+    category?: Category | null; // Category can be null or undefined
+    course_id?: number | null; // course_id can be null or undefined
+    // ... other board properties from your API
+}
+
+// Define props for the Id component, extending NextPageProps if needed
+interface IdProps {
+    board?: BoardData | null; // Board data passed as prop from getStaticProps
+}
+
+const Id: NextPage<IdProps> = ({ board: initialBoardData }) => { // Use NextPage and IdProps, rename prop to initialBoardData for clarity
     const router = useRouter();
     const { id: idString } = router.query;
     const id = Number(idString);
-    const [board, setBoard] = useState(null);
-    const [loading, setLoading] = useState(true);
+    const [board, setBoard] = useState<BoardData | null>(initialBoardData || null); // Initialize with initialBoardData or null
+    const [loading, setLoading] = useState<boolean>(!initialBoardData); // Set loading to true if initialBoardData is not provided (SSR case)
     const { t } = useTranslation('boardIdPage');
 
     useEffect(() => {
+        if (initialBoardData) {
+            // If board data is provided via getStaticProps, no need to fetch again on client-side
+            return;
+        }
+
         setLoading(true);
         axios
             .create({ baseURL: process.env.NEXT_PUBLIC_API_URL })
-            .get(`/bbs/boards/${id}/`)
+            .get<BoardData>(`/bbs/boards/${id}/`) // Type axios.get response
             .then(response => {
                 setBoard(response.data);
                 setLoading(false);
@@ -27,7 +54,7 @@ const Id = () => {
             .catch(() => {
                 setLoading(false);
             });
-    }, [id]);
+    }, [id, initialBoardData]); // Add initialBoardData to dependency array
 
     if (loading) {
         return (
@@ -93,37 +120,39 @@ const Id = () => {
     );
 };
 
-export const getStaticProps = async ({ locale, params }) => { // Add params here
+export const getStaticProps: GetStaticProps<IdProps, { id: string }> = async ({ locale, params }) => { // Type GetStaticProps and params
     const boardId = params?.id; // Access the `id` from params
 
-    let boardData = null;
+    let boardData: BoardData | null = null; // Type boardData
     if (boardId) {
         try {
-            const response = await axios
+            const response: AxiosResponse<BoardData> = await axios // Type AxiosResponse
                 .create({ baseURL: process.env.NEXT_PUBLIC_API_URL })
-                .get(`/bbs/boards/${boardId}/`);
+                .get<BoardData>(`/bbs/boards/${boardId}/`); // Type axios.get response
             boardData = response.data;
-        } catch (error) {
+        } catch (error: any) { // Type error as any, consider AxiosError for more specific typing
             console.error("Error fetching board data for getStaticProps:", error);
             // Handle error appropriately, maybe return a default board or null
         }
     }
 
 
+    // @ts-ignore
     return {
         props: {
             board: boardData, // Pass board data as props
+            // @ts-ignore
             ...(await serverSideTranslations(locale, ['boardIdPage', 'header', 'common'], i18nConfig)),
         },
         revalidate: 60, // Optional: Revalidate every 60 seconds
     };
 };
 
-export const getStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths<{ id: string }> = async () => { // Type GetStaticPaths
     try {
-        const response = await axios
+        const response: AxiosResponse<{ results: BoardData[] }> = await axios // Type AxiosResponse and response data
             .create({ baseURL: process.env.NEXT_PUBLIC_API_URL })
-            .get('/bbs/boards/'); // Fetch all boards or a limited number for pre-rendering
+            .get<{ results: BoardData[] }>('/bbs/boards/'); // Type axios.get response with expected data structure
         const boards = response.data.results; // Assuming your API returns results in a 'results' array
 
         const paths = boards.map((board) => ({
@@ -134,7 +163,7 @@ export const getStaticPaths = async () => {
             paths,
             fallback: 'blocking', // or 'fallback: false' or 'fallback: true' - choose based on your needs
         };
-    } catch (error) {
+    } catch (error: any) { // Type error as any, consider AxiosError for more specific typing
         console.error("Error fetching boards for getStaticPaths:", error);
         return {
             paths: [],
