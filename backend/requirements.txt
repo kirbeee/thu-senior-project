@@ -9,7 +9,7 @@ click==8.1.8
 cryptography==43.0.1
 distlib==0.3.8
 dj-rest-auth==6.0.0
-Django==5.1.6
+Django==5.1.7
 django-allauth==65.4.1
 django-cors-headers==4.4.0
 django-environ==0.11.2
