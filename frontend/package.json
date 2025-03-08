@@ -29,7 +29,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "test": "jest",
+    "test": "vitest",
     "lint": "next lint"
   },
   "proxy": "http://localhost:8000",
@@ -55,9 +55,11 @@
     "@eslint/js": "^9.18.0",
     "@next/eslint-plugin-next": "^15.1.7",
     "@tailwindcss/typography": "^0.5.15",
+    "@testing-library/dom": "^10.4.0",
     "@testing-library/jest-dom": "^5.17.0",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
+    "@vitejs/plugin-react": "^4.3.4",
     "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.11",
     "eslint": "^9.20.1",
@@ -66,7 +68,10 @@
     "eslint-plugin-react-hooks": "^5.1.0",
     "globals": "^15.14.0",
     "jest": "^29.7.0",
+    "jsdom": "^26.0.0",
     "typescript": "5.7.3",
-    "typescript-eslint": "^8.19.1"
+    "typescript-eslint": "^8.19.1",
+    "vite-tsconfig-paths": "^5.1.4",
+    "vitest": "^3.0.8"
   }
 }

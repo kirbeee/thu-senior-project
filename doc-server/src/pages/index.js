@@ -39,7 +39,7 @@ function HomepageContent() {
                     <div className="card shadow--md">
                         <div className="card__header">
                             <Heading as="h3" className="text--center card__title">
-                                <Link to="/docs/getting-started">
+                                <Link to="/docs">
                                     快速開始
                                 </Link>
                             </Heading>
@@ -55,7 +55,8 @@ function HomepageContent() {
                     <div className="card shadow--md">
                         <div className="card__header">
                             <Heading as="h3" className="text--center card__title">
-                                <Link to="/docs/architecture">
+                                {/*TODO*/}
+                                <Link to="/docs">
                                     系統架構
                                 </Link>
                             </Heading>
@@ -71,7 +72,7 @@ function HomepageContent() {
                     <div className="card shadow--md">
                         <div className="card__header">
                             <Heading as="h3" className="text--center card__title">
-                                <Link to="/docs/api-reference">
+                                <Link to="/docs">
                                     API 參考
                                 </Link>
                             </Heading>
@@ -87,7 +88,7 @@ function HomepageContent() {
                     <div className="card shadow--md">
                         <div className="card__header">
                             <Heading as="h3" className="text--center card__title">
-                                <Link to="/docs/contribution-guide">
+                                <Link to="/docs">
                                     貢獻指南
                                 </Link>
                             </Heading>
