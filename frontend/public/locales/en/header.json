@@ -1,5 +1,4 @@
 {
-  "thuHelper": "THU Helper",
   "home": "Home",
   "discussion": "Discussion",
   "courses": "Courses",
@@ -8,5 +7,6 @@
   "signUp": "Sign Up",
   "settings": "Settings",
   "logout": "Logout",
-  "loading": "Loading..."
+  "language": "Language",
+  "loading": "loading"
 }

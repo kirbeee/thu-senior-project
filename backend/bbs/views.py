@@ -12,7 +12,7 @@ class CategoryViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = [DjangoFilterBackend]
     filterset_fields = ['id']
 
-class BoardViewSet(viewsets.ReadOnlyModelViewSet):
+class BoardViewSet(viewsets.ModelViewSet):
     queryset = Board.objects.all()
     serializer_class = BoardSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
@@ -22,7 +22,7 @@ class PostViewSet(viewsets.ModelViewSet):
     queryset = Post.objects.all()
     serializer_class = PostSerializer
     filter_backends = [DjangoFilterBackend, OrderingFilter]
-    filterset_fields = ['board_id']  # 允许通过 board_id 过滤
+    filterset_fields = ['board_id']
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
