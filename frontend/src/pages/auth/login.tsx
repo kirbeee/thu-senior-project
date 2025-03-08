@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Image from 'next/image'; // 引入 Image 组件
 import Link from 'next/link';
 
-function LoginPage() {
+function Login() {
     const dispatch = useDispatch();
     const { error } = useSelector((state) => state.users);
     const router = useRouter();
@@ -115,4 +115,4 @@ function LoginPage() {
     );
 }
 
-export default LoginPage;
+export default Login;

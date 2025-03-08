@@ -80,31 +80,6 @@ const Comment = ({ postId, userId }) => {
             </div>
 
             {/* Delete Comment Section */}
-            <div className="p-4 border rounded-lg bg-base-100 shadow-md">
-                <h5 className="font-semibold mb-2">Delete Comment (by ID)</h5>
-                <div className="flex items-center mb-2">
-                    <input
-                        type="text"
-                        placeholder="Enter comment ID to delete"
-                        className="input input-bordered input-sm w-full max-w-xs mr-2"
-                        value={commentToDeleteId}
-                        onChange={(e) => setCommentToDeleteId(e.target.value)}
-                    />
-                    <button
-                        className={`btn btn-error btn-sm ${deleteCommentStatus === 'loading' ? 'loading' : ''}`}
-                        onClick={handleDeleteComment}
-                        disabled={deleteCommentStatus === 'loading'}
-                    >
-                        Delete Comment
-                    </button>
-                </div>
-                {deleteCommentStatus === 'success' && (
-                    <span className="text-green-500 ml-2">Comment deleted successfully!</span>
-                )}
-                {deleteCommentStatus === 'error' && (
-                    <span className="text-red-500 ml-2">Error deleting comment. Please check ID and try again.</span>
-                )}
-            </div>
         </div>
     );
 };

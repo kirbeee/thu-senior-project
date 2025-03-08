@@ -1,7 +1,6 @@
 import React from "react";
-import { useRouter } from "next/router"; // 用於路由跳轉
-import PropTypes from 'prop-types'; // Import PropTypes
-import Link from 'next/link'; // Import Link component from Next.js
+import { useRouter } from "next/router";
+import PropTypes from 'prop-types';
 const CourseCard = ({ course }) => {
     const router = useRouter();
 

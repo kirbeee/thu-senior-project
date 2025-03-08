@@ -39,7 +39,7 @@ const CategorySidebar = () => {
             <ul>
                 {categories.map((category) => (
                     <li key={category.id} className="mb-1">
-                        <Link href={`/bbs/Board?category_id=${category.id}`}  // You can adjust the link as per your routing needs
+                        <Link href={`/bbs/index.js?category_id=${category.id}`}  // You can adjust the link as per your routing needs
                               className="block px-3 py-2 hover:bg-gray-200 rounded-md"
                         >
                             {category.name}

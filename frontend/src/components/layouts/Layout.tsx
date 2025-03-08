@@ -1,11 +1,9 @@
-// In Layout.js
-
 import React from "react";
 import Navbar from './Header';
 import Footer from './Footer';
 import { Provider } from "react-redux";
-import { store } from "../lib/store";
-import "../index.css";
+import { store } from "../../lib/store";
+import "../../index.css";
 
 interface LayoutProps {
     children: React.ReactNode;

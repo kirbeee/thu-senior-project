@@ -8,17 +8,14 @@ function AboutPage() {
 
     return (
         <div className="container mx-auto px-4 py-10">
-            {/* 頁面標題 (加大字體，更醒目) */}
             <div className="text-center mb-10">
                 <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 mb-3">{t('aboutPageTitle')}</h1> {/* 字體加大、顏色更深 */}
                 <p className="text-lg text-gray-700">{t('aboutPageSubtitle')}</p> {/* 副標題字體略加大、顏色調整 */}
             </div>
 
-            {/* 區塊：選課痛點 (調整樣式，更簡潔) */}
             <section className="mb-12">
                 <div className="rounded-lg shadow-md p-5 sm:p-7 bg-gray-50 border border-gray-200"> {/* 邊框線條更細緻 */}
                     <div className="flex items-center mb-3"> {/* 縮小標題下方間距 */}
-                        {/* 使用 SVG 內聯圖示 (您可以替換成其他更適合的圖示) */}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-5 sm:size-6 text-indigo-500 mr-2"> {/* 圖示尺寸略微縮小 */}
                             <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.042A8.967 8.967 0 0 0 6 3.75c-1.052 0-2.062.18-3 .512v14.25A8.987 8.987 0 0 1 6 18c2.305 0 4.408.867 6 2.292m0-14.25a8.966 8.966 0 0 1 6-2.292c1.052 0 2.062.18 3 .512v14.25A8.987 8.987 0 0 0 18 18a8.967 8.967 0 0 0-6 2.292m0-14.25v14.25" />
                         </svg>
@@ -30,7 +27,6 @@ function AboutPage() {
                 </div>
             </section>
 
-            {/* 區塊：專題動機 */}
             <section className="mb-12">
                 <div className="rounded-lg shadow-md p-5 sm:p-7 bg-green-50 border border-gray-200"> {/* 樣式調整同上 */}
                     <div className="flex items-center mb-3">
@@ -45,7 +41,6 @@ function AboutPage() {
                 </div>
             </section>
 
-            {/* 區塊：專題目的 */}
             <section className="mb-12">
                 <div className="rounded-lg shadow-md p-5 sm:p-7 bg-yellow-50 border border-gray-200"> {/* 樣式調整同上 */}
                     <div className="flex items-center mb-3">
@@ -60,7 +55,6 @@ function AboutPage() {
                 </div>
             </section>
 
-            {/* 區塊：目標用戶群體 (新增) */}
             <section className="mb-12">
                 <div className="rounded-lg shadow-md p-5 sm:p-7 bg-blue-50 border border-gray-200"> {/* 樣式調整同上 */}
                     <div className="flex items-center mb-3">
@@ -74,15 +68,6 @@ function AboutPage() {
                     </p>
                 </div>
             </section>
-
-            {/* 行動呼籲區塊 (可選，您可以根據需求加入) */}
-            {/*
-            <section className="text-center mt-16">
-                <button className="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-3 px-8 rounded-lg">
-                    {t('exploreCoursesButton')}
-                </button>
-            </section>
-            */}
         </div>
     );
 }

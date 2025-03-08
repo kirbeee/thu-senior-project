@@ -72,7 +72,7 @@ const PostList = ({ boardId }) => {
                             <article className="card-body p-4">
                                 <div className="flex justify-between items-start mb-2">
                                     <div>
-                                        <Link href={`/bbs/posts/${post.id}`} passHref> {/* 使用 Link 包覆 h2 */}
+                                        <Link href={`/bbs/boards/posts/${post.id}`} passHref> {/* 使用 Link 包覆 h2 */}
                                             <h2 className="card-title text-lg font-semibold hover:underline cursor-pointer">
                                                 {post.title}
                                             </h2>

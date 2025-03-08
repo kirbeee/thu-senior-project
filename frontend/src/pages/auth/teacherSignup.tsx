@@ -1,12 +1,13 @@
 import React, {useState} from "react";
+import { useRouter } from "next/router";
 import {signupApi} from "../../lib/store";
 import {useDispatch, useSelector} from "react-redux";
-import {useRouter} from "next/router";
 
-function VisitorSignupPage(){
+function TeacherSignup(){
     const dispatch = useDispatch();
-    const { loading, error} = useSelector((state) => state.users);
+    const { loading, error} = useSelector((state) => state.users); // 保留 error 以顯示註冊錯誤訊息
     const router = useRouter();
+
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
@@ -38,21 +39,28 @@ function VisitorSignupPage(){
             setPasswordError('');
         }
 
-        await dispatch(signupApi({username, email, password1: password, password2: confirmPassword}));
-        await router.push('/')
+        // 註冊成功後導向首頁，並處理可能的錯誤
+        try {
+            await dispatch(signupApi({username, email, password1: password, password2: confirmPassword}));
+            await router.push('/') // 註冊成功後導向首頁
+        } catch (apiError) {
+            //  如果 signupApi 拋出錯誤，Redux store 中的 error 會被更新，這裡可以選擇性地處理額外的錯誤邏輯
+            console.error("註冊錯誤:", apiError); // 記錄錯誤以便於 debugging
+            // error 已經由 Redux store 管理，這裡的 error 狀態會自動觸發 alert-error 的顯示
+        }
     };
 
     return (
-        <div className="hero min-h-screen">
+        <div className="hero min-h-screen ">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <div className="text-center lg:text-left">
-                    <h1 className="text-5xl font-bold">訪客註冊</h1>
-                    <p className="py-6">歡迎加入！註冊訪客帳號，體驗更多功能。</p>
+                    <h1 className="text-5xl font-bold">教師註冊</h1>
+                    <p className="py-6">加入我們，成為我們平台上的教師，分享您的知識與熱情。</p>
                 </div>
-                <div className="card shrink-0 w-full max-w-max min-w-[400px] shadow-2xl bg-base-100">
+                <div className="card shrink-0 w-full max-w-sm min-w-[400px] shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit} className="card-body">
-                        {error && <div className="alert alert-error">{error}</div>}
-                        {passwordError && <div className="alert alert-warning">{passwordError}</div>}
+                        {error && <div className="alert alert-error">{error}</div>} {/* 顯示 Redux store 中的錯誤訊息 */}
+                        {passwordError && <div className="alert alert-warning">{passwordError}</div>} {/* 顯示密碼驗證錯誤 */}
                         <div className="form-control">
                             <label className="label">
                                 <span className="label-text">使用者名稱</span>
@@ -120,4 +128,4 @@ function VisitorSignupPage(){
     )
 }
 
-export default VisitorSignupPage;
+export default TeacherSignup;

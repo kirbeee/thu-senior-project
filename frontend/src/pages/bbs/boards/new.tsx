@@ -5,7 +5,6 @@ import axios from 'axios';
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import i18nConfig from '../../../../next-i18next.config';
-import Layout from '../../../components/Layout';
 
 const NewBoardPage = () => {
     const { t } = useTranslation('boards');
@@ -230,7 +229,7 @@ const NewBoardPage = () => {
 
 
                     <div className="mt-8 flex justify-end space-x-4"> {/* Use space-x-4 for button spacing */}
-                        <Link href="/bbs/Board" className="btn"> {/* DaisyUI button - default style for cancel */}
+                        <Link href="/bbs" className="btn"> {/* DaisyUI button - default style for cancel */}
                             {t('backToBoardList')}
                         </Link>
                         <button type="submit" className="btn btn-primary"> {/* DaisyUI button - primary style for submit */}

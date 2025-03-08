@@ -1,14 +1,14 @@
 import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
-import BoardCard from "../../components/BoardCard";
-import Pagination from "../../components/Pagination";
-import CategorySidebar from "../../components/CatagorySidebar";
+import BoardCard from "@components/containers/BoardCard";
+import Pagination from "@components/ui/Pagination";
+import CategorySidebar from "@components/containers/CatagorySidebar";
 import axios from "axios";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
 import i18nConfig from '../../../next-i18next.config';
 
-const Board = () => {
+const Index = () => {
     const [boards, setBoards] = useState([]);
     const [loading, setLoading] = useState(true);
     const [totalPages] = useState(1);
@@ -73,7 +73,7 @@ const Board = () => {
                         </div>
                     )}
                     <button
-                        onClick={() => router.push('/bbs/Board/new')}
+                        onClick={() => router.push('/bbs/boards/new')}
                         className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                         type="button"
                     >
@@ -88,7 +88,7 @@ const Board = () => {
                 ) : boards.length > 0 ? (
                     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                         {boards.map((board) => (
-                            <BoardCard key={board.id} board={board} />
+                            <BoardCard board={board} />
                         ))}
                     </div>
                 ) : (
@@ -115,4 +115,4 @@ export const getStaticProps = async ({ locale }) => ({
     },
 });
 
-export default Board;
+export default Index;

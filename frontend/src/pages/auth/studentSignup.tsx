@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import {signupApi} from "../../lib/store";
 import {useDispatch, useSelector} from "react-redux";
 
-function StudentSignupPage(){
+function StudentSignup(){
     const dispatch = useDispatch();
     const { loading, error} = useSelector((state) => state.users);
     const router = useRouter();
@@ -139,4 +139,4 @@ function StudentSignupPage(){
     )
 }
 
-export default StudentSignupPage;
+export default StudentSignup;

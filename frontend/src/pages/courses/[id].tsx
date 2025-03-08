@@ -79,7 +79,7 @@ const Id = () => {
                         )}
                     </div>
                     <div className="card-actions justify-end mt-4">
-                        <button className="btn btn-ghost"><Link href="/courses/Course">返回課程列表</Link></button>
+                        <button className="btn btn-ghost"><Link href="/courses">返回課程列表</Link></button>
                     </div>
                 </div>
             </div>

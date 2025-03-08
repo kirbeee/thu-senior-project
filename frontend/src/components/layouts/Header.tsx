@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
-import { authApi } from "../lib/store";
+import { authApi } from "../../lib/store";
 import { useRouter } from 'next/router';
 import {useTranslation} from "next-i18next";
 
@@ -53,7 +53,7 @@ const Header = () => {
         if (!user) {
             return (
                 <>
-                    <li><Link href="/auth/LoginPage">{t('signIn')}</Link> {/* 使用 t('signIn') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/auth/login">{t('signIn')}</Link> {/* 使用 t('signIn') 從 header.json 取得翻譯 */}</li>
                     <li><Link href="/auth/RegistrationSelector">{t('signUp')}</Link> {/* 使用 t('signUp') 從 header.json 取得翻譯 */}</li>
                 </>
             );
@@ -70,7 +70,7 @@ const Header = () => {
                 </summary>
                 <ul className="menu dropdown-content bg-base-100 rounded-box w-52">
                     <li><Link href="/AccountPage">{t('settings')}</Link> {/* 使用 t('settings') 從 header.json 取得翻譯 */}</li>
-                    <li><Link href="/auth/LogoutPage">{t('logout')}</Link> {/* 使用 t('logout') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/auth/logout">{t('logout')}</Link> {/* 使用 t('logout') 從 header.json 取得翻譯 */}</li>
                 </ul>
             </details>
         );
@@ -95,8 +95,8 @@ const Header = () => {
             <div className="hidden md:flex flex-1 justify-center">
                 <ul className="menu menu-horizontal px-1">
                     <li><Link href="/">{t('home')}</Link> {/* 使用 t('home') 從 header.json 取得翻譯 */}</li>
-                    <li><Link href="/bbs/Board">{t('discussion')}</Link> {/* 使用 t('discussion') 從 header.json 取得翻譯 */}</li>
-                    <li><Link href="/courses/Course">{t('courses')}</Link> {/* 使用 t('courses') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/bbs">{t('discussion')}</Link> {/* 使用 t('discussion') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/courses">{t('courses')}</Link> {/* 使用 t('courses') 從 header.json 取得翻譯 */}</li>
                     <li><Link href="/AboutPage">{t('about')}</Link> {/* 使用 t('about') 從 header.json 取得翻譯 */}</li>
                 </ul>
             </div>
@@ -105,8 +105,8 @@ const Header = () => {
             <div className={`md:hidden absolute top-full right-0 bg-base-100 rounded-box shadow-md w-full z-10 ${isMobileMenuOpen ? 'block' : 'hidden'}`}>
                 <ul className="menu menu-vertical w-full rounded-box">
                     <li><Link href="/">{t('home')}</Link> {/* 使用 t('home') 從 header.json 取得翻譯 */}</li>
-                    <li><Link href="/bbs/Board">{t('discussion')}</Link> {/* 使用 t('discussion') 從 header.json 取得翻譯 */}</li>
-                    <li><Link href="/courses/Course">{t('courses')}</Link> {/* 使用 t('courses') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/bbs">{t('discussion')}</Link> {/* 使用 t('discussion') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/courses">{t('courses')}</Link> {/* 使用 t('courses') 從 header.json 取得翻譯 */}</li>
                     <li><Link href="/AboutPage">{t('about')}</Link> {/* 使用 t('about') 從 header.json 取得翻譯 */}</li>
                     <li>{renderLanguageSelector()}</li>
                     {renderBtn()} {/* 行動裝置選單中也加入登入/註冊/帳戶按鈕 */}

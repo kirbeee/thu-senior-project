@@ -1,0 +1,19 @@
+{
+  "createNewPostIn": "Create New Post in Board",
+  "backToBoard": "Back to Board",
+  "postTitle": "Post Title",
+  "enterPostTitle": "Enter Post Title",
+  "postContent": "Post Content",
+  "enterPostContent": "Enter Post Content",
+  "postType": "Post Type",
+  "text": "Text",
+  "tags": "Tags",
+  "optionalCommaSeparated": "(Optional, comma-separated)",
+  "enterTags": "Enter tags (comma-separated)",
+  "submitPost": "Submit Post",
+  "allFieldsRequired": "All fields are required",
+  "createPostFailed": "Create post failed",
+  "createPostError": "Error occurred while creating post",
+  "createPostSuccess": "Post created successfully",
+  "redirecting": "Redirecting..."
+}

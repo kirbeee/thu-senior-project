@@ -9,9 +9,9 @@ const BoardCard = ({ board }) => {
                 <h3 className="card-title text-brown-800">{board.name}</h3>
                 <p className="text-brown-700">{board.description}</p>
                 <p className="text-gray-500">Course ID: {board.course_id}</p>
-                <Link href={`/bbs/Board/${board.id}`}>
+                <Link href={`/bbs/boards/${board.id}`}>
                     <div className="mt-4 inline-block text-amber-500 hover:text-amber-700">
-                        View Post
+                        View Board
                     </div>
                 </Link>
             </div>

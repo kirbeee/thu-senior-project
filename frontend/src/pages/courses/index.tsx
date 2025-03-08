@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from "react";
-import {fetchCourses} from "../../lib/apis/api";
-import CourseCard from "../../components/CourseCard";
-import Pagination from "../../components/Pagination";
+import {fetchCourses} from "@lib/apis/api";
+import CourseCard from "@components/containers/CourseCard";
+import Pagination from "@components/ui/Pagination";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // 引入 serverSideTranslations
 import i18nConfig from '../../../next-i18next.config'; // 引入 i18nConfig
 
-const Course = () => {
+const Index = () => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
@@ -40,7 +40,7 @@ const Course = () => {
             ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                     {courses.map((course) => (
-                        <CourseCard key={course.id} course={course}/>
+                        <CourseCard course={course}/>
                     ))}
                 </div>
             )}
@@ -62,4 +62,4 @@ export const getStaticProps = async ({ locale }) => ({ // 加入 getStaticProps
 });
 
 
-export default Course;
+export default Index;

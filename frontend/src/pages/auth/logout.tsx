@@ -2,9 +2,9 @@ import React from "react"; // Import React here
 import {useEffect} from "react";
 import { logoutApi } from "../../lib/store";
 import {useDispatch, useSelector} from "react-redux";
-import Skeleton from "../../components/Skeleton";
+import Skeleton from "@components/ui/Skeleton";
 
-function LogoutPage(){
+function Logout(){
     const dispatch = useDispatch();
     const {isLoading, error} = useSelector((state) => state.users);
 
@@ -18,4 +18,4 @@ function LogoutPage(){
     return null; // Add a return null to satisfy react component return requirement, as LogoutPage might not render anything visually. Or you can return a message or redirect.
 }
 
-export default LogoutPage;
+export default Logout;

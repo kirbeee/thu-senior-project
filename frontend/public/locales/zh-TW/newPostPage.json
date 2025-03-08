@@ -1,0 +1,19 @@
+{
+  "createNewPostIn": "在版塊創建新帖子",
+  "backToBoard": "返回版塊",
+  "postTitle": "帖子標題",
+  "enterPostTitle": "輸入帖子標題",
+  "postContent": "帖子內容",
+  "enterPostContent": "輸入帖子內容",
+  "postType": "帖子類型",
+  "text": "文字",
+  "tags": "標籤",
+  "optionalCommaSeparated": "(選填，逗號分隔)",
+  "enterTags": "輸入標籤 (逗號分隔)",
+  "submitPost": "提交帖子",
+  "allFieldsRequired": "所有欄位都必須填寫",
+  "createPostFailed": "創建帖子失敗",
+  "createPostError": "創建帖子時發生錯誤",
+  "createPostSuccess": "帖子創建成功",
+  "redirecting": "正在重新導向..."
+}
