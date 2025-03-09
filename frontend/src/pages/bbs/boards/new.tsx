@@ -94,7 +94,7 @@ const NewBoardPage: NextPage<NewBoardPageProps> = () => { // Use NextPage and Ne
                 setSuccessMessage(t('boardCreatedSuccessfully'));
                 // Redirect to board list after successful creation
                 setTimeout(() => {
-                    router.push('/bbs/Board');
+                    router.push('/bbs/boards');
                 }, 1500); // Redirect after 1.5 seconds, adjust as needed
             }
         } catch (error: any) { // Type error as any, consider AxiosError for more specific typing

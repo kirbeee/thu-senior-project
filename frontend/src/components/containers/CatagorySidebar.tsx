@@ -89,7 +89,7 @@ const CategoryList = ({ categories }: { categories: Category[] }) => (
 // Extracted Category Link Component to encapsulate link logic
 const CategoryLink = ({ category }: { category: Category }) => (
     <Link
-        href={`/bbs/index.js?category_id=${category.id}`}
+        href={`/bbs/?category_id=${category.id}`}
         className="block px-3 py-2 hover:bg-gray-200 rounded-md"
     >
         {category.name}

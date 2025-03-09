@@ -78,13 +78,6 @@ const Index = () => {
                             {courseDescription}
                         </div>
                     )}
-                    <button
-                        onClick={() => router.push('/bbs/boards/new')}
-                        className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                        type="button"
-                    >
-                        {t('addNewBoard')} {/* 使用 i18n 翻譯 */}
-                    </button>
                 </div>
 
                 {loading ? (
