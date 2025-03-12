@@ -57,7 +57,7 @@ const Header = () => {
             return (
                 <>
                     <li><Link href="/auth/login">{t('signIn')}</Link> {/* 使用 t('signIn') 從 header.json 取得翻譯 */}</li>
-                    <li><Link href="/auth/RegistrationSelector">{t('signUp')}</Link> {/* 使用 t('signUp') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/auth/registrationSelector">{t('signUp')}</Link> {/* 使用 t('signUp') 從 header.json 取得翻譯 */}</li>
                 </>
             );
         }
