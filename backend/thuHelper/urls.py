@@ -55,36 +55,20 @@ urlpatterns += [
     path('', TemplateView.as_view(template_name='index.html'))
 ]
 
-# dj-rest-auth settings
-
-urlpatterns += [
-    path('', include('dj_rest_auth.urls')),  # 登入、登出等
-    path('registration/', include('dj_rest_auth.registration.urls')),  # 註冊功能
-]
-
-# STMP settings
-urlpatterns += [
-    path('account-confirm-email/', VerifyEmailView.as_view(), name='account_email_verification_sent')
-]
-
 # api-auth settings
 urlpatterns += [
     re_path(r"^api_auth/", include("rest_framework.urls")),
 ]
 
-# user settings
-
-
-# course settings
+# all api
 urlpatterns += [
-    path('school_system/', include('school_system.urls')),
+    path('api/', include([
+        path('bbs/', include('bbs.urls')),
+        path('', include('dj_rest_auth.urls')),
+        path('school_system/', include('school_system.urls')),
+        path('registration/', include('dj_rest_auth.registration.urls')),
+    ])),
 ]
-
-# bbs settings
-urlpatterns += [
-    path('bbs/', include('bbs.urls')),
-]
-
 # static file settings
 from django.conf import settings
 from django.conf.urls.static import static

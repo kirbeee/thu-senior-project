@@ -6,7 +6,7 @@ const CourseCard = ({ course }) => {
 
     const handleCardClick = () => {
         router.push({
-            pathname:`/courses/Course/[id]`,
+            pathname:`/courses/[id]`,
             query: { id: course.id }
         });
     };
