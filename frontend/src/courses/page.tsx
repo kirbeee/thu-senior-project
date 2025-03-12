@@ -4,9 +4,8 @@ import CourseCard from "@components/containers/CourseCard";
 import Pagination from "@components/ui/Pagination";
 import { useTranslation } from 'next-i18next';
 import { serverSideTranslations } from 'next-i18next/serverSideTranslations'; // 引入 serverSideTranslations
-import i18nConfig from '../../../next-i18next.config'; // 引入 i18nConfig
 
-const Index = () => {
+const Page = () => {
     const [courses, setCourses] = useState([]);
     const [loading, setLoading] = useState(true);
     const [currentPage, setCurrentPage] = useState(1);
@@ -55,11 +54,4 @@ const Index = () => {
     );
 };
 
-export const getStaticProps = async ({ locale }) => ({ // 加入 getStaticProps
-    props: {
-        ...(await serverSideTranslations(locale, ['courses', 'header', 'common'], i18nConfig)), // 載入 'courses', 'header', 和 'common' 命名空間
-    },
-});
-
-
-export default Index;
+export default Page;

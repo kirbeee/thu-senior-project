@@ -1,18 +1,18 @@
+'use client'
 import React, { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useDispatch, useSelector } from "react-redux";
 import { authApi } from "../../lib/store";
-import { useRouter } from 'next/router';
-import {useTranslation} from "next-i18next";
+import { useRouter } from 'next/navigation';
+import {useTranslation} from "../../../app/i18n";
 import { RootState } from '@lib/store'; // 假設你的 store.ts 或類似檔案中有定義 RootState
 
-const Header = () => {
-    // 使用 RootState 類型來指定 useSelector 的 state 參數類型
+async function Header ({params: {lng}}) {
     const { user, loading } = useSelector((state: RootState) => state.users);
     const dispatch = useDispatch();
     const router = useRouter();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const {t, i18n} = useTranslation('header'); //  指定命名空間為 'header'
+    const { t } = useTranslation(lng,'header'); //  指定命名空間為 'header'
 
     useEffect(() => {
         if (!user && router.pathname !== '/auth/LoginPage' && router.pathname !== '/auth/RegistrationSelector') {
@@ -57,7 +57,7 @@ const Header = () => {
             return (
                 <>
                     <li><Link href="/auth/login">{t('signIn')}</Link> {/* 使用 t('signIn') 從 header.json 取得翻譯 */}</li>
-                    <li><Link href="/auth/RegistrationSelector">{t('signUp')}</Link> {/* 使用 t('signUp') 從 header.json 取得翻譯 */}</li>
+                    <li><Link href="/auth/registrationSelector">{t('signUp')}</Link> {/* 使用 t('signUp') 從 header.json 取得翻譯 */}</li>
                 </>
             );
         }

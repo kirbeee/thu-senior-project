@@ -5,10 +5,8 @@ import Pagination from "@components/ui/Pagination";
 import CategorySidebar from "@components/containers/CatagorySidebar";
 import axios from "axios";
 import { useTranslation } from 'next-i18next';
-import { serverSideTranslations } from 'next-i18next/serverSideTranslations';
-import i18nConfig from '../../../next-i18next.config';
 
-const Index = () => {
+const Page = () => {
     const [boards, setBoards] = useState([]);
     const [loading, setLoading] = useState(true);
     const [totalPages] = useState(1);
@@ -108,10 +106,4 @@ const Index = () => {
     );
 };
 
-export const getStaticProps = async ({ locale }) => ({
-    props: {
-        ...(await serverSideTranslations(locale, ['boards', 'header', 'common'], i18nConfig)),
-    },
-});
-
-export default Index;
+export default Page;

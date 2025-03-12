@@ -1,20 +1,12 @@
 import React from "react";
-import { useRouter } from "next/router";
+import Link from "next/link";
 import PropTypes from 'prop-types';
 const CourseCard = ({ course }) => {
-    const router = useRouter();
-
-    const handleCardClick = () => {
-        router.push({
-            pathname:`/courses/[id]`,
-            query: { id: course.id }
-        });
-    };
 
     return (
-        <div
+        <Link
+            href={`/courses/${course.id}`}
             className="card min-w-[250px] max-w-sm w-full bg-base-100 shadow-md hover:shadow-lg transition-shadow m-2"
-            onClick={handleCardClick}
         >
             <div className="card-body">
                 <h2 className="card-title text-lg font-semibold hover:underline cursor-pointer">
@@ -26,7 +18,7 @@ const CourseCard = ({ course }) => {
                 <p>Teacher ID: {course.teacher || "Not Assigned"}</p>
                 <p>Students Enrolled: {course.students.length}</p>
             </div>
-        </div>
+        </Link>
     );
 };
 

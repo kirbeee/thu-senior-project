@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { authApi } from "../lib/store";
+import { authApi } from "@lib/store";
 import Skeleton from "@components/ui/Skeleton";
 
 function AccountPage() {
