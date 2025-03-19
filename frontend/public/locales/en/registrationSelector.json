@@ -1,0 +1,21 @@
+{
+  "registrationSelector": {
+    "title": "What kind of user are you?",
+    "description": "Please select your identity to start the registration process.",
+    "student": {
+      "title": "Student",
+      "description": "I want to enroll in courses, participate in course discussions, and use community features.",
+      "button": "I am a student"
+    },
+    "teacher": {
+      "title": "Teacher",
+      "description": "I want to create courses, manage course content, and interact with students.",
+      "button": "I am a teacher"
+    },
+    "visitor": {
+      "title": "Visitor",
+      "description": "I want to browse course information, participate in public forums, but do not need to enroll in courses.",
+      "button": "I am a visitor"
+    }
+  }
+}

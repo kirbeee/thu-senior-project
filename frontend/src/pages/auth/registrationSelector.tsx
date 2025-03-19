@@ -1,9 +1,13 @@
 import React from "react";
 import { useRouter } from "next/router";
-import { FaUserGraduate, FaChalkboardTeacher, FaUserFriends } from 'react-icons/fa'; // 引入 React Icons
+import { FaUserGraduate, FaChalkboardTeacher, FaUserFriends } from 'react-icons/fa';
+import { serverSideTranslations } from "next-i18next/serverSideTranslations";
+import { useTranslation } from 'next-i18next'; // 引入 useTranslation hook
+import i18nConfig from "../../../next-i18next.config";
 
 function RegistrationSelector() {
     const router = useRouter();
+    const { t } = useTranslation('registrationSelector'); // 使用 'translation' 命名空間
 
     const handleSelection = (path) => {
         router.push(path);
@@ -13,43 +17,43 @@ function RegistrationSelector() {
         <div className="hero min-h-screen ">
             <div className="hero-content text-center">
                 <div className="">
-                    <h1 className="text-5xl font-bold mb-8">您是哪種身份？</h1>
-                    <p className="mb-8 text-lg">請選擇您的身份，以便開始註冊流程。</p>
-                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6"> {/* 使用 Grid 佈局，手機單欄，平板以上三欄 */}
-                        <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300"> {/* 卡片樣式，加入 hover 陰影效果 */}
+                    <h1 className="text-5xl font-bold mb-8">{t('registrationSelector.title')}</h1> {/* 使用翻譯 */}
+                    <p className="mb-8 text-lg">{t('registrationSelector.description')}</p> {/* 使用翻譯 */}
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
                             <div className="card-body flex flex-col items-center">
-                                <FaUserGraduate className="text-6xl text-primary mb-4" /> {/* 學生圖示 */}
-                                <h2 className="card-title">學生</h2>
-                                <p className="text-center text-gray-500 mb-4">我想選課、參與課程討論、並使用社群功能。</p>
+                                <FaUserGraduate className="text-6xl text-primary mb-4" />
+                                <h2 className="card-title">{t('registrationSelector.student.title')}</h2> {/* 使用翻譯 */}
+                                <p className="text-center text-gray-500 mb-4">{t('registrationSelector.student.description')}</p> {/* 使用翻譯 */}
                                 <div className="card-actions justify-center">
-                                    <button className="btn btn-primary" onClick={() => handleSelection("/auth/StudentSignupPage")}>
-                                        我是學生
+                                    <button className="btn btn-primary" onClick={() => handleSelection("/auth/studentSignupPage")}>
+                                        {t('registrationSelector.student.button')} {/* 使用翻譯 */}
                                     </button>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300"> {/* 卡片樣式，加入 hover 陰影效果 */}
+                        <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
                             <div className="card-body flex flex-col items-center">
-                                <FaChalkboardTeacher className="text-6xl text-secondary mb-4" /> {/* 教師圖示 */}
-                                <h2 className="card-title">教師</h2>
-                                <p className="text-center text-gray-500 mb-4">我希望開設課程、管理課程內容、並與學生互動。</p>
+                                <FaChalkboardTeacher className="text-6xl text-secondary mb-4" />
+                                <h2 className="card-title">{t('registrationSelector.teacher.title')}</h2> {/* 使用翻譯 */}
+                                <p className="text-center text-gray-500 mb-4">{t('registrationSelector.teacher.description')}</p> {/* 使用翻譯 */}
                                 <div className="card-actions justify-center">
-                                    <button className="btn btn-secondary" onClick={() => handleSelection("/auth/TeacherSignupPage")}>
-                                        我是教師
+                                    <button className="btn btn-secondary" onClick={() => handleSelection("/auth/teacherSignupPage")}>
+                                        {t('registrationSelector.teacher.button')} {/* 使用翻譯 */}
                                     </button>
                                 </div>
                             </div>
                         </div>
 
-                        <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300"> {/* 卡片樣式，加入 hover 陰影效果 */}
+                        <div className="card bg-base-100 shadow-xl hover:shadow-2xl transition-shadow duration-300">
                             <div className="card-body flex flex-col items-center">
-                                <FaUserFriends className="text-6xl text-accent mb-4" /> {/* 訪客圖示 */}
-                                <h2 className="card-title">訪客</h2>
-                                <p className="text-center text-gray-500 mb-4">我想瀏覽課程資訊、參與公開討論區，但不需選課。</p>
+                                <FaUserFriends className="text-6xl text-accent mb-4" />
+                                <h2 className="card-title">{t('registrationSelector.visitor.title')}</h2> {/* 使用翻譯 */}
+                                <p className="text-center text-gray-500 mb-4">{t('registrationSelector.visitor.description')}</p> {/* 使用翻譯 */}
                                 <div className="card-actions justify-center">
-                                    <button className="btn btn-accent" onClick={() => handleSelection("/auth/VisitorSignupPage")}>
-                                        我是訪客
+                                    <button className="btn btn-accent" onClick={() => handleSelection("/auth/visitorSignupPage")}>
+                                        {t('registrationSelector.visitor.button')} {/* 使用翻譯 */}
                                     </button>
                                 </div>
                             </div>
@@ -60,5 +64,11 @@ function RegistrationSelector() {
         </div>
     );
 }
+
+export const getStaticProps = async ({ locale }) => ({
+    props: {
+        ...(await serverSideTranslations(locale, ['registrationSelector'], i18nConfig)),
+    },
+})
 
 export default RegistrationSelector;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { loginApi } from "../../lib/store";
 import { useRouter } from "next/router";
 import { useDispatch, useSelector } from "react-redux";
-import Image from 'next/image'; // 引入 Image 组件
+import Image from 'next/image';
 import Link from 'next/link';
 
 function Login() {
