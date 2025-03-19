@@ -4,7 +4,7 @@
         <title>THU-Helper Blog</title>
         <link>https://kirbeee.github.io/thu-senior-project/zh-TW/blog</link>
         <description>THU-Helper Blog</description>
-        <lastBuildDate>Wed, 19 Mar 2025 08:14:02 GMT</lastBuildDate>
+        <lastBuildDate>Wed, 19 Mar 2025 08:14:43 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <language>zh-TW</language>
@@ -12,7 +12,7 @@
             <title><![CDATA[first blog]]></title>
             <link>https://kirbeee.github.io/thu-senior-project/zh-TW/blog/test</link>
             <guid>https://kirbeee.github.io/thu-senior-project/zh-TW/blog/test</guid>
-            <pubDate>Wed, 19 Mar 2025 08:14:02 GMT</pubDate>
+            <pubDate>Wed, 19 Mar 2025 08:14:43 GMT</pubDate>
             <description><![CDATA[test]]></description>
             <content:encoded><![CDATA[<p>test</p>]]></content:encoded>
         </item>
