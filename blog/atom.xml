@@ -2,7 +2,7 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
     <id>https://kirbeee.github.io/thu-senior-project/blog</id>
     <title>THU-Helper Blog</title>
-    <updated>2025-03-12T14:01:52.000Z</updated>
+    <updated>2025-03-19T08:14:02.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://kirbeee.github.io/thu-senior-project/blog"/>
     <subtitle>THU-Helper Blog</subtitle>
@@ -11,7 +11,7 @@
         <title type="html"><![CDATA[first blog]]></title>
         <id>https://kirbeee.github.io/thu-senior-project/blog/test</id>
         <link href="https://kirbeee.github.io/thu-senior-project/blog/test"/>
-        <updated>2025-03-12T14:01:52.000Z</updated>
+        <updated>2025-03-19T08:14:02.000Z</updated>
         <summary type="html"><![CDATA[test]]></summary>
         <content type="html"><![CDATA[<p>test</p>]]></content>
     </entry>
