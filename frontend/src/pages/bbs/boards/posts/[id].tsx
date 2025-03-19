@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState , useCallback} from "react";
 import { useRouter } from "next/router";
 import axios from "axios";
 import Link from "next/link";
@@ -15,6 +15,26 @@ const PostDetailPage = ({ post: initialPost }) => { // Receive post as prop
     const [loading, setLoading] = useState(!initialPost); // Only loading if no initialPost
     const [error, setError] = useState(null);
     const { t } = useTranslation('postDetailPage');
+
+    const fetchPost = useCallback(async () => {
+        if (!postId) return;
+        setLoading(true);
+        setError(null);
+        try {
+            const response = await axios.get(`${process.env.NEXT_PUBLIC_API_URL}/bbs/posts/${postId}/`);
+            setPost(response.data);
+            setLoading(false);
+        } catch (error) {
+            console.error("Error fetching post:", error);
+            // @ts-ignore
+            setError(t('errorLoadingPost'));
+            setLoading(false);
+        }
+    }, [postId, t]);
+
+    const handleCommentCreated = useCallback(() => {
+        fetchPost();
+    }, [fetchPost]);
 
     useEffect(() => {
         if (initialPost || !postId) return; // Don't refetch if initialPost exists or postId is missing
@@ -116,7 +136,7 @@ const PostDetailPage = ({ post: initialPost }) => { // Receive post as prop
             </section>
 
             <section className="mt-8">
-                <Comment postId={postId} userId={1} />
+                <Comment postId={postId} userId={1} onCommentCreated={handleCommentCreated} />
             </section>
         </div>
     );

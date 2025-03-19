@@ -7,9 +7,10 @@ type Status = 'loading' | 'success' | 'error' | null;
 interface CommentProps {
     postId: number;
     userId: number; // Consider if userId should be required or optional, adjust prop type accordingly
+    onCommentCreated?: () => void; // Add the optional callback prop
 }
 
-const Comment = ({ postId, userId }: CommentProps) => {
+const Comment = ({ postId, userId, onCommentCreated }: CommentProps) => {
     const [commentContent, setCommentContent] = useState("");
     const [createCommentStatus, setCreateCommentStatus] = useState<Status>(null);
     const [deleteCommentStatus, setDeleteCommentStatus] = useState<Status>(null);
@@ -35,6 +36,10 @@ const Comment = ({ postId, userId }: CommentProps) => {
             if (response.status === 201) {
                 setCreateCommentStatus('success'); // Explicitly set type here
                 setCommentContent("");
+                // Call the onCommentCreated callback if it exists
+                if (onCommentCreated) {
+                    onCommentCreated();
+                }
             } else {
                 setCreateCommentStatus('error'); // Explicitly set type here
             }
@@ -82,12 +87,7 @@ const Comment = ({ postId, userId }: CommentProps) => {
         <div className="mb-8">
             <h4 className="text-xl font-semibold mb-4">Comment Actions</h4>
 
-            {/* Create Comment Section - Extracted to Component for clarity*/}
             <CommentSection title="Add New Comment" status={createCommentStatus} onCommentChange={setCommentContent} commentContent={commentContent} onButtonClick={handleCreateComment} buttonText="Add Comment" />
-
-            {/* Delete Comment Section - You can similarly extract this section if needed for more actions*/}
-            {/* Example of Delete Comment Section would go here if you want to include it based on original code*/}
-
         </div>
     );
 };

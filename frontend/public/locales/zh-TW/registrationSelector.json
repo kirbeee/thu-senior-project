@@ -1,0 +1,21 @@
+{
+  "registrationSelector": {
+    "title": "您是哪種身份？",
+    "description": "請選擇您的身份，以便開始註冊流程。",
+    "student": {
+      "title": "學生",
+      "description": "我想選課、參與課程討論、並使用社群功能。",
+      "button": "我是學生"
+    },
+    "teacher": {
+      "title": "教師",
+      "description": "我希望開設課程、管理課程內容、並與學生互動。",
+      "button": "我是教師"
+    },
+    "visitor": {
+      "title": "訪客",
+      "description": "我想瀏覽課程資訊、參與公開討論區，但不需選課。",
+      "button": "我是訪客"
+    }
+  }
+}
