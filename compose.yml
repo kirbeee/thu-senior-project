@@ -1,6 +1,6 @@
 services:
   db:
-    image: postgres:14-alpine
+    image: thuhelper.azurecr.io/postgres:14-alpine
     container_name: postgresql_db
     volumes:
       - postgresql_data:/var/lib/postgresql/data/  # 資料持久化 (可選)
@@ -34,7 +34,7 @@ services:
     ports:
       - "8000:8000"
     build: ./backend  # 指定 Dockerfile 路徑
-    image: thuHelper.azurecr.io/thuhelper/backend:latest
+    image: thuhelper.azurecr.io/backend:latest
     command: sh -c "python manage.py collectstatic --noinput --clear && python manage.py migrate && python manage.py shell < templates/fake_data/bbs/fakeData.py && gunicorn thuHelper.wsgi -b 0.0.0.0:8000 " # 啟動 Django 伺服器 (需根據你的專案調整)
     volumes:
       - ./backend:/app  # 掛載程式碼方便開發時修改
@@ -59,7 +59,7 @@ services:
   frontend:
     container_name: nextjs_app
     build: ./frontend # 指定 Dockerfile 路徑
-    image: thuHelper.azurecr.io/thuhelper/frontend:latest
+    image: thuhelper.azurecr.io/frontend:latest
     environment:
       NODE_ENV: production
       NEXT_PUBLIC_API_BASE_URL: "http://backend/api"
@@ -69,7 +69,7 @@ services:
 
   nginx:
     container_name: nginx_server
-    image: nginx:1.21-alpine
+    image: thuhelper.azurecr.io/nginx:1.21-alpine
     ports:
       - "80:80"  # 將主機的 80 端口映射到 Nginx 的 80 端口 (HTTP)
       - "443:443" # 將主機的 443 端口映射到 Nginx 的 443 端口 (HTTPS，如果需要 SSL)
