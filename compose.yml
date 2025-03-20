@@ -31,7 +31,10 @@ services:
 
   backend:
     container_name: django_app
+    ports:
+      - "8000:8000"
     build: ./backend  # 指定 Dockerfile 路徑
+    image: thuHelper.azurecr.io/thuhelper/backend:latest
     command: sh -c "python manage.py collectstatic --noinput --clear && python manage.py migrate && python manage.py shell < templates/fake_data/bbs/fakeData.py && gunicorn thuHelper.wsgi -b 0.0.0.0:8000 " # 啟動 Django 伺服器 (需根據你的專案調整)
     volumes:
       - ./backend:/app  # 掛載程式碼方便開發時修改
@@ -56,11 +59,10 @@ services:
   frontend:
     container_name: nextjs_app
     build: ./frontend # 指定 Dockerfile 路徑
-    volumes:
-      - ./frontend:/app # 掛載程式碼方便開發時修改
+    image: thuHelper.azurecr.io/thuhelper/frontend:latest
     environment:
       NODE_ENV: production
-      NEXT_PUBLIC_API_BASE_URL: "http://localhost/api"
+      NEXT_PUBLIC_API_BASE_URL: "http://backend/api"
     depends_on:
       backend:
         condition: service_started # 等待 Django 啟動即可 (不需健康檢查)
