@@ -42,7 +42,7 @@ SECRET_KEY = "django-insecure-netc@=)!im^(&z=u%877jw9bhh25_qjzxh^e&#i6%zug&=^7=-
 DEBUG = True
 
 ALLOWED_HOSTS = [
-"http://test-connection.eastasia.cloudapp.azure.com"
+"test-connection.eastasia.cloudapp.azure.com"
 ]
 
 # Email Settings
