@@ -13,7 +13,7 @@
     "dotenv": "^16.4.5",
     "i18next": "^24.2.2",
     "i18next-resources-to-backend": "^1.2.1",
-    "next": "^15.1.4",
+    "next": "^15.2.3",
     "next-i18next": "^15.4.2",
     "postcss": "^8.4.49",
     "prop-types": "^15.8.1",
