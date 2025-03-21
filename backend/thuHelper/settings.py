@@ -41,7 +41,9 @@ SECRET_KEY = "django-insecure-netc@=)!im^(&z=u%877jw9bhh25_qjzxh^e&#i6%zug&=^7=-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+"http://test-connection.eastasia.cloudapp.azure.com"
+]
 
 # Email Settings
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
@@ -133,7 +135,7 @@ SOCIALACCOUNT_PROVIDERS = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
     "http://localhost:3000",
-    "http://test-connection.eastasia.cloudapp.azure.com"
+"http://test-connection.eastasia.cloudapp.azure.com"
     ]
 
 ROOT_URLCONF = "thuHelper.urls"
