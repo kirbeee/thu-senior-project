@@ -133,6 +133,7 @@ SOCIALACCOUNT_PROVIDERS = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
     "http://localhost:3000",
+    "http://test-connection.eastasia.cloudapp.azure.com"
     ]
 
 ROOT_URLCONF = "thuHelper.urls"
