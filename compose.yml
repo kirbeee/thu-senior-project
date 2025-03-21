@@ -1,6 +1,6 @@
 services:
   db:
-    image: thuhelper.azurecr.io/postgres:14-alpine
+    image: postgres:14-alpine
     container_name: postgresql_db
     volumes:
       - postgresql_data:/var/lib/postgresql/data/  # 資料持久化 (可選)
@@ -69,7 +69,7 @@ services:
 
   nginx:
     container_name: nginx_server
-    image: thuhelper.azurecr.io/nginx:1.21-alpine
+    image: nginx:1.21-alpine
     ports:
       - "80:80"  # 將主機的 80 端口映射到 Nginx 的 80 端口 (HTTP)
       - "443:443" # 將主機的 443 端口映射到 Nginx 的 443 端口 (HTTPS，如果需要 SSL)
