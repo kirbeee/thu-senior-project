@@ -42,6 +42,7 @@ SECRET_KEY = "django-insecure-netc@=)!im^(&z=u%877jw9bhh25_qjzxh^e&#i6%zug&=^7=-
 DEBUG = True
 
 ALLOWED_HOSTS = [
+"localhost",
 "test-connection.eastasia.cloudapp.azure.com"
 ]
 
@@ -135,7 +136,7 @@ SOCIALACCOUNT_PROVIDERS = {
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
     "http://localhost:3000",
-"http://test-connection.eastasia.cloudapp.azure.com"
+    "http://localhost:8000",
     ]
 
 ROOT_URLCONF = "thuHelper.urls"
