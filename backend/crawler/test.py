@@ -102,6 +102,7 @@ def get_data(course_number):
         course_info = get_basic_data_info(soup,course_info)
         course_info = get_people_info(soup,course_info)
         course_info['系所'] = get_deparment_info(soup)
+
         description_div = soup.find('div', class_='thirteen columns')
         if description_div:
             description_paragraph = description_div.find('p')
@@ -124,7 +125,7 @@ def save_to_csv(course_data_list, filename="course_data.csv"):
 
 if __name__ == '__main__':
     all_course_data = []
-    for course in range(1, 7005):
+    for course in range(3001, 3005):
         print('正在處理第', course, '筆資料')
         course_data = get_data(str(course))
         all_course_data.append(course_data)
