@@ -16,12 +16,12 @@ import os
 
 from tutorial.settings import BASE_DIR
 
-CACHES = {
-    "default": {
-        "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://127.0.0.1:6379",
-    }
-}
+# CACHES = {
+#     "default": {
+#         "BACKEND": "django.core.cache.backends.redis.RedisCache",
+#         "LOCATION": "redis://127.0.0.1:6379",
+#     }
+# }
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -47,12 +47,12 @@ ALLOWED_HOSTS = [
 ]
 
 # Email Settings
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_PORT = 587
-EMAIL_USE_TLS = True
-EMAIL_HOST_USER = env('GOOGLE_SMTP')
-EMAIL_HOST_PASSWORD = env('GOOGLE_SMTP_PASSWORD')
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.gmail.com'
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+# EMAIL_HOST_USER = env('GOOGLE_SMTP')
+# EMAIL_HOST_PASSWORD = env('GOOGLE_SMTP_PASSWORD')
 # development email backend (please remove when in production)
 # EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
@@ -121,17 +121,17 @@ REST_FRAMEWORK = {
 }
 
 # Google OAuth 配置
-SOCIALACCOUNT_PROVIDERS = {
-    'google': {
-        'SCOPE': ['profile', 'email'],
-        'AUTH_PARAMS': {'access_type': 'online'},
-        'APP': {
-            'client_id': env('GOOGLE_OAUTH_CLIENT_ID'),
-            'secret': env('GOOGLE_OAUTH_CLIENT_SECRET'),
-            'key': ''
-        }
-    }
-}
+# SOCIALACCOUNT_PROVIDERS = {
+#     'google': {
+#         'SCOPE': ['profile', 'email'],
+#         'AUTH_PARAMS': {'access_type': 'online'},
+#         'APP': {
+#             'client_id': env('GOOGLE_OAUTH_CLIENT_ID'),
+#             'secret': env('GOOGLE_OAUTH_CLIENT_SECRET'),
+#             'key': ''
+#         }
+#     }
+# }
 
 CORS_ALLOWED_ORIGINS = [
     "http://localhost",
