@@ -42,7 +42,9 @@ function VisitorSignup(){
 
         // @ts-ignore
         try {
+            // @ts-ignore
             const resultAction = await dispatch(signupApi({username, email, password1: password, password2: confirmPassword}));
+            // @ts-ignore
             unwrapResult(resultAction)
             await router.push('/')
         }catch (err:any){

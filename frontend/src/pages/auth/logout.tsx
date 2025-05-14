@@ -10,6 +10,7 @@ const Logout = () => {
     const router = useRouter();
 
     useEffect(() => {
+        // @ts-ignore
         dispatch(logoutApi()).finally(() => {
             localStorage.removeItem("authToken");
             router.push("/");

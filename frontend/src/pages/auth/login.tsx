@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useTranslation } from "next-i18next";
 import { serverSideTranslations } from "next-i18next/serverSideTranslations"; // 若頁面有 SSR
 import { useDispatch, useSelector } from "react-redux";
-import { loginApi } from "@lib/store";
+import {loginApi, RootState} from "@lib/store";
 import { clearError } from "@lib/slices/usersSlice";
 import { useRouter } from "next/router";
 import Image from "next/image";
@@ -14,7 +14,7 @@ function Login() {
     const dispatch = useDispatch();
     const router = useRouter();
 
-    const { error } = useSelector((state) => state.users);
+    const { error } = useSelector((state: RootState) => state.users);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -26,6 +26,7 @@ function Login() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
+            // @ts-ignore
             await dispatch(loginApi({ username, password })).unwrap();
             router.replace("/");
         } catch (err) {
