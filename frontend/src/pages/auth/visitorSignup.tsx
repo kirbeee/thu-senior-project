@@ -2,6 +2,7 @@ import React, {useState} from "react";
 import {signupApi} from "../../lib/store";
 import {useDispatch, useSelector} from "react-redux";
 import {useRouter} from "next/router";
+import {unwrapResult} from "@reduxjs/toolkit";
 
 function VisitorSignup(){
     const dispatch = useDispatch();
@@ -40,8 +41,15 @@ function VisitorSignup(){
         }
 
         // @ts-ignore
-        await dispatch(signupApi({username, email, password1: password, password2: confirmPassword}));
-        await router.push('/')
+        try {
+            const resultAction = await dispatch(signupApi({username, email, password1: password, password2: confirmPassword}));
+            unwrapResult(resultAction)
+            await router.push('/')
+        }catch (err:any){
+            setPasswordError(err?.massage || '註冊失敗，請稍後再試');
+        }
+
+
     };
 
     return (
@@ -53,7 +61,14 @@ function VisitorSignup(){
                 </div>
                 <div className="card shrink-0 w-full max-w-max min-w-[400px] shadow-2xl bg-base-100">
                     <form onSubmit={handleSubmit} className="card-body">
-                        {error && <div className="alert alert-error">{error}</div>}
+                        {error && (
+                            <div className="alert alert-error">
+                                {error.non_field_errors?.[0] ||
+                                    error.username?.[0] ||
+                                    error.email?.[0] ||
+                                    "註冊失敗"}
+                            </div>
+                        )}
                         {passwordError && <div className="alert alert-warning">{passwordError}</div>}
                         <div className="form-control">
                             <label className="label">
