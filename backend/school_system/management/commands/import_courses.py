@@ -1,3 +1,5 @@
+# you can run this command using:
+# python manage.py import_courses backend/crawler/course_data_clean.csv
 import csv
 from django.core.management.base import BaseCommand
 from school_system.models import Course

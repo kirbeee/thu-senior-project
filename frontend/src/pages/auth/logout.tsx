@@ -1,23 +1,23 @@
-import React from "react"; // Import React here
-import {useEffect} from "react";
-import { logoutApi } from "../../lib/store";
-import {useDispatch, useSelector} from "react-redux";
-import Skeleton from "@components/ui/Skeleton";
+"use client";
 
-function Logout(){
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { useDispatch } from "react-redux";
+import { logoutApi } from "../../lib/store";
+
+const Logout = () => {
     const dispatch = useDispatch();
-    // @ts-ignore
-    const {isLoading, error} = useSelector((state) => state.users);
+    const router = useRouter();
 
     useEffect(() => {
         // @ts-ignore
-        dispatch(logoutApi());
-        localStorage.removeItem('authToken');
-    }, [dispatch]);
-    if(isLoading) return <Skeleton times={6} className="h-10 w-full"/>;
-    if(error) return <div>error</div>;
+        dispatch(logoutApi()).finally(() => {
+            localStorage.removeItem("authToken");
+            router.push("/");
+        });
+    }, [dispatch, router]);
 
-    return null; // Add a return null to satisfy react component return requirement, as LogoutPage might not render anything visually. Or you can return a message or redirect.
-}
+    return null; // 不顯示任何畫面
+};
 
 export default Logout;

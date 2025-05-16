@@ -212,3 +212,4 @@ comment_like1, created = CommentLike.objects.get_or_create(user_id=user4, commen
 comment_like2, created = CommentLike.objects.get_or_create(user_id=user9, comment_id=comment3) # 使用 get_or_create, 根據 user_id 和 comment_id 避免重複
 
 print("已檢查或建立評論點讚假資料") # 修改訊息更精確
+

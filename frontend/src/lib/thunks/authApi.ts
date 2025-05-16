@@ -69,12 +69,16 @@ export const loginApi = createAsyncThunk<UserResponse, LoginPayload, { rejectVal
         }
     }
 );
-
-export const signupApi = createAsyncThunk<void, SignupPayload>(
+export const signupApi = createAsyncThunk<void, SignupPayload, { rejectValue: any }>(
     "users/signup",
-    async ({ username, email, password1, password2, role = "visitor", id_card_number }) => {
-        await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/registration/`, {
-            username, email, password1, password2, role, id_card_number
-        });
+    async ({ username, email, password1, password2, role = "visitor", id_card_number }, thunkAPI) => {
+        try {
+            await axios.post(`${process.env.NEXT_PUBLIC_API_URL}/registration/`, {
+                username, email, password1, password2, role, id_card_number
+            });
+        } catch (error: any) {
+            return thunkAPI.rejectWithValue(error.response?.data || "註冊失敗");
+        }
     }
+
 );
