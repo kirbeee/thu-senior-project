@@ -60,6 +60,6 @@ typer==0.15.1
 typing_extensions==4.12.2
 uritemplate==4.1.1
 urllib3==2.3.0
-virtualenv==20.29.2
+virtualenv==20.36.1
 virtualenv-clone==0.5.7
 virtualenvwrapper==6.0.0
