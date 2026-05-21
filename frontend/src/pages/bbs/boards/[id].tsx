@@ -12,7 +12,6 @@ import { GetStaticProps, GetStaticPaths, NextPage } from 'next';
 interface Category {
     name: string;
     id: number; // Assuming category has an id
-    // ... other category properties if any
 }
 
 interface BoardData {

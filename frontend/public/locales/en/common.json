@@ -44,5 +44,13 @@
     "introCS": "Learn the fundamentals of computer science and programming.",
     "calculus1": "A comprehensive introduction to differential and integral calculus.",
     "linearAlgebra": "Study vectors, matrices, linear transformations, and systems of linear equations."
-  }
+  },
+  "loginTitle": "Course Selection Login",
+  "loginSubtitle": "Welcome to the THU course selection system. Please enter your credentials.",
+  "username": "Username",
+  "email": "Email",
+  "password": "Password",
+  "forgotPassword": "Forgot password?",
+  "login": "Login",
+  "loginFailed": "Login failed"
 }

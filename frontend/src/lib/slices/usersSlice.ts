@@ -30,7 +30,11 @@ const initialState: UsersState = {
 const usersSlice = createSlice({
     name: 'users',
     initialState,
-    reducers: {}, // No reducers defined in the original JS, keeping it empty
+    reducers: {
+        clearError(state) {
+            state.error = null;
+        },
+    },
     extraReducers: (builder) => {
         const handlePending = (state: UsersState) => {
             state.loading = true;
@@ -84,5 +88,5 @@ const usersSlice = createSlice({
             .addCase(signupApi.rejected, handleRejected)
     }
 })
-
+export const { clearError } = usersSlice.actions;
 export const usersReducer = usersSlice.reducer;

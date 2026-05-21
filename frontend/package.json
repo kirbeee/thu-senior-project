@@ -30,6 +30,7 @@
     "build": "next build",
     "start": "next start -p $PORT",
     "test": "vitest",
+    "test:coverage": "vitest --coverage --coverage.reporter=html",
     "lint": "next lint"
   },
   "proxy": "http://localhost:8000",
@@ -60,6 +61,7 @@
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
     "@vitejs/plugin-react": "^4.3.4",
+    "@vitest/coverage-v8": "^3.0.8",
     "autoprefixer": "^10.4.20",
     "daisyui": "^4.12.11",
     "eslint": "^9.20.1",

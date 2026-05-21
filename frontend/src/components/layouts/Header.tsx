@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { authApi } from "../../lib/store";
 import { useRouter } from 'next/router';
 import {useTranslation} from "next-i18next";
-import { RootState } from '@lib/store'; // 假設你的 store.ts 或類似檔案中有定義 RootState
+import { RootState } from '@lib/store';
 
 const Header = () => {
     // 使用 RootState 類型來指定 useSelector 的 state 參數類型
